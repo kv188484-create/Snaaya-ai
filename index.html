@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snaaya AI - Smart Assistant</title>
+    <title>Snaaya AI - Voice Assistant</title>
     <style>
         * {
             margin: 0;
@@ -38,24 +38,85 @@
             color: #8b949e;
             font-size: 16px;
             line-height: 1.5;
+            margin-bottom: 20px;
         }
-        .badge {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 6px 12px;
+        button {
             background-color: #238636;
             color: #ffffff;
-            border-radius: 20px;
-            font-size: 14px;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
             font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #2ea043;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #58a6ff;
+            min-height: 40px;
         }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>Snaaya AI</h1>
-        <p>आपका स्वागत है! यह आपकी अपनी कस्टमाइज़्ड एआई वेबसाइट है जिसे गिटहब पर होस्ट किया गया है।</p>
-        <div class="badge">Active & Running</div>
+        <p>नमस्ते! मैं आपका वॉइस असिस्टेंट हूँ। नीचे दिए गए बटन पर क्लिक करके मुझसे बात करें।</p>
+        <button id="start-btn">🎙️ बोलिए</button>
+        <div id="output">यहाँ आपकी बात और मेरा जवाब दिखेगा...</div>
     </div>
+
+    <script>
+        const startBtn = document.getElementById('start-btn');
+        const output = document.getElementById('output');
+
+        // Check Speech Recognition Support
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        
+        if (!SpeechRecognition) {
+            output.innerText = "क्षमा करें, आपका ब्राउज़र वॉइस कमांड सपोर्ट नहीं करता है।";
+        } else {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'hi-IN'; // हिंदी भाषा सेट की गई है
+
+            startBtn.addEventListener('click', () => {
+                recognition.start();
+                output.innerText = "स्रोतः सुन रहा हूँ... बोलिए!";
+            });
+
+            recognition.onresult = (event) => {
+                const speechText = event.results[0][0].transcript;
+                output.innerText = "आपने कहा: " + speechText;
+                
+                // AI का रिप्लाई तैयार करना
+                let reply = "मैंने आपका संदेश सुन लिया है।";
+                if (speechText.toLowerCase().includes('नमस्ते') || speechText.toLowerCase().includes('हेलो')) {
+                    reply = "नमस्ते कमल जी! बताइए मैं आपकी क्या मदद कर सकता हूँ?";
+                } else if (speechText.toLowerCase().includes('कैसे हो')) {
+                    reply = "मैं बिल्कुल ठीक हूँ! आप बताइए आप कैसे हैं?";
+                }
+
+                setTimeout(() => {
+                    output.innerText += "\nAI: " + reply;
+                    speak(reply);
+                }, 1000);
+            };
+
+            recognition.onerror = (event) => {
+                output.innerText = "आवाज़ पहचानने में त्रुटि हुई। कृपया फिर से कोशिश करें।";
+            };
+        }
+
+        // Speaker Function
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'hi-IN';
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
 </body>
 </html>
