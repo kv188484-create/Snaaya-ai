@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snaaya AI - Smart Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            border: 1px solid #30363d;
+        }
+        h1 {
+            color: #58a6ff;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        p {
+            color: #8b949e;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .badge {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 6px 12px;
+            background-color: #238636;
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Snaaya AI</h1>
+        <p>आपका स्वागत है! यह आपकी अपनी कस्टमाइज़्ड एआई वेबसाइट है जिसे गिटहब पर होस्ट किया गया है।</p>
+        <div class="badge">Active & Running</div>
+    </div>
+</body>
+</html>
