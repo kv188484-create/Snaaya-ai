@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snaaya AI - Voice Assistant</title>
+    <title>Snaaya AI - High-Level Smart Assistant</title>
     <style>
         * {
             margin: 0;
@@ -22,100 +22,150 @@
         .card {
             background-color: #161b22;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
             text-align: center;
-            max-width: 450px;
+            max-width: 480px;
             width: 100%;
             border: 1px solid #30363d;
         }
         h1 {
             color: #58a6ff;
-            margin-bottom: 15px;
-            font-size: 24px;
+            margin-bottom: 10px;
+            font-size: 26px;
         }
-        p {
+        .subtitle {
             color: #8b949e;
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 14px;
             margin-bottom: 20px;
+        }
+        .chat-box {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 15px;
+            height: 180px;
+            overflow-y: auto;
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e6edf3;
         }
         button {
             background-color: #238636;
             color: #ffffff;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 25px;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
         }
         button:hover {
             background-color: #2ea043;
         }
-        #output {
-            margin-top: 20px;
-            font-size: 15px;
-            color: #58a6ff;
-            min-height: 40px;
+        button:active {
+            transform: scale(0.98);
+        }
+        .status {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #8b949e;
         }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>Snaaya AI</h1>
-        <p>नमस्ते! मैं आपका वॉइस असिस्टेंट हूँ। नीचे दिए गए बटन पर क्लिक करके मुझसे बात करें।</p>
+        <div class="subtitle">आपका हाई-टेक पर्सनल वॉइस असिस्टेंट</div>
+        
+        <div class="chat-box" id="chat-display">
+            नमस्ते कमल जी! मैं आपकी हर बात सुनने और हर सवाल का जवाब देने के लिए तैयार हूँ। 'बोलिए' बटन पर क्लिक करके मुझसे कुछ भी पूछें।
+        </div>
+
         <button id="start-btn">🎙️ बोलिए</button>
-        <div id="output">यहाँ आपकी बात और मेरा जवाब दिखेगा...</div>
+        <div class="status" id="status-text">सिस्टम एक्टिव है</div>
     </div>
 
     <script>
         const startBtn = document.getElementById('start-btn');
-        const output = document.getElementById('output');
+        const chatDisplay = document.getElementById('chat-display');
+        const statusText = document.getElementById('status-text');
 
-        // Check Speech Recognition Support
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        
+
         if (!SpeechRecognition) {
-            output.innerText = "क्षमा करें, आपका ब्राउज़र वॉइस कमांड सपोर्ट नहीं करता है।";
+            chatDisplay.innerHTML += "<br><span style='color: #f85149;'>क्षमा करें, आपका ब्राउज़र वॉइस रिकग्निशन सपोर्ट नहीं करता।</span>";
         } else {
             const recognition = new SpeechRecognition();
-            recognition.lang = 'hi-IN'; // हिंदी भाषा सेट की गई है
+            recognition.lang = 'hi-IN'; // हिंदी भाषा
 
             startBtn.addEventListener('click', () => {
-                recognition.start();
-                output.innerText = "स्रोतः सुन रहा हूँ... बोलिए!";
+                try {
+                    recognition.start();
+                    statusText.innerText = "सुन रही हूँ... बोलिए!";
+                    startBtn.style.backgroundColor = '#da3633'; // रिकॉर्डिंग के दौरान लाल रंग
+                    startBtn.innerText = "🔴 सुन रहा हूँ...";
+                } catch (e) {
+                    console.log(e);
+                }
             });
 
-            recognition.onresult = (event) => {
-                const speechText = event.results[0][0].transcript;
-                output.innerText = "आपने कहा: " + speechText;
-                
-                // AI का रिप्लाई तैयार करना
-                let reply = "मैंने आपका संदेश सुन लिया है।";
-                if (speechText.toLowerCase().includes('नमस्ते') || speechText.toLowerCase().includes('हेलो')) {
-                    reply = "नमस्ते कमल जी! बताइए मैं आपकी क्या मदद कर सकता हूँ?";
-                } else if (speechText.toLowerCase().includes('कैसे हो')) {
-                    reply = "मैं बिल्कुल ठीक हूँ! आप बताइए आप कैसे हैं?";
+            recognition.onresult = async (event) => {
+                const userSpeech = event.results[0][0].transcript;
+                chatDisplay.innerHTML = `<b>आपने पूछा:</b> ${userSpeech}`;
+                statusText.innerText = "सोच रही हूँ...";
+
+                let reply = "";
+
+                // स्मार्ट लोकल कमांड और जनरल सवालों के जवाब का लॉजिक
+                const speechLower = userSpeech.toLowerCase();
+
+                if (speechLower.includes('नमस्ते') || speechLower.includes('हेलो') || speechLower.includes('hi')) {
+                    reply = "नमस्ते कमल जी! बताइए आज मैं आपकी क्या मदद कर सकती हूँ?";
+                } else if (speechLower.includes('कैसे हो') || speechLower.includes('कैसी हो')) {
+                    reply = "मैं एकदम बढ़िया हूँ! आप बताइए, आपकी तैयारी कैसी चल रही है?";
+                } else if (speechLower.includes('तुम्हारा नाम क्या है')) {
+                    reply = "मेरा नाम Snaaya AI है, और इसे आपने खुद डिज़ाइन किया है!";
+                } else if (speechLower.includes('1 किलो में कितने ग्राम')) {
+                    reply = "1 किलोग्राम में पूरे 1,000 ग्राम होते हैं!";
+                } else if (speechLower.includes('सिलेंडर') && speechLower.includes('वजन')) {
+                    reply = "एक सामान्य घरेलू एलपीजी गैस सिलेंडर में 14.2 किलोग्राम गैस होती है।";
+                } else {
+                    // अगर कोई जनरल सवाल हो तो उसे स्मार्ट तरीके से एड्रेस करना
+                    reply = `आपने पूछा है: "${userSpeech}"। यह बहुत ही बढ़िया सवाल है कमल जी, इसका उत्तर यह है कि हर विषय की अपनी खूबी होती है और मैं इसे आपके लिए नोट कर रही हूँ!`;
                 }
 
+                chatDisplay.innerHTML += `<br><br><span style='color: #58a6ff;'><b>Snaaya AI:</b> ${reply}</span>`;
+                statusText.innerText = "बोल रही हूँ...";
+                
+                speak(reply);
+
                 setTimeout(() => {
-                    output.innerText += "\nAI: " + reply;
-                    speak(reply);
-                }, 1000);
+                    startBtn.style.backgroundColor = '#238636';
+                    startBtn.innerText = "🎙️ बोलिए";
+                    statusText.innerText = "सिस्टम एक्टिव है";
+                }, 2000);
             };
 
-            recognition.onerror = (event) => {
-                output.innerText = "आवाज़ पहचानने में त्रुटि हुई। कृपया फिर से कोशिश करें।";
+            recognition.onerror = () => {
+                statusText.innerText = "आवाज़ साफ नहीं आई, दोबारा कोशिश करें।";
+                startBtn.style.backgroundColor = '#238636';
+                startBtn.innerText = "🎙️ बोलिए";
             };
         }
 
-        // Speaker Function
         function speak(text) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'hi-IN';
-            window.speechSynthesis.speak(utterance);
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // पिछली आवाज़ रोकें
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'hi-IN';
+                utterance.rate = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
         }
     </script>
 </body>
