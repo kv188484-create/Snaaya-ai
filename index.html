@@ -3,170 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snaaya AI - High-Level Smart Assistant</title>
+    <title>Sanaya AI Voice Dashboard</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .card {
-            background-color: #161b22;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            text-align: center;
-            max-width: 480px;
-            width: 100%;
-            border: 1px solid #30363d;
-        }
-        h1 {
-            color: #58a6ff;
-            margin-bottom: 10px;
-            font-size: 26px;
-        }
-        .subtitle {
-            color: #8b949e;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .chat-box {
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 15px;
-            height: 180px;
-            overflow-y: auto;
-            text-align: left;
-            margin-bottom: 20px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e6edf3;
-        }
-        button {
-            background-color: #238636;
-            color: #ffffff;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
-            box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
-        }
-        button:hover {
-            background-color: #2ea043;
-        }
-        button:active {
-            transform: scale(0.98);
-        }
-        .status {
-            margin-top: 15px;
-            font-size: 13px;
-            color: #8b949e;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #0b0f19; color: #f1f5f9; display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Sidebar */
+        .sidebar { width: 220px; background: #111827; border-right: 1px solid #1f2937; display: flex; flex-direction: column; padding: 20px; }
+        .logo { font-size: 18px; font-weight: bold; color: #38bdf8; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
+        .menu-item { padding: 12px 15px; border-radius: 8px; color: #94a3b8; cursor: pointer; margin-bottom: 8px; transition: 0.2s; font-size: 14px; }
+        .menu-item.active, .menu-item:hover { background: #0284c7; color: white; }
+
+        /* Main Content */
+        .main-content { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow-y: auto; }
+        .header { background: #111827; padding: 15px 25px; border-bottom: 1px solid #1f2937; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 18px; color: #38bdf8; }
+        
+        /* Dashboard Grid */
+        .dashboard-grid { padding: 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; flex: 1; }
+        @media(max-width: 900px) { body { flex-direction: column; } .sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; gap: 10px; padding: 10px; } .dashboard-grid { grid-template-columns: 1fr; } }
+
+        .card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
+        .card-title { font-size: 15px; font-weight: bold; color: #94a3b8; margin-bottom: 15px; }
+
+        /* Stats Row */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .stat-box { background: #1f2937; padding: 12px; border-radius: 8px; text-align: center; }
+        .stat-box span { display: block; font-size: 12px; color: #94a3b8; }
+        .stat-box h3 { font-size: 18px; color: #38bdf8; margin-top: 5px; }
+
+        /* Sound Wave Animation */
+        .wave-container { display: flex; align-items: center; justify-content: center; gap: 6px; height: 100px; background: #0b0f19; border-radius: 8px; margin-bottom: 15px; }
+        .wave-bar { width: 6px; height: 20px; background: #38bdf8; border-radius: 3px; animation: wave 1.2s infinite ease-in-out; }
+        .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes wave { 0%, 100% { height: 15px; } 50% { height: 60px; background: #10b981; } }
+
+        /* Chat Box */
+        .chat-box { flex: 1; height: 220px; overflow-y: auto; background: #0b0f19; border: 1px solid #1f2937; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+        .msg { padding: 10px 14px; border-radius: 8px; font-size: 14px; max-width: 85%; line-height: 1.5; }
+        .user-msg { background: #0284c7; color: white; align-self: flex-end; }
+        .ai-msg { background: #1f2937; color: #e5e7eb; align-self: flex-start; border: 1px solid #374151; }
+
+        /* Input Controls */
+        .input-control { display: flex; gap: 10px; }
+        input[type="text"] { flex: 1; background: #0b0f19; border: 1px solid #374151; padding: 12px; border-radius: 8px; color: white; outline: none; font-size: 14px; }
+        input[type="text"]:focus { border-color: #38bdf8; }
+        button { background: #38bdf8; color: #0b0f19; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #0ea5e9; }
+        #mic-btn { background: #10b981; color: white; }
+        #mic-btn.listening { background: #ef4444; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Snaaya AI</h1>
-        <div class="subtitle">आपका हाई-टेक पर्सनल वॉइस असिस्टेंट</div>
-        
-        <div class="chat-box" id="chat-display">
-            नमस्ते कमल जी! मैं आपकी हर बात सुनने और हर सवाल का जवाब देने के लिए तैयार हूँ। 'बोलिए' बटन पर क्लिक करके मुझसे कुछ भी पूछें।
-        </div>
 
-        <button id="start-btn">🎙️ बोलिए</button>
-        <div class="status" id="status-text">सिस्टम एक्टिव है</div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">⚡ Sanaya Dashboard</div>
+        <div class="menu-item active">📊 Live Center</div>
+        <div class="menu-item">🤖 Gemini AI Ultra</div>
+        <div class="menu-item">🎙️ Sweet Voice Mode</div>
+        <div class="menu-item">⚙️ Settings</div>
     </div>
 
-    <script>
-        const startBtn = document.getElementById('start-btn');
-        const chatDisplay = document.getElementById('chat-display');
-        const statusText = document.getElementById('status-text');
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Sanaya AI Voice & Text Assistant</h1>
+            <span style="font-size: 13px; color: #10b981;">● Online (Sweet Voice Active)</span>
+        </div>
 
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-        if (!SpeechRecognition) {
-            chatDisplay.innerHTML += "<br><span style='color: #f85149;'>क्षमा करें, आपका ब्राउज़र वॉइस रिकग्निशन सपोर्ट नहीं करता।</span>";
-        } else {
-            const recognition = new SpeechRecognition();
-            recognition.lang = 'hi-IN'; // हिंदी भाषा
-
-            startBtn.addEventListener('click', () => {
-                try {
-                    recognition.start();
-                    statusText.innerText = "सुन रही हूँ... बोलिए!";
-                    startBtn.style.backgroundColor = '#da3633'; // रिकॉर्डिंग के दौरान लाल रंग
-                    startBtn.innerText = "🔴 सुन रहा हूँ...";
-                } catch (e) {
-                    console.log(e);
-                }
-            });
-
-            recognition.onresult = async (event) => {
-                const userSpeech = event.results[0][0].transcript;
-                chatDisplay.innerHTML = `<b>आपने पूछा:</b> ${userSpeech}`;
-                statusText.innerText = "सोच रही हूँ...";
-
-                let reply = "";
-
-                // स्मार्ट लोकल कमांड और जनरल सवालों के जवाब का लॉजिक
-                const speechLower = userSpeech.toLowerCase();
-
-                if (speechLower.includes('नमस्ते') || speechLower.includes('हेलो') || speechLower.includes('hi')) {
-                    reply = "नमस्ते कमल जी! बताइए आज मैं आपकी क्या मदद कर सकती हूँ?";
-                } else if (speechLower.includes('कैसे हो') || speechLower.includes('कैसी हो')) {
-                    reply = "मैं एकदम बढ़िया हूँ! आप बताइए, आपकी तैयारी कैसी चल रही है?";
-                } else if (speechLower.includes('तुम्हारा नाम क्या है')) {
-                    reply = "मेरा नाम Snaaya AI है, और इसे आपने खुद डिज़ाइन किया है!";
-                } else if (speechLower.includes('1 किलो में कितने ग्राम')) {
-                    reply = "1 किलोग्राम में पूरे 1,000 ग्राम होते हैं!";
-                } else if (speechLower.includes('सिलेंडर') && speechLower.includes('वजन')) {
-                    reply = "एक सामान्य घरेलू एलपीजी गैस सिलेंडर में 14.2 किलोग्राम गैस होती है।";
-                } else {
-                    // अगर कोई जनरल सवाल हो तो उसे स्मार्ट तरीके से एड्रेस करना
-                    reply = `आपने पूछा है: "${userSpeech}"। यह बहुत ही बढ़िया सवाल है कमल जी, इसका उत्तर यह है कि हर विषय की अपनी खूबी होती है और मैं इसे आपके लिए नोट कर रही हूँ!`;
-                }
-
-                chatDisplay.innerHTML += `<br><br><span style='color: #58a6ff;'><b>Snaaya AI:</b> ${reply}</span>`;
-                statusText.innerText = "बोल रही हूँ...";
+        <div class="dashboard-grid">
+            <!-- Left Panel -->
+            <div class="card">
+                <div class="card-title">Live AI Interaction & Sound Monitor</div>
                 
-                speak(reply);
+                <div class="stats-row">
+                    <div class="stat-box"><span>Status</span><h3 id="status-text">Ready</h3></div>
+                    <div class="stat-box"><span>Voice</span><h3 style="color: #f472b6;">Sweet Female</h3></div>
+                    <div class="stat-box"><span>Speed</span><h3>Smooth</h3></div>
+                    <div class="stat-box"><span>Model</span><h3>Gemini Flash</h3></div>
+                </div>
 
-                setTimeout(() => {
-                    startBtn.style.backgroundColor = '#238636';
-                    startBtn.innerText = "🎙️ बोलिए";
-                    statusText.innerText = "सिस्टम एक्टिव है";
-                }, 2000);
-            };
+                <!-- Animated Sound Wave -->
+                <div class="wave-container" id="soundWave" style="display:none;">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
 
-            recognition.onerror = () => {
-                statusText.innerText = "आवाज़ साफ नहीं आई, दोबारा कोशिश करें।";
-                startBtn.style.backgroundColor = '#238636';
-                startBtn.innerText = "🎙️ बोलिए";
-            };
+                <!-- Chat History -->
+                <div class="chat-box" id="chatBox">
+                    <div class="msg ai-msg">नमस्ते कमल! मेरी आवाज़ अब एकदम प्यारी और मीठी रहेगी। मुझसे कुछ भी पूछिए!</div>
+                </div>
+
+                <!-- Input Controls -->
+                <div class="input-control">
+                    <input type="text" id="userInput" placeholder="यहाँ अपना सवाल टाइप करें..." onkeypress="handleKey(event)">
+                    <button id="mic-btn" onclick="toggleMic()">🎤 बोलें</button>
+                    <button onclick="sendQuery()">भेजें</button>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="card" style="flex: 1;">
+                    <div class="card-title">AI Intelligence Panel</div>
+                    <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 10px;">
+                        यह डैशबोर्ड सीधे Google Gemini API से कनेक्ट है। आवाज़ को बिना अटके आराम से बोलने के लिए ट्यून किया गया है।
+                    </p>
+                    <div style="background: #0b0f19; padding: 12px; border-radius: 8px; border: 1px solid #1f2937; font-size: 13px;">
+                        <span style="color: #38bdf8; font-weight: bold;">Voice Engine:</span><br>Natural Smooth Speech
+                    </div>
+                </div>
+
+                <div class="card" style="flex: 1;">
+                    <div class="card-title">Quick Commands</div>
+                    <ul style="font-size: 13px; color: #94a3b8; padding-left: 18px; display: flex; flex-direction: column; gap: 8px;">
+                        <li>जीके और इतिहास के सवाल</li>
+                        <li>साइंस और न्यूट्रिशन जानकारी</li>
+                        <li>अनलिमिटेड बातचीत और कमांड</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // 👇 यहाँ अपनी पुरानी API की को इनवर्टेड कॉमा के अंदर पेस्ट करें 👇
+    const API_KEY = "YOUR_API_KEY";
+
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+    const micBtn = document.getElementById('mic-btn');
+    const soundWave = document.getElementById('soundWave');
+    const statusText = document.getElementById('status-text');
+
+    let recognition;
+    let isListening = false;
+    let availableVoices = [];
+
+    // डिवाइस की उपलब्ध आवाज़ों को लोड करना ताकि फीमेल वॉइस चुनी जा सके
+    function loadVoices() {
+        if ('speechSynthesis' in window) {
+            availableVoices = window.speechSynthesis.getVoices();
+        }
+    }
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+        loadVoices();
+    }
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN';
+        recognition.interimResults = false;
+        recognition.continuous = false;
+
+        recognition.onresult = function(event) {
+            userInput.value = event.results[0][0].transcript;
+            stopListeningState();
+            sendQuery();
+        };
+        recognition.onerror = () => stopListeningState();
+        recognition.onend = () => stopListeningState();
+    }
+
+    function toggleMic() {
+        if (!recognition) {
+            alert("आपका ब्राउज़र वॉइस कमांड सपोर्ट नहीं करता है।");
+            return;
+        }
+        if (isListening) {
+            recognition.stop();
+            stopListeningState();
+        } else {
+            recognition.start();
+            micBtn.classList.add('listening');
+            micBtn.innerText = "सुन रही हूँ...";
+            soundWave.style.display = "flex";
+            statusText.innerText = "Listening...";
+            isListening = true;
+        }
+    }
+
+    function stopListeningState() {
+        if (recognition && isListening) recognition.stop();
+        micBtn.classList.remove('listening');
+        micBtn.innerText = "🎤 बोलें";
+        soundWave.style.display = "none";
+        statusText.innerText = "Ready";
+        isListening = false;
+    }
+
+    function handleKey(e) {
+        if (e.key === 'Enter') sendQuery();
+    }
+
+    async function sendQuery() {
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        if (API_KEY === "YOUR_API_KEY") {
+            alert("कृपया कोड में अपनी असली API Key दर्ज करें!");
+            return;
         }
 
-        function speak(text) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // पिछली आवाज़ रोकें
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'hi-IN';
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
+        appendMsg(text, 'user-msg');
+        userInput.value = '';
+        
+        const loadId = appendMsg("सोच रही हूँ...", 'ai-msg');
+        statusText.innerText = "Processing...";
+        soundWave.style.display = "flex";
+
+        try {
+            const res = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+            const response = await fetch(res, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contents: [{ parts: [{ text: text }] }] })
+            });
+            const data = await response.json();
+            document.getElementById(loadId).remove();
+            soundWave.style.display = "none";
+            statusText.innerText = "Ready";
+
+            if (data.candidates && data.candidates[0].content) {
+                const reply = data.candidates[0].content.parts[0].text;
+                appendMsg(reply, 'ai-msg');
+                speakSweetVoice(reply); // सुंदर और प्यार से बोलने वाली आवाज़
+            } else {
+                appendMsg("क्षमा करें, इसका उत्तर प्राप्त नहीं हुआ।", 'ai-msg');
             }
+        } catch (err) {
+            document.getElementById(loadId).remove();
+            soundWave.style.display = "none";
+            statusText.innerText = "Error";
+            appendMsg("कनेक्शन त्रुटि। अपनी API की जांच करें।", 'ai-msg');
         }
-    </script>
+    }
+
+    function appendMsg(text, className) {
+        const div = document.createElement('div');
+        div.className = `msg ${className}`;
+        const id = 'msg-' + Date.now() + Math.random();
+        div.id = id;
+        div.innerText = text;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return id;
+    }
+
+    // 🌸 सुंदर, मीठी और बिना अटके आराम से बोलने वाली फीमेल वॉइस सेटिंग 🌸
+    function speakSweetVoice(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'hi-IN'; // हिंदी भाषा
+            utterance.rate = 0.95;    // गति थोड़ी शांत और आरामदायक (ताकि अटके नहीं)
+            utterance.pitch = 1.2;    // थोड़ा मीठा और सुरीला टोन (फीमेल वॉइस जैसा उभार)
+            utterance.volume = 1.0;   // स्पष्ट आवाज़
+
+            // आपके फोन में उपलब्ध सबसे बेहतरीन फीमेल/हिंदी आवाज़ ढूंढना
+            let voices = window.speechSynthesis.getVoices();
+            let selectedVoice = voices.find(v => (v.lang.includes('hi') || v.lang.includes('en')) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('zira') || v.name.toLowerCase().includes('heera')));
+            
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+</script>
+
 </body>
 </html>
