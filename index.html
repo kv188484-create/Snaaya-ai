@@ -118,8 +118,7 @@
     </style>
 </head>
 <body onload="checkAdminMode()">
-
-    <!-- Sidebar -->
+        <!-- Sidebar -->
     <div class="sidebar">
         <div>
             <div class="logo-area" ondblclick="toggleAdminMode()" title="डबल क्लिक करके एडमिन मोड एक्टिव करें">
@@ -264,4 +263,173 @@
                     <h5>Multi-Language</h5>
                     <p>Talk and get answers in preferred language.</p>
                 </div>
-                <div
+                <div class="feature-card" onclick="switchView('tasks')">
+                    <div class="feature-icon" style="background: rgba(139,92,246,0.15); color: #a855f7;">📁</div>
+                    <h5>File & Document Help</h5>
+                    <p>Summarize, explain, or work with files.</p>
+                </div>
+                <div class="feature-card" onclick="switchView('settings')">
+                    <div class="feature-icon" style="background: rgba(249,115,22,0.15); color: #f97316;">👤</div>
+                    <h5>Personalized Exp</h5>
+                    <p>Learns your preferences over time.</p>
+                </div>
+            </div>
+
+            <!-- Stats Banner -->
+            <div class="stats-banner">
+                <div>
+                    <h5>Why Choose Snaaya AI?</h5>
+                    <p>More than just an assistant — your personal AI companion.</p>
+                </div>
+                <div class="stat-col">
+                    <h3>10K+</h3>
+                    <span>Active Users</span>
+                </div>
+                <div class="stat-col">
+                    <h3>1M+</h3>
+                    <span>Questions Answered</span>
+                </div>
+                <div class="stat-col">
+                    <h3>50K+</h3>
+                    <span>Tasks Completed</span>
+                </div>
+                <div class="stat-col">
+                    <h3>99.9%</h3>
+                    <span>Uptime</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- OTHER VIEWS (CLICKABLE) -->
+        <div id="view-chat" class="view-screen"><h2>💬 Chat Assistant</h2><p style="color:#94a3b8; margin-top:10px;">चैट असिस्टेंट सक्रिय है। यहाँ टाइप करके बात करें।</p></div>
+        <div id="view-voice" class="view-screen"><h2>🎙️ Voice Assistant</h2><p style="color:#94a3b8; margin-top:10px;">वॉयस असिस्टेंट सक्रिय है। बोलकर निर्देश दें।</p></div>
+        <div id="view-memory" class="view-screen"><h2>🧠 Memory Center</h2><p style="color:#94a3b8; margin-top:10px;">आपकी सुरक्षित यादें और डेटा यहाँ स्टोर हैं।</p></div>
+        <div id="view-tasks" class="view-screen"><h2>📋 Task Manager</h2><p style="color:#94a3b8; margin-top:10px;">अपने डेली टास्क और रिमाइंडर प्रबंधित करें।</p></div>
+        <div id="view-knowledge" class="view-screen"><h2>📚 Knowledge Hub</h2><p style="color:#94a3b8; margin-top:10px;">ज्ञान और जानकारी प्राप्त करने का केंद्र।</p></div>
+        <div id="view-settings" class="view-screen"><h2>⚙️ Settings</h2><p style="color:#94a3b8; margin-top:10px;">एप्लिकेशन कस्टमाइज़ेशन सेटिंग्स।</p></div>
+        <div id="view-pricing" class="view-screen"><h2>👑 Pricing Plans</h2><p style="color:#94a3b8; margin-top:10px;">सभी प्रो फीचर्स आपके लिए निःशुल्क हैं।</p></div>
+        <div id="view-about" class="view-screen"><h2>ℹ️ About Snaaya AI</h2><p style="color:#94a3b8; margin-top:10px;">Snaaya AI OS v7.2 — आपका स्मार्ट असिस्टेंट।</p></div>
+        <div id="view-contact" class="view-screen"><h2>📞 Contact Support</h2><p style="color:#94a3b8; margin-top:10px;">सहायता के लिए संपर्क करें।</p></div>
+    </div>
+
+<script>
+    // Navigation / Tab Switcher
+    function switchView(viewId) {
+        document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.nav-links span').forEach(el => el.classList.remove('active'));
+
+        const target = document.getElementById('view-' + viewId);
+        if (target) target.classList.add('active');
+
+        const sideElem = document.getElementById('side-' + viewId);
+        if (sideElem) sideElem.classList.add('active');
+
+        const navElem = document.getElementById('nav-' + viewId);
+        if (navElem) navElem.classList.add('active');
+    }
+
+    // Admin Mode toggle (Double click logo to hide/show Pro upgrade box)
+    function toggleAdminMode() {
+        let isAdmin = localStorage.getItem('snaaya_admin');
+        if(isAdmin === 'true') {
+            localStorage.setItem('snaaya_admin', 'false');
+            alert('एडमिन मोड बंद हो गया है।');
+        } else {
+            localStorage.setItem('snaaya_admin', 'true');
+            alert('स्वागत है कमल जी! एडमिन मोड एक्टिव, प्रो बॉक्स छिप गया है।');
+        }
+        checkAdminMode();
+    }
+
+    function checkAdminMode() {
+        let isAdmin = localStorage.getItem('snaaya_admin');
+        const proBox = document.getElementById('proUpgradeBox');
+        if(isAdmin === 'true') {
+            proBox.style.display = 'none';
+        } else {
+            proBox.style.display = 'block';
+        }
+    }
+
+    // Voice & Chat Logic with clickable fixes
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+    let recognition;
+    let isListening = false;
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN';
+        recognition.onresult = function(event) {
+            userInput.value = event.results[0][0].transcript;
+            stopListeningState();
+            sendUserQuery();
+        };
+        recognition.onerror = () => stopListeningState();
+        recognition.onend = () => stopListeningState();
+    }
+
+    function toggleMic() {
+        if (!recognition) {
+            alert("आपका ब्राउज़र वॉइस रिकग्निशन सपोर्ट नहीं करता है।");
+            return;
+        }
+        if (isListening) {
+            recognition.stop();
+            stopListeningState();
+        } else {
+            recognition.start();
+            isListening = true;
+            document.getElementById('micBtn').classList.add('listening');
+        }
+    }
+
+    function stopListeningState() {
+        isListening = false;
+        const micBtn = document.getElementById('micBtn');
+        if(micBtn) micBtn.classList.remove('listening');
+    }
+
+    function sendUserQuery() {
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        appendMessage(text, 'user-msg');
+        userInput.value = '';
+        
+        setTimeout(() => {
+            let reply = "मैंने आपका संदेश समझा: '" + text + "'। Snaaya AI इसे प्रोसेस कर रहा है।";
+            if (text.includes('नमस्ते') || text.includes('हैलो') || text.includes('hello')) {
+                reply = "नमस्ते कमल जी! आपकी सेवा में Snaaya AI पूरी तरह तैयार है।";
+            } else if (text.includes('नाम')) {
+                reply = "मेरा नाम Snaaya AI है, आपका पर्सनल इंटेलिजेंट असिस्टेंट!";
+            }
+            appendMessage(reply, 'ai-msg');
+            speakAI(reply);
+        }, 500);
+    }
+
+    function appendMessage(text, className) {
+        const div = document.createElement('div');
+        div.className = `msg ${className}`;
+        div.innerText = text;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function speakAI(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'hi-IN';
+            utterance.rate = 0.95;
+            utterance.pitch = 1.1;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+</script>
+
+</body>
+</html>
