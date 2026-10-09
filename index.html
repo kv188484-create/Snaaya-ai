@@ -3,100 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snaaya AI - Think Smarter Live Better</title>
+    <title>Snaaya AI - Think Smarter, Live Better</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: #070913; color: #f1f5f9; display: flex; height: 100vh; overflow: hidden; }
+        body { background: #030712; color: #f8fafc; display: flex; height: 100vh; overflow: hidden; }
 
-        /* Sidebar */
-        .sidebar { width: 240px; background: #0b0f19; border-right: 1px solid #1f2937; display: flex; flex-direction: column; padding: 20px; justify-content: space-between; }
-        .logo-area { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
-        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #3b82f6, #ec4899); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; color: white; }
-        .logo-text h2 { font-size: 16px; color: white; }
-        .logo-text span { font-size: 10px; color: #38bdf8; letter-spacing: 1px; }
+        /* Sidebar - Exact Screenshot Match */
+        .sidebar { width: 260px; background: #050b18; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px; justify-content: space-between; z-index: 10; flex-shrink: 0; }
+        .logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; cursor: pointer; }
+        .logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, #a855f7, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 15px rgba(168,85,247,0.4); }
+        .logo-text h2 { font-size: 18px; color: white; font-weight: 700; letter-spacing: 0.5px; }
+        .logo-text span { font-size: 9px; color: #38bdf8; letter-spacing: 1.5px; font-weight: 600; }
 
-        .menu-list { display: flex; flex-direction: column; gap: 8px; flex: 1; }
-        .menu-item { padding: 12px 14px; border-radius: 8px; color: #94a3b8; cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: 14px; transition: 0.2s; }
+        .menu-list { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+        .menu-item { padding: 11px 14px; border-radius: 10px; color: #94a3b8; cursor: pointer; display: flex; align-items: center; gap: 14px; font-size: 14px; transition: 0.2s; text-decoration: none; }
         .menu-item:hover, .menu-item.active { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
 
-        .pro-box { background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(236, 72, 153, 0.15)); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        .pro-box h4 { font-size: 13px; color: white; margin-bottom: 5px; }
-        .pro-box p { font-size: 11px; color: #94a3b8; margin-bottom: 10px; line-height: 1.4; }
-        .upgrade-btn { width: 100%; background: linear-gradient(90deg, #3b82f6, #ec4899); color: white; border: none; padding: 8px; border-radius: 6px; font-weight: bold; font-size: 12px; cursor: pointer; }
+        .pro-box { background: linear-gradient(180deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(139, 92, 246, 0.35); border-radius: 16px; padding: 15px; margin-bottom: 12px; }
+        .pro-box h4 { font-size: 13px; color: #c084fc; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+        .pro-box p { font-size: 11px; color: #94a3b8; margin-bottom: 12px; line-height: 1.4; }
+        .upgrade-btn { width: 100%; background: linear-gradient(135deg, #8b5cf6, #3b82f6); color: white; border: none; padding: 9px; border-radius: 20px; font-weight: bold; font-size: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(139,92,246,0.3); }
 
-        /* Main Screen */
-        .main-container { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: radial-gradient(circle at top right, #111827, #070913); }
-        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-bottom: 1px solid #1f2937; }
-        .nav-links { display: flex; gap: 25px; font-size: 14px; color: #94a3b8; }
-        .nav-links span { cursor: pointer; transition: 0.2s; }
+        .journey-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; padding: 14px; }
+        .journey-box h6 { font-size: 11px; color: white; margin-bottom: 4px; font-weight: 600; }
+        .journey-box p { font-size: 10px; color: #94a3b8; margin-bottom: 8px; line-height: 1.3; }
+        .journey-wave { height: 25px; background: radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%); border-radius: 4px; }
+
+        /* Main Container */
+        .main-container { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: #030712; }
+        
+        /* Top Navigation Navbar */
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 35px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(3, 7, 18, 0.9); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; font-size: 14px; color: #94a3b8; }
+        .nav-links span { cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
         .nav-links span:hover, .nav-links span.active { color: #38bdf8; }
-        .auth-btns { display: flex; gap: 12px; }
-        .btn-login { background: transparent; border: 1px solid #374151; color: white; padding: 8px 18px; border-radius: 20px; font-size: 13px; cursor: pointer; }
-        .btn-get-started { background: linear-gradient(90deg, #3b82f6, #ec4899); border: none; color: white; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; }
+        
+        .auth-btns { display: flex; gap: 12px; align-items: center; }
+        .btn-theme { background: transparent; border: none; color: #94a3b8; font-size: 16px; cursor: pointer; }
+        .btn-login { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: white; padding: 7px 22px; border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .btn-get-started { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; padding: 8px 22px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; }
 
-        /* Dashboard Grid Layout */
-        .dashboard-layout { padding: 25px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-        @media(max-width: 1000px) { body { flex-direction: column; height: auto; overflow: auto; } .sidebar { width: 100%; } .dashboard-layout { grid-template-columns: 1fr; } }
+        /* Screen Views */
+        .view-screen { display: none; padding: 30px 35px; }
+        .view-screen.active { display: block; }
 
-        /* Hero Banner */
-        .hero-banner { background: linear-gradient(135deg, #111827, #1f2937); border: 1px solid #374151; border-radius: 16px; padding: 30px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; }
-        .hero-title { font-size: 32px; font-weight: bold; color: white; margin-bottom: 10px; line-height: 1.2; }
-        .hero-title span { background: linear-gradient(90deg, #38bdf8, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-desc { font-size: 14px; color: #94a3b8; max-width: 450px; line-height: 1.5; margin-bottom: 20px; }
-        .hero-actions { display: flex; gap: 15px; }
-        .btn-start { background: linear-gradient(90deg, #38bdf8, #6366f1); border: none; color: white; padding: 10px 22px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .btn-watch { background: transparent; border: 1px solid #4b5563; color: white; padding: 10px 22px; border-radius: 8px; cursor: pointer; }
+        /* Hero + Mind Map Grid */
+        .hero-layout { display: grid; grid-template-columns: 1.35fr 0.85fr; gap: 25px; margin-bottom: 30px; }
+        @media(max-width: 1100px) { body { flex-direction: column; height: auto; overflow: auto; } .sidebar { width: 100%; height: auto; } .hero-layout { grid-template-columns: 1fr; } }
 
-        /* Right Talk Box */
-        .talk-card { background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
-        .talk-header { font-size: 14px; font-weight: bold; color: #38bdf8; margin-bottom: 10px; display: flex; justify-content: space-between; }
-        .chat-box { height: 180px; overflow-y: auto; background: #070913; border: 1px solid #1f2937; border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-        .msg { padding: 8px 12px; border-radius: 8px; font-size: 13px; max-width: 90%; line-height: 1.4; }
+        /* Hero Banner with Brain & Neural Lines */
+        .hero-banner { background: radial-gradient(circle at top right, rgba(59,130,246,0.15), #060e1d 60%); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 35px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .neural-bg-lines { position: absolute; top: 0; right: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle at 75% 45%, rgba(168, 85, 247, 0.18) 0%, transparent 40%), radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 35%); z-index: 1; }
+
+        .hero-content-area { position: relative; z-index: 2; }
+        .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #38bdf8; background: rgba(56,189,248,0.1); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(56,189,248,0.25); margin-bottom: 15px; }
+        .hero-title { font-size: 38px; font-weight: 800; color: white; line-height: 1.15; margin-bottom: 15px; }
+        .hero-title span { background: linear-gradient(135deg, #38bdf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-desc { font-size: 13.5px; color: #94a3b8; line-height: 1.5; max-width: 480px; margin-bottom: 25px; }
+        
+        .hero-actions { display: flex; gap: 15px; align-items: center; }
+        .btn-start-now { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; padding: 11px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 14px; box-shadow: 0 4px 15px rgba(59,130,246,0.3); }
+        .btn-watch-video { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 11px 25px; border-radius: 25px; cursor: pointer; font-size: 14px; }
+
+        .hero-footer-badges { display: flex; gap: 25px; margin-top: 25px; font-size: 12px; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; position: relative; z-index: 2; }
+        .hero-footer-badges div { display: flex; align-items: center; gap: 6px; }
+
+        /* Brain Graphic Container inside Hero */
+        .brain-visual-box { position: absolute; right: 25px; top: 25px; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; z-index: 2; border: 1px dashed rgba(56,189,248,0.3); }
+        .brain-icon-inner { font-size: 50px; animation: glowBrain 3s infinite alternate; }
+        @keyframes glowBrain { from { filter: drop-shadow(0 0 5px #38bdf8); } to { filter: drop-shadow(0 0 20px #c084fc); } }
+
+        /* Talk Card (Right Column - Exact Screenshot Match with Circular Mic & Exact Input Box Position) */
+        .talk-card { background: #071022; border: 1px solid rgba(56,189,248,0.25); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .talk-header { font-size: 13px; font-weight: 600; color: #38bdf8; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .sound-wave-bars { display: flex; align-items: center; justify-content: center; gap: 3px; height: 35px; margin-bottom: 10px; }
+        .wave-bar { width: 3px; background: #38bdf8; border-radius: 3px; animation: soundWave 1.2s infinite ease-in-out; }
+        @keyframes soundWave { 0%, 100% { height: 6px; } 50% { height: 28px; } }
+
+        .chat-box { height: 160px; overflow-y: auto; background: #030712; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+        .msg { padding: 8px 12px; border-radius: 10px; font-size: 13px; max-width: 85%; line-height: 1.4; }
         .user-msg { background: #0284c7; color: white; align-self: flex-end; }
-        .ai-msg { background: #1f2937; color: #e5e7eb; align-self: flex-start; border: 1px solid #374151; }
+        .ai-msg { background: #111c30; color: #e2e8f0; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
 
-        .input-area { display: flex; gap: 8px; }
-        .input-area input { flex: 1; background: #070913; border: 1px solid #374151; padding: 10px; border-radius: 8px; color: white; font-size: 13px; outline: none; }
-        .mic-btn { background: #10b981; color: white; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .send-btn { background: #38bdf8; color: #070913; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        /* Talk Box Bottom Input Area with Exact Circular Mic Button as in screenshot */
+        .input-row { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 5px 5px 5px 15px; }
+        .input-row input { flex: 1; background: transparent; border: none; color: white; font-size: 13px; outline: none; }
+        
+        .mic-circle-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 12px rgba(59,130,246,0.5); transition: 0.2s; flex-shrink: 0; }
+        .mic-circle-btn.listening { background: #ef4444; animation: pulseMic 1s infinite alternate; }
+        @keyframes pulseMic { from { transform: scale(1); } to { transform: scale(1.12); } }
 
-        /* Features Grid */
-        .features-section { padding: 0 25px 25px 25px; }
-        .section-title { font-size: 16px; font-weight: bold; color: white; margin-bottom: 15px; }
-        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .send-arrow-btn { width: 42px; height: 42px; background: #38bdf8; border: none; border-radius: 50%; color: #030712; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; flex-shrink: 0; }
+
+        /* Features Section */
+        .section-title { font-size: 18px; font-weight: 700; color: white; margin-bottom: 5px; }
+        .section-desc { font-size: 13px; color: #94a3b8; margin-bottom: 20px; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
         @media(max-width: 1100px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
-        .feature-card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; transition: 0.2s; cursor: pointer; }
-        .feature-card:hover { border-color: #38bdf8; transform: translateY(-2px); }
+        
+        .feature-card { background: #071022; border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 18px; transition: 0.2s; cursor: pointer; }
+        .feature-card:hover { border-color: #38bdf8; transform: translateY(-3px); background: rgba(56,189,248,0.02); }
+        .feature-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 12px; }
         .feature-card h5 { font-size: 14px; color: white; margin-bottom: 5px; }
-        .feature-card p { font-size: 12px; color: #94a3b8; line-height: 1.4; }
+        .feature-card p { font-size: 11.5px; color: #94a3b8; line-height: 1.4; }
+
+        /* Stats Banner Bottom */
+        .stats-banner { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 15px; background: linear-gradient(135deg, #050b18, #0a1628); border: 1px solid rgba(255,255,255,0.06); padding: 25px 30px; border-radius: 16px; align-items: center; margin-bottom: 30px; }
+        .stats-banner h5 { font-size: 14px; color: white; margin-bottom: 3px; }
+        .stats-banner p { font-size: 11px; color: #94a3b8; }
+        .stat-col { text-align: center; border-left: 1px solid rgba(255,255,255,0.08); }
+        .stat-col h3 { font-size: 18px; color: #38bdf8; font-weight: 700; margin-bottom: 2px; }
+        .stat-col span { font-size: 10.5px; color: #94a3b8; }
     </style>
 </head>
-<body>
+<body onload="checkAdminMode()">
 
     <!-- Sidebar -->
     <div class="sidebar">
         <div>
-            <div class="logo-area">
-                <div class="logo-icon">S</div>
+            <div class="logo-area" ondblclick="toggleAdminMode()" title="डबल क्लिक करके एडमिन मोड एक्टिव करें">
+                <div class="logo-icon">🧠</div>
                 <div class="logo-text">
                     <h2>Snaaya AI</h2>
                     <span>THINK • ASSIST • GROW</span>
                 </div>
             </div>
             <div class="menu-list">
-                <div class="menu-item active">🏠 Home</div>
-                <div class="menu-item">💬 Chat Assistant</div>
-                <div class="menu-item">🎙️ Voice Assistant</div>
-                <div class="menu-item">🧠 Memory Center</div>
-                <div class="menu-item">📊 Task Manager</div>
-                <div class="menu-item">⚙️ Settings</div>
+                <div class="menu-item active" onclick="switchView('home')" id="side-home">🏠 Home</div>
+                <div class="menu-item" onclick="switchView('chat')" id="side-chat">💬 Chat Assistant</div>
+                <div class="menu-item" onclick="switchView('voice')" id="side-voice">🎙️ Voice Assistant</div>
+                <div class="menu-item" onclick="switchView('memory')" id="side-memory">🧠 Memory Center</div>
+                <div class="menu-item" onclick="switchView('tasks')" id="side-tasks">📋 Task Manager</div>
+                <div class="menu-item" onclick="switchView('knowledge')" id="side-knowledge">📚 Knowledge Hub</div>
+                <div class="menu-item" onclick="switchView('settings')" id="side-settings">⚙️ Settings</div>
             </div>
         </div>
         
-        <div class="pro-box">
-            <h4>Snaaya AI Pro</h4>
-            <p>Unlock more powerful features and get premium benefits.</p>
-            <button class="upgrade-btn">Upgrade Now →</button>
+        <div>
+            <div class="pro-box" id="proUpgradeBox">
+                <h4>👑 Snaaya AI Pro</h4>
+                <p>Unlock more powerful features and get premium benefits.</p>
+                <button class="upgrade-btn" onclick="alert('प्रो वर्जन अपग्रेड करने के लिए पेज खुल रहा है!')">Upgrade Now →</button>
+            </div>
+            <div class="journey-box">
+                <h6>Your AI Journey Starts Here</h6>
+                <p>Smart tools. Better decisions. A more productive you.</p>
+                <div class="journey-wave"></div>
+            </div>
         </div>
     </div>
 
@@ -104,175 +159,109 @@
     <div class="main-container">
         <div class="top-nav">
             <div class="nav-links">
-                <span class="active">Home</span>
-                <span>Features</span>
-                <span>Memory</span>
-                <span>Pricing</span>
-                <span>About</span>
+                <span class="active" onclick="switchView('home')" id="nav-home">🏠 Home</span>
+                <span onclick="switchView('features')" id="nav-features">⚡ Features</span>
+                <span onclick="switchView('memory')" id="nav-memory">🧠 Memory</span>
+                <span onclick="switchView('pricing')" id="nav-pricing">👑 Pricing</span>
+                <span onclick="switchView('about')" id="nav-about">ℹ️ About</span>
+                <span onclick="switchView('contact')" id="nav-contact">📞 Contact</span>
             </div>
             <div class="auth-btns">
-                <button class="btn-login">Login</button>
-                <button class="btn-get-started">Get Started →</button>
+                <button class="btn-theme" title="डार्क मोड">🌙</button>
+                <button class="btn-login" onclick="alert('लॉगिन पोर्टल सक्रिय है!')">Login</button>
+                <button class="btn-get-started" onclick="switchView('features')">Get Started →</button>
             </div>
         </div>
 
-        <div class="dashboard-layout">
-            <!-- Hero Banner -->
-            <div class="hero-banner">
-                <div>
-                    <span style="font-size: 12px; color: #38bdf8; background: rgba(56,189,248,0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(56,189,248,0.3);">✨ Your Personal AI Assistant</span>
-                    <h1 class="hero-title" style="margin-top: 15px;">Snaaya <span>AI</span><br>Think Smarter<br>Live Better</h1>
-                    <p class="hero-desc">Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter than ever before.</p>
+        <!-- VIEW 1: HOME -->
+        <div id="view-home" class="view-screen active">
+            <div class="hero-layout">
+                <!-- Hero Banner with Brain & Neural Lines -->
+                <div class="hero-banner">
+                    <div class="neural-bg-lines"></div>
+                    <div class="brain-visual-box">
+                        <div class="brain-icon-inner">🧠</div>
+                    </div>
+                    
+                    <div class="hero-content-area">
+                        <div class="hero-tag">✨ Your Personal AI Assistant</div>
+                        <h1 class="hero-title">Snaaya <span>AI</span><br>Think Smarter<br>Live Better</h1>
+                        <p class="hero-desc">Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter than ever before.</p>
+                        
+                        <div class="hero-actions">
+                            <button class="btn-start-now" onclick="switchView('chat')">Start Now →</button>
+                            <button class="btn-watch-video" onclick="speakAI('Snaaya AI में आपका स्वागत है। बोलकर या टाइप करके कुछ भी पूछिए!')">Watch Video</button>
+                        </div>
+                    </div>
+
+                    <div class="hero-footer-badges">
+                        <div>⚡ Fast</div>
+                        <div>🔒 Private</div>
+                        <div>🧠 Smart</div>
+                        <div>☁️ Always On</div>
+                    </div>
                 </div>
-                <div class="hero-actions">
-                    <button class="btn-start" onclick="document.getElementById('userInput').focus();">Start Now →</button>
-                    <button class="btn-watch">Watch Video</button>
+
+                <!-- Talk Box (Right Interactive Card with Exact Screenshot Mic Position) -->
+                <div class="talk-card">
+                    <div class="talk-header">
+                        <span>Talk to Snaaya AI</span>
+                        <span style="color: #22c55e; font-size: 11px; font-weight: normal;">● Sweet Voice Active</span>
+                    </div>
+                    
+                    <div class="sound-wave-bars">
+                        <div class="wave-bar" style="animation-delay: 0.1s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.3s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.2s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.5s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.15s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+                    </div>
+
+                    <div class="chat-box" id="chatBox">
+                        <div class="msg ai-msg">नमस्ते कमल! मेरी नई दिमाग वाले नक्शे वाली स्क्रीन कैसी लग रही है? मुझसे कुछ पूछिए!</div>
+                    </div>
+                    <div class="input-row">
+                        <input type="text" id="userInput" placeholder="Or type your message..." onkeypress="if(event.key==='Enter') sendUserQuery()">
+                        <button class="mic-circle-btn" id="micBtn" onclick="toggleMic()" title="बोलकर बात करें">🎙️</button>
+                        <button class="send-arrow-btn" onclick="sendUserQuery()">➔</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Talk Box (Interactive AI) -->
-            <div class="talk-card">
-                <div class="talk-header">
-                    <span>Talk to Snaaya AI</span>
-                    <span style="color: #10b981; font-weight: normal;">● Sweet Voice Active</span>
-                </div>
-                <div class="chat-box" id="chatBox">
-                    <div class="msg ai-msg">नमस्ते कमल! मेरी नई स्क्रीन कैसी लग रही है? मुझसे कुछ भी पूछिए!</div>
-                </div>
-                <div class="input-area">
-                    <input type="text" id="userInput" placeholder="यहाँ मैसेज टाइप करें..." onkeypress="handleKey(event)">
-                    <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
-                    <button class="send-btn" onclick="sendQuery()">➔</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Features Grid Section -->
-        <div class="features-section">
+            <!-- Features Section -->
             <div class="section-title">Powerful Features</div>
+            <div class="section-desc">Everything You Need in One Place</div>
+
             <div class="features-grid">
-                <div class="feature-card">
-                    <h5>💬 Chat Assistant</h5>
+                <div class="feature-card" onclick="switchView('chat')">
+                    <div class="feature-icon" style="background: rgba(59,130,246,0.15); color: #3b82f6;">💬</div>
+                    <h5>Chat Assistant</h5>
                     <p>Get instant answers, ideas, and solutions anytime.</p>
                 </div>
-                <div class="feature-card">
-                    <h5>🎙️ Voice Assistant</h5>
+                <div class="feature-card" onclick="switchView('voice')">
+                    <div class="feature-icon" style="background: rgba(168,85,247,0.15); color: #c084fc;">🎙️</div>
+                    <h5>Voice Assistant</h5>
                     <p>Speak naturally and get things done hands-free.</p>
                 </div>
-                <div class="feature-card">
-                    <h5>🧠 Memory System</h5>
+                <div class="feature-card" onclick="switchView('memory')">
+                    <div class="feature-icon" style="background: rgba(34,197,94,0.15); color: #22c55e;">🧠</div>
+                    <h5>Memory System</h5>
                     <p>Remember important things, notes, and numbers.</p>
                 </div>
-                <div class="feature-card">
-                    <h5>📊 Task Manager</h5>
+                <div class="feature-card" onclick="switchView('tasks')">
+                    <div class="feature-icon" style="background: rgba(234,179,8,0.15); color: #eab308;">📋</div>
+                    <h5>Task Manager</h5>
                     <p>Set reminders, create todos and stay organized.</p>
                 </div>
-            </div>
-        </div>
-    </div>
-
-<script>
-    const chatBox = document.getElementById('chatBox');
-    const userInput = document.getElementById('userInput');
-    let recognition;
-    let isListening = false;
-
-    // वॉइस रिकग्निशन सेटअप
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SpeechRecognition();
-        recognition.lang = 'hi-IN';
-        recognition.onresult = function(event) {
-            userInput.value = event.results[0][0].transcript;
-            stopMicState();
-            sendQuery();
-        };
-        recognition.onerror = () => stopMicState();
-        recognition.onend = () => stopMicState();
-    }
-
-    function toggleMic() {
-        if (!recognition) {
-            alert("आपका ब्राउज़र वॉइस सपोर्ट नहीं करता।");
-            return;
-        }
-        if (isListening) {
-            recognition.stop();
-            stopMicState();
-        } else {
-            recognition.start();
-            isListening = true;
-            document.getElementById('micBtn').style.background = '#ef4444';
-        }
-    }
-
-    function stopMicState() {
-        isListening = false;
-        if(document.getElementById('micBtn')) document.getElementById('micBtn').style.background = '#10b981';
-    }
-
-    function handleKey(e) {
-        if (e.key === 'Enter') sendQuery();
-    }
-
-    // सुरक्षित बैकएंड के ज़रिए जेमिनी से कनेक्ट होने वाला फंक्शन
-    async function sendQuery() {
-        const text = userInput.value.trim();
-        if (!text) return;
-
-        appendMsg(text, 'user-msg');
-        userInput.value = '';
-        const loadId = appendMsg("सोच रही हूँ...", 'ai-msg');
-
-        try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: text })
-            });
-            const data = await response.json();
-            document.getElementById(loadId).remove();
-
-            if (response.ok && data.text) {
-                appendMsg(data.text, 'ai-msg');
-                speakSweetVoice(data.text);
-            } else {
-                appendMsg(data.error || "क्षमा करें, उत्तर नहीं मिला।", 'ai-msg');
-            }
-        } catch (err) {
-            document.getElementById(loadId).remove();
-            appendMsg("कनेक्शन त्रुटि हुई।", 'ai-msg');
-        }
-    }
-
-    function appendMsg(text, className) {
-        const div = document.createElement('div');
-        div.className = `msg ${className}`;
-        const id = 'msg-' + Date.now() + Math.random();
-        div.id = id;
-        div.innerText = text;
-        chatBox.appendChild(div);
-        chatBox.scrollTop = chatBox.scrollHeight;
-        return id;
-    }
-
-    // 🌸 सुरीली और नेचुरल फीमेल आवाज़ में बोलने का सेटअप 🌸
-    function speakSweetVoice(text) {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'hi-IN';
-            utterance.rate = 0.95;
-            utterance.pitch = 1.2;
-
-            let voices = window.speechSynthesis.getVoices();
-            let selectedVoice = voices.find(v => (v.lang.includes('hi') || v.lang.includes('en')) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google')));
-            if (selectedVoice) utterance.voice = selectedVoice;
-
-            window.speechSynthesis.speak(utterance);
-        }
-    }
-</script>
-
-</body>
-</html>
+                <div class="feature-card" onclick="switchView('knowledge')">
+                    <div class="feature-icon" style="background: rgba(236,72,153,0.15); color: #ec4899;">📚</div>
+                    <h5>Knowledge Hub</h5>
+                    <p>Learn, explore and get info instantly.</p>
+                </div>
+                <div class="feature-card" onclick="switchView('chat')">
+                    <div class="feature-icon" style="background: rgba(56,189,248,0.15); color: #38bdf8;">🌐</div>
+                    <h5>Multi-Language</h5>
+                    <p>Talk and get answers in preferred language.</p>
+                </div>
+               
