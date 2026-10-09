@@ -8,11 +8,11 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #030712; color: #f8fafc; display: flex; height: 100vh; overflow: hidden; }
 
-        /* Sidebar - Exact Screenshot Match */
+        /* Sidebar */
         .sidebar { width: 260px; background: #050b18; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px; justify-content: space-between; z-index: 10; flex-shrink: 0; }
         .logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; cursor: pointer; }
         .logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, #a855f7, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 15px rgba(168,85,247,0.4); }
-        .logo-text h2 { font-size: 18px; color: white; font-weight: 700; letter-spacing: 0.5px; }
+        .logo-text h2 { font-size: 18px; color: white; font-weight: 700; }
         .logo-text span { font-size: 9px; color: #38bdf8; letter-spacing: 1.5px; font-weight: 600; }
 
         .menu-list { display: flex; flex-direction: column; gap: 4px; flex: 1; }
@@ -53,7 +53,6 @@
 
         /* Hero Banner with Brain & Neural Lines */
         .hero-banner { background: radial-gradient(circle at top right, rgba(59,130,246,0.15), #060e1d 60%); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 35px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
-        
         .neural-bg-lines { position: absolute; top: 0; right: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle at 75% 45%, rgba(168, 85, 247, 0.18) 0%, transparent 40%), radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 35%); z-index: 1; }
 
         .hero-content-area { position: relative; z-index: 2; }
@@ -74,7 +73,7 @@
         .brain-icon-inner { font-size: 50px; animation: glowBrain 3s infinite alternate; }
         @keyframes glowBrain { from { filter: drop-shadow(0 0 5px #38bdf8); } to { filter: drop-shadow(0 0 20px #c084fc); } }
 
-        /* Talk Card (Right Column - Exact Screenshot Match with Circular Mic & Exact Input Box Position) */
+        /* Talk Card (Right Column) */
         .talk-card { background: #071022; border: 1px solid rgba(56,189,248,0.25); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
         .talk-header { font-size: 13px; font-weight: 600; color: #38bdf8; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         
@@ -83,19 +82,19 @@
         @keyframes soundWave { 0%, 100% { height: 6px; } 50% { height: 28px; } }
 
         .chat-box { height: 160px; overflow-y: auto; background: #030712; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-        .msg { padding: 8px 12px; border-radius: 10px; font-size: 13px; max-width: 85%; line-height: 1.4; }
+        .msg { padding: 8px 12px; border-radius: 10px; font-size: 13px; max-width: 85%; line-height: 1.4; word-break: break-word; }
         .user-msg { background: #0284c7; color: white; align-self: flex-end; }
         .ai-msg { background: #111c30; color: #e2e8f0; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
 
-        /* Talk Box Bottom Input Area with Exact Circular Mic Button as in screenshot */
-        .input-row { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 5px 5px 5px 15px; }
-        .input-row input { flex: 1; background: transparent; border: none; color: white; font-size: 13px; outline: none; }
+        /* Talk Box Bottom Input Area */
+        .input-row { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 5px 5px 5px 15px; position: relative; z-index: 20; }
+        .input-row input { flex: 1; background: transparent; border: none; color: white; font-size: 13px; outline: none; width: 100%; }
         
-        .mic-circle-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 12px rgba(59,130,246,0.5); transition: 0.2s; flex-shrink: 0; }
+        .mic-circle-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 12px rgba(59,130,246,0.5); transition: 0.2s; flex-shrink: 0; position: relative; z-index: 30; }
         .mic-circle-btn.listening { background: #ef4444; animation: pulseMic 1s infinite alternate; }
         @keyframes pulseMic { from { transform: scale(1); } to { transform: scale(1.12); } }
 
-        .send-arrow-btn { width: 42px; height: 42px; background: #38bdf8; border: none; border-radius: 50%; color: #030712; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; flex-shrink: 0; }
+        .send-arrow-btn { width: 42px; height: 42px; background: #38bdf8; border: none; border-radius: 50%; color: #030712; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; flex-shrink: 0; position: relative; z-index: 30; }
 
         /* Features Section */
         .section-title { font-size: 18px; font-weight: 700; color: white; margin-bottom: 5px; }
@@ -202,7 +201,7 @@
                     </div>
                 </div>
 
-                <!-- Talk Box (Right Interactive Card with Exact Screenshot Mic Position) -->
+                <!-- Talk Box (Right Interactive Card) -->
                 <div class="talk-card">
                     <div class="talk-header">
                         <span>Talk to Snaaya AI</span>
@@ -221,10 +220,11 @@
                     <div class="chat-box" id="chatBox">
                         <div class="msg ai-msg">नमस्ते कमल! मेरी नई दिमाग वाले नक्शे वाली स्क्रीन कैसी लग रही है? मुझसे कुछ पूछिए!</div>
                     </div>
+                    
                     <div class="input-row">
                         <input type="text" id="userInput" placeholder="Or type your message..." onkeypress="if(event.key==='Enter') sendUserQuery()">
-                        <button class="mic-circle-btn" id="micBtn" onclick="toggleMic()" title="बोलकर बात करें">🎙️</button>
-                        <button class="send-arrow-btn" onclick="sendUserQuery()">➔</button>
+                        <button type="button" class="mic-circle-btn" id="micBtn" onclick="toggleMic()" title="बोलकर बात करें">🎙️</button>
+                        <button type="button" class="send-arrow-btn" onclick="sendUserQuery()" title="संदेश भेजें">➔</button>
                     </div>
                 </div>
             </div>
@@ -264,4 +264,4 @@
                     <h5>Multi-Language</h5>
                     <p>Talk and get answers in preferred language.</p>
                 </div>
-               
+                <div
