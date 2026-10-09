@@ -7,31 +7,38 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #030712; color: #f8fafc; display: flex; height: 100vh; overflow: hidden; }
+
         .sidebar { width: 260px; background: #050b18; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px; justify-content: space-between; z-index: 9999; flex-shrink: 0; transition: 0.3s; }
         .logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; cursor: pointer; }
         .logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, #a855f7, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 15px rgba(168,85,247,0.4); }
         .logo-text h2 { font-size: 18px; color: white; font-weight: 700; }
         .logo-text span { font-size: 9px; color: #38bdf8; letter-spacing: 1.5px; font-weight: 600; display: block; }
+
         .menu-list { display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; }
         .menu-item { padding: 12px 14px; border-radius: 10px; color: #94a3b8; cursor: pointer; display: flex; align-items: center; gap: 14px; font-size: 14px; transition: 0.2s; text-decoration: none; user-select: none; }
         .menu-item:hover, .menu-item.active { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
+
         .journey-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; padding: 14px; }
         .journey-box h6 { font-size: 11px; color: white; margin-bottom: 4px; font-weight: 600; }
         .journey-box p { font-size: 10px; color: #94a3b8; margin-bottom: 8px; line-height: 1.3; }
         .journey-wave { height: 25px; background: radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%); border-radius: 4px; }
+
         .main-container { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: #030712; position: relative; }
         .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 35px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(3, 7, 18, 0.95); position: sticky; top: 0; z-index: 10000; backdrop-filter: blur(10px); }
         .nav-links { display: flex; gap: 25px; font-size: 14px; color: #94a3b8; }
         .nav-links span { cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
         .nav-links span:hover, .nav-links span.active { color: #38bdf8; }
+        
         .auth-btns { display: flex; gap: 12px; align-items: center; }
         .btn-theme { background: transparent; border: none; color: #94a3b8; font-size: 16px; cursor: pointer; }
         .btn-login { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 20px; border-radius: 20px; font-size: 13px; cursor: pointer; }
         .btn-get-started { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(59,130,246,0.4); }
         .mobile-menu-btn { display: none; background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
+
         .view-screen { display: none; padding: 30px 35px; width: 100%; max-width: 1400px; margin: 0 auto; }
         .view-screen.active { display: block; }
         .hero-layout { display: grid; grid-template-columns: 1.45fr 0.85fr; gap: 25px; margin-bottom: 30px; }
+
         .hero-banner { background: radial-gradient(circle at top right, rgba(59,130,246,0.18), #060e1d 60%); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 35px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
         .neural-bg-lines { position: absolute; top: 0; right: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle at 75% 45%, rgba(168, 85, 247, 0.25) 0%, transparent 45%), radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.2) 0%, transparent 40%); z-index: 1; }
         .hero-content-area { position: relative; z-index: 2; }
@@ -48,23 +55,28 @@
         @keyframes rotateBrainRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .brain-center-icon { position: absolute; right: 75px; top: 75px; font-size: 65px; z-index: 3; filter: drop-shadow(0 0 15px rgba(168,85,247,0.6)); }
         .watermark-text { position: absolute; right: 25px; bottom: 25px; font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; z-index: 2; transform: rotate(-8deg); }
-        .talk-card { background: #071022; border: 1px solid rgba(56,189,248,0.25); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; z-index: 100; }
+
+        .talk-card { background: #071022; border: 1px solid rgba(56,189,248,0.25); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; z-index: 10; }
         .talk-top-title { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
         .talk-header { font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
         .talk-subtitle { font-size: 12px; color: #94a3b8; line-height: 1.4; margin-bottom: 15px; }
+        
         .sound-wave-bars { display: flex; align-items: center; justify-content: center; gap: 3px; height: 35px; margin-bottom: 12px; }
         .wave-bar { width: 3px; background: #38bdf8; border-radius: 3px; animation: soundWave 1.2s infinite ease-in-out; }
         @keyframes soundWave { 0%, 100% { height: 6px; background: #3b82f6; } 50% { height: 28px; background: #a855f7; } }
+
         .chat-box { height: 130px; overflow-y: auto; background: #030712; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
         .msg { padding: 8px 12px; border-radius: 10px; font-size: 12.5px; max-width: 85%; line-height: 1.4; word-break: break-word; }
         .user-msg { background: #0284c7; color: white; align-self: flex-end; }
         .ai-msg { background: #111c30; color: #e2e8f0; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
-        .input-row { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid rgba(255,255,255,0.12); border-radius: 30px; padding: 5px 5px 5px 15px; }
-        .input-row input { flex: 1; background: transparent; border: none; color: white; font-size: 13px; outline: none; width: 100%; }
-        .mic-circle-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 12px rgba(59,130,246,0.5); transition: 0.2s; flex-shrink: 0; }
+
+        .input-row { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid rgba(255,255,255,0.12); border-radius: 30px; padding: 5px 5px 5px 15px; position: relative; z-index: 50; pointer-events: auto !important; }
+        .input-row input { flex: 1; background: transparent; border: none; color: white; font-size: 13px; outline: none; width: 100%; position: relative; z-index: 60; pointer-events: auto !important; }
+        .mic-circle-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 12px rgba(59,130,246,0.5); transition: 0.2s; flex-shrink: 0; position: relative; z-index: 100; pointer-events: auto !important; }
         .mic-circle-btn.listening { background: #ef4444; animation: pulseMic 1s infinite alternate; }
         @keyframes pulseMic { from { transform: scale(1); } to { transform: scale(1.12); } }
-        .send-arrow-btn { width: 42px; height: 42px; background: #38bdf8; border: none; border-radius: 50%; color: #030712; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; flex-shrink: 0; }
+        .send-arrow-btn { width: 42px; height: 42px; background: #38bdf8; border: none; border-radius: 50%; color: #030712; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; flex-shrink: 0; position: relative; z-index: 100; pointer-events: auto !important; }
+
         .section-title { font-size: 20px; font-weight: 700; color: white; margin-bottom: 5px; }
         .section-desc { font-size: 13px; color: #94a3b8; margin-bottom: 20px; }
         .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 30px; }
@@ -74,7 +86,16 @@
         .feature-card h5 { font-size: 15px; color: white; margin-bottom: 6px; }
         .feature-card p { font-size: 12px; color: #94a3b8; line-height: 1.4; margin-bottom: 15px; }
         .card-link { font-size: 12px; color: #38bdf8; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+        .stats-banner { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 15px; background: linear-gradient(135deg, #050b18, #0a1628); border: 1px solid rgba(255,255,255,0.08); padding: 25px 30px; border-radius: 18px; align-items: center; margin-bottom: 30px; }
+        .stats-banner h5 { font-size: 15px; color: white; margin-bottom: 4px; }
+        .stats-banner p { font-size: 11.5px; color: #94a3b8; }
+        .stat-col { text-align: center; border-left: 1px solid rgba(255,255,255,0.08); }
+        .stat-col h3 { font-size: 20px; color: #38bdf8; font-weight: 700; margin-bottom: 2px; }
+        .stat-col span { font-size: 11px; color: #94a3b8; }
+
         .site-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; margin-bottom: 20px; font-size: 12px; color: #94a3b8; flex-wrap: wrap; gap: 15px; }
+
         @media(max-width: 1024px) {
             body { flex-direction: column; height: 100vh; overflow-y: auto; }
             .sidebar { position: fixed; left: -100%; top: 0; bottom: 0; width: 260px; z-index: 20000; transition: 0.3s ease; box-shadow: 5px 0 25px rgba(0,0,0,0.8); }
@@ -82,9 +103,17 @@
             .mobile-menu-btn { display: block; }
             .hero-layout { grid-template-columns: 1fr; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-banner { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .stat-col { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; }
             .top-nav { padding: 12px 20px; }
             .nav-links { display: none; }
             .view-screen { padding: 20px 15px; }
+        }
+        @media(max-width: 650px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-banner { grid-template-columns: 1fr; }
+            .hero-title { font-size: 28px; }
+            .brain-graphic-box { display: none; }
         }
     </style>
 </head>
@@ -431,6 +460,158 @@
     const userInput = document.getElementById('userInput');
     let recognition;
     let isListening = false;
+    
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN';
+        recognition.onresult = function(event) {
+            userInput.value = event.results[0][0].transcript;
+            stopListeningState();
+            window.sendUserQuery();
+        };
+        recognition.onerror = () => stopListeningState();
+        recognition.onend = () => stopListeningState();
+    }
 
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        const SpeechRecognition = window.SpeechRecognit
+    window.toggleMic = function() {
+        if (!recognition) {
+            alert("आपका ब्राउज़र वॉइस रिकग्निशन सपोर्ट नहीं करता।");
+            return;
+        }
+        if (isListening) {
+            recognition.stop();
+            stopListeningState();
+        } else {
+            recognition.start();
+            isListening = true;
+            document.getElementById('micBtn').classList.add('listening');
+        }
+    }
+
+    function stopListeningState() {
+        isListening = false;
+        const micBtn = document.getElementById('micBtn');
+        if(micBtn) micBtn.classList.remove('listening');
+    }
+
+    async function fetchWithAutoRetry(text) {
+        let attempts = 0;
+        while (attempts < geminiKeys.length) {
+            const apiKey = getActiveKey();
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: text }] }] })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error && (data.error.code === 429 || data.error.status === "RESOURCE_EXHAUSTED")) {
+                    rotateKey();
+                    attempts++;
+                    continue;
+                }
+                return data;
+            } catch (err) {
+                rotateKey();
+                attempts++;
+            }
+        }
+        throw new Error("All keys exhausted");
+    }
+
+    window.sendUserQuery = async function() {
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        appendMessage(text, 'user-msg', chatBox);
+        userInput.value = '';
+        
+        const loadingId = "ai-loading-" + Date.now();
+        appendMessage("Snaaya AI सोच रहा है...", 'ai-msg', chatBox, loadingId);
+
+        try {
+            const data = await fetchWithAutoRetry(text);
+            const loadingElem = document.getElementById(loadingId);
+            if (loadingElem) loadingElem.remove();
+
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                const replyText = data.candidates[0].content.parts[0].text;
+                appendMessage(replyText, 'ai-msg', chatBox);
+                speakAI(replyText);
+            } else {
+                appendMessage("माफ़ कीजिए, उत्तर प्राप्त करने में समस्या हुई।", 'ai-msg', chatBox);
+            }
+        } catch (err) {
+            const loadingElem = document.getElementById(loadingId);
+            if (loadingElem) loadingElem.remove();
+            appendMessage("कनेक्शन त्रुटि। कृपया पुनः प्रयास करें।", 'ai-msg', chatBox);
+        }
+    };
+
+    window.sendFullChatQuery = async function() {
+        const fullInput = document.getElementById('fullUserInput');
+        const text = fullInput.value.trim();
+        const fullChatBox = document.getElementById('fullChatBox');
+        if (!text) return;
+
+        appendMessage(text, 'user-msg', fullChatBox);
+        fullInput.value = '';
+        
+        const loadingId = "ai-loading-full-" + Date.now();
+        appendMessage("Snaaya AI सोच रहा है...", 'ai-msg', fullChatBox, loadingId);
+
+        try {
+            const data = await fetchWithAutoRetry(text);
+            const loadingElem = document.getElementById(loadingId);
+            if (loadingElem) loadingElem.remove();
+
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                const replyText = data.candidates[0].content.parts[0].text;
+                appendMessage(replyText, 'ai-msg', fullChatBox);
+                speakAI(replyText);
+            } else {
+                appendMessage("माफ़ कीजिए, उत्तर प्राप्त करने में समस्या हुई।", 'ai-msg', fullChatBox);
+            }
+        } catch (err) {
+            const loadingElem = document.getElementById(loadingId);
+            if (loadingElem) loadingElem.remove();
+            appendMessage("कनेक्शन त्रुटि। कृपया पुनः प्रयास करें।", 'ai-msg', fullChatBox);
+        }
+    };
+
+    window.addTask = function() {
+        const taskInput = document.getElementById('newTaskInput');
+        const taskList = document.getElementById('taskList');
+        if(!taskInput.value.trim()) return;
+        
+        const div = document.createElement('div');
+        div.innerHTML = `✅ ${taskInput.value.trim()}`;
+        taskList.appendChild(div);
+        taskInput.value = '';
+    }
+
+    function appendMessage(text, className, targetBox, customId = "") {
+        const div = document.createElement('div');
+        div.className = `msg ${className}`;
+        if (customId) div.id = customId;
+        div.innerText = text;
+        targetBox.appendChild(div);
+        targetBox.scrollTop = targetBox.scrollHeight;
+    }
+
+    function speakAI(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'hi-IN';
+            utterance.rate = 0.95;
+            utterance.pitch = 1.1;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+</script>
+</body>
+</html>
