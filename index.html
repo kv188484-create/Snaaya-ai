@@ -424,7 +424,16 @@
     let currentKeyIndex = 0;
 
     function getActiveKey() {
-        return geminiKeys[currentKeyIndex] || geminiKeys[0];
+    // Vercel या Vite एनवायरनमेंट से सुरक्षित तरीके से की प्राप्त करना
+    const secureKey = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.GEMINI_API_KEY) 
+                      || (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY);
+    
+    if (secureKey) {
+        return secureKey;
+    }
+    
+    // अगर एनवायरनमेंट वेरिएबल न मिले, तो पुरानी लिस्ट का इस्तेमाल होगा
+    return geminiKeys[currentKeyIndex]; 
     }
 
     function rotateKey() {
