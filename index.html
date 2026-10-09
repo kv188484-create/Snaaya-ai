@@ -8,59 +8,48 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #030712; color: #f8fafc; display: flex; height: 100vh; overflow: hidden; }
 
-        /* Sidebar Styling */
-        .sidebar { width: 260px; background: #050b18; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px; justify-content: space-between; z-index: 9999; flex-shrink: 0; transition: 0.3s; pointer-events: auto; }
-        .logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; cursor: pointer; position: relative; z-index: 10000; pointer-events: auto; }
+        .sidebar { width: 260px; background: #050b18; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px; justify-content: space-between; z-index: 9999; flex-shrink: 0; transition: 0.3s; }
+        .logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; cursor: pointer; }
         .logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, #a855f7, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 15px rgba(168,85,247,0.4); }
         .logo-text h2 { font-size: 18px; color: white; font-weight: 700; }
         .logo-text span { font-size: 9px; color: #38bdf8; letter-spacing: 1.5px; font-weight: 600; display: block; }
 
-        .menu-list { display: flex; flex-direction: column; gap: 4px; flex: 1; overflow-y: auto; pointer-events: auto; }
-        .menu-item { padding: 11px 14px; border-radius: 10px; color: #94a3b8; cursor: pointer; display: flex; align-items: center; gap: 14px; font-size: 14px; transition: 0.2s; text-decoration: none; user-select: none; position: relative; z-index: 10000; pointer-events: auto; }
+        .menu-list { display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; }
+        .menu-item { padding: 12px 14px; border-radius: 10px; color: #94a3b8; cursor: pointer; display: flex; align-items: center; gap: 14px; font-size: 14px; transition: 0.2s; text-decoration: none; user-select: none; }
         .menu-item:hover, .menu-item.active { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
 
-        .pro-box { background: linear-gradient(180deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(139, 92, 246, 0.35); border-radius: 16px; padding: 15px; margin-bottom: 12px; }
-        .pro-box h4 { font-size: 13px; color: #c084fc; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
-        .pro-box p { font-size: 11px; color: #94a3b8; margin-bottom: 12px; line-height: 1.4; }
-        .upgrade-btn { width: 100%; background: linear-gradient(135deg, #8b5cf6, #3b82f6); color: white; border: none; padding: 9px; border-radius: 20px; font-weight: bold; font-size: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(139,92,246,0.3); position: relative; z-index: 10000; pointer-events: auto; }
-
+        .pro-box { display: none; background: linear-gradient(180deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(139, 92, 246, 0.35); border-radius: 16px; padding: 15px; margin-bottom: 12px; }
         .journey-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; padding: 14px; }
         .journey-box h6 { font-size: 11px; color: white; margin-bottom: 4px; font-weight: 600; }
         .journey-box p { font-size: 10px; color: #94a3b8; margin-bottom: 8px; line-height: 1.3; }
         .journey-wave { height: 25px; background: radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%); border-radius: 4px; }
 
-        /* Main Container */
-        .main-container { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: #030712; position: relative; z-index: 10; pointer-events: auto; }
-        
-        /* Top Navigation Bar */
-        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 35px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(3, 7, 18, 0.95); position: sticky; top: 0; z-index: 10000; backdrop-filter: blur(10px); pointer-events: auto; }
-        .nav-links { display: flex; gap: 25px; font-size: 14px; color: #94a3b8; pointer-events: auto; }
-        .nav-links span { cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; position: relative; z-index: 10000; pointer-events: auto; }
+        .main-container { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: #030712; position: relative; }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 35px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(3, 7, 18, 0.95); position: sticky; top: 0; z-index: 10000; backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 25px; font-size: 14px; color: #94a3b8; }
+        .nav-links span { cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
         .nav-links span:hover, .nav-links span.active { color: #38bdf8; }
         
-        .auth-btns { display: flex; gap: 12px; align-items: center; pointer-events: auto; }
-        .btn-theme { background: transparent; border: none; color: #94a3b8; font-size: 16px; cursor: pointer; position: relative; z-index: 10000; pointer-events: auto; }
-        .btn-login { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 20px; border-radius: 20px; font-size: 13px; cursor: pointer; position: relative; z-index: 10000; pointer-events: auto; }
-        .btn-get-started { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(59,130,246,0.4); position: relative; z-index: 10000; pointer-events: auto; }
-        
-        .mobile-menu-btn { display: none; background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; position: relative; z-index: 10000; pointer-events: auto; }
+        .auth-btns { display: flex; gap: 12px; align-items: center; }
+        .btn-theme { background: transparent; border: none; color: #94a3b8; font-size: 16px; cursor: pointer; }
+        .btn-login { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 20px; border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .btn-get-started { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(59,130,246,0.4); }
+        .mobile-menu-btn { display: none; background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
 
-        /* Screen Views */
-        .view-screen { display: none; padding: 30px 35px; width: 100%; max-width: 1400px; margin: 0 auto; pointer-events: auto; }
+        .view-screen { display: none; padding: 30px 35px; width: 100%; max-width: 1400px; margin: 0 auto; }
         .view-screen.active { display: block; }
         .hero-layout { display: grid; grid-template-columns: 1.45fr 0.85fr; gap: 25px; margin-bottom: 30px; }
 
-        /* Hero Banner */
         .hero-banner { background: radial-gradient(circle at top right, rgba(59,130,246,0.18), #060e1d 60%); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 35px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
         .neural-bg-lines { position: absolute; top: 0; right: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle at 75% 45%, rgba(168, 85, 247, 0.25) 0%, transparent 45%), radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.2) 0%, transparent 40%); z-index: 1; }
-        .hero-content-area { position: relative; z-index: 2; pointer-events: auto; }
+        .hero-content-area { position: relative; z-index: 2; }
         .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #38bdf8; background: rgba(56,189,248,0.1); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(56,189,248,0.25); margin-bottom: 15px; }
         .hero-title { font-size: 40px; font-weight: 800; color: white; line-height: 1.15; margin-bottom: 15px; }
         .hero-title span { background: linear-gradient(135deg, #38bdf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-desc { font-size: 14px; color: #94a3b8; line-height: 1.5; max-width: 460px; margin-bottom: 25px; }
-        .hero-actions { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; pointer-events: auto; }
-        .btn-start-now { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; padding: 11px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 14px; box-shadow: 0 4px 15px rgba(59,130,246,0.3); position: relative; z-index: 10000; pointer-events: auto; }
-        .btn-watch-video { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 11px 25px; border-radius: 25px; cursor: pointer; font-size: 14px; position: relative; z-index: 10000; pointer-events: auto; }
+        .hero-actions { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .btn-start-now { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; padding: 11px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .btn-watch-video { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 11px 25px; border-radius: 25px; cursor: pointer; font-size: 14px; }
         .hero-footer-badges { display: flex; gap: 25px; margin-top: 30px; font-size: 12px; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; position: relative; z-index: 2; flex-wrap: wrap; }
         .hero-footer-badges div { display: flex; align-items: center; gap: 6px; }
         .brain-graphic-box { position: absolute; right: 30px; top: 35px; width: 170px; height: 170px; border-radius: 50%; background: radial-gradient(circle, rgba(168,85,247,0.25) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; z-index: 2; border: 1px dashed rgba(56,189,248,0.4); animation: rotateBrainRing 20s linear infinite; }
@@ -68,29 +57,72 @@
         .brain-center-icon { position: absolute; right: 75px; top: 75px; font-size: 65px; z-index: 3; filter: drop-shadow(0 0 15px rgba(168,85,247,0.6)); }
         .watermark-text { position: absolute; right: 25px; bottom: 25px; font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; z-index: 2; transform: rotate(-8deg); }
 
-        /* Talk Card */
-        .talk-card { background: #071022; border: 1px solid rgba(56,189,248,0.25); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; z-index: 100; pointer-events: auto; }
+        .talk-card { background: #071022; border: 1px solid rgba(56,189,248,0.25); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; z-index: 100; }
         .talk-top-title { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
         .talk-header { font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
         .talk-subtitle { font-size: 12px; color: #94a3b8; line-height: 1.4; margin-bottom: 15px; }
-        .chat-box { height: 140px; overflow-y: auto; background: #030712; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; position: relative; z-index: 100; pointer-events: auto; }
+        
+        .sound-wave-bars { display: flex; align-items: center; justify-content: center; gap: 3px; height: 35px; margin-bottom: 12px; }
+        .wave-bar { width: 3px; background: #38bdf8; border-radius: 3px; animation: soundWave 1.2s infinite ease-in-out; }
+        @keyframes soundWave { 0%, 100% { height: 6px; background: #3b82f6; } 50% { height: 28px; background: #a855f7; } }
+
+        .chat-box { height: 130px; overflow-y: auto; background: #030712; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
         .msg { padding: 8px 12px; border-radius: 10px; font-size: 12.5px; max-width: 85%; line-height: 1.4; word-break: break-word; }
         .user-msg { background: #0284c7; color: white; align-self: flex-end; }
         .ai-msg { background: #111c30; color: #e2e8f0; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
 
-        .input-row { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid rgba(255,255,255,0.12); border-radius: 30px; padding: 5px 5px 5px 15px; position: relative; z-index: 10000; pointer-events: auto; }
-        .input-row input { flex: 1; background: transparent; border: none; color: white; font-size: 13px; outline: none; width: 100%; position: relative; z-index: 10000; pointer-events: auto; }
-        .mic-circle-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 12px rgba(59,130,246,0.5); transition: 0.2s; flex-shrink: 0; position: relative; z-index: 10000; pointer-events: auto; }
+        .input-row { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid rgba(255,255,255,0.12); border-radius: 30px; padding: 5px 5px 5px 15px; }
+        .input-row input { flex: 1; background: transparent; border: none; color: white; font-size: 13px; outline: none; width: 100%; }
+        .mic-circle-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 12px rgba(59,130,246,0.5); transition: 0.2s; flex-shrink: 0; }
         .mic-circle-btn.listening { background: #ef4444; animation: pulseMic 1s infinite alternate; }
         @keyframes pulseMic { from { transform: scale(1); } to { transform: scale(1.12); } }
-        .send-arrow-btn { width: 42px; height: 42px; background: #38bdf8; border: none; border-radius: 50%; color: #030712; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; flex-shrink: 0; position: relative; z-index: 10000; pointer-events: auto; }
+        .send-arrow-btn { width: 42px; height: 42px; background: #38bdf8; border: none; border-radius: 50%; color: #030712; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; flex-shrink: 0; }
+
+        .section-title { font-size: 20px; font-weight: 700; color: white; margin-bottom: 5px; }
+        .section-desc { font-size: 13px; color: #94a3b8; margin-bottom: 20px; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 30px; }
+        .feature-card { background: #071022; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; transition: 0.2s; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; }
+        .feature-card:hover { border-color: #38bdf8; transform: translateY(-3px); background: rgba(56,189,248,0.03); }
+        .feature-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 15px; }
+        .feature-card h5 { font-size: 15px; color: white; margin-bottom: 6px; }
+        .feature-card p { font-size: 12px; color: #94a3b8; line-height: 1.4; margin-bottom: 15px; }
+        .card-link { font-size: 12px; color: #38bdf8; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+        .stats-banner { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 15px; background: linear-gradient(135deg, #050b18, #0a1628); border: 1px solid rgba(255,255,255,0.08); padding: 25px 30px; border-radius: 18px; align-items: center; margin-bottom: 30px; }
+        .stats-banner h5 { font-size: 15px; color: white; margin-bottom: 4px; }
+        .stats-banner p { font-size: 11.5px; color: #94a3b8; }
+        .stat-col { text-align: center; border-left: 1px solid rgba(255,255,255,0.08); }
+        .stat-col h3 { font-size: 20px; color: #38bdf8; font-weight: 700; margin-bottom: 2px; }
+        .stat-col span { font-size: 11px; color: #94a3b8; }
+
+        .site-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; margin-bottom: 20px; font-size: 12px; color: #94a3b8; flex-wrap: wrap; gap: 15px; }
+
+        @media(max-width: 1024px) {
+            body { flex-direction: column; height: 100vh; overflow-y: auto; }
+            .sidebar { position: fixed; left: -100%; top: 0; bottom: 0; width: 260px; z-index: 20000; transition: 0.3s ease; box-shadow: 5px 0 25px rgba(0,0,0,0.8); }
+            .sidebar.mobile-open { left: 0; }
+            .mobile-menu-btn { display: block; }
+            .hero-layout { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-banner { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .stat-col { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; }
+            .top-nav { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .view-screen { padding: 20px 15px; }
+        }
+        @media(max-width: 650px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-banner { grid-template-columns: 1fr; }
+            .hero-title { font-size: 28px; }
+            .brain-graphic-box { display: none; }
+        }
     </style>
 </head>
 <body>
         <!-- Sidebar -->
     <div class="sidebar" id="appSidebar">
         <div>
-            <div class="logo-area">
+            <div class="logo-area" onclick="switchView('home')">
                 <div class="logo-icon">🧠</div>
                 <div class="logo-text">
                     <h2>Snaaya AI</h2>
@@ -107,11 +139,16 @@
                 <div class="menu-item" onclick="switchView('settings'); closeMobileMenu();" id="side-settings">⚙️ Settings</div>
             </div>
         </div>
+        
         <div>
-            <div class="pro-box">
+            <div class="pro-box" id="proUpgradeBox">
                 <h4>👑 Snaaya AI Pro</h4>
                 <p>Unlock more powerful features and get premium benefits.</p>
-                <button class="upgrade-btn" onclick="switchView('pricing'); closeMobileMenu();">Upgrade Now →</button>
+            </div>
+            <div class="journey-box">
+                <h6>Your AI Journey Starts Here</h6>
+                <p>Smart tools. Better decisions. A more productive you.</p>
+                <div class="journey-wave"></div>
             </div>
         </div>
     </div>
@@ -135,6 +172,8 @@
                 <span onclick="switchView('features')" id="nav-features">⚡ Features</span>
                 <span onclick="switchView('memory')" id="nav-memory">🧠 Memory</span>
                 <span onclick="switchView('pricing')" id="nav-pricing">👑 Pricing</span>
+                <span onclick="switchView('about')" id="nav-about">ℹ️ About</span>
+                <span onclick="switchView('contact')" id="nav-contact">📞 Contact</span>
             </div>
             <div class="auth-btns">
                 <button class="btn-theme" title="डार्क मोड">🌙</button>
@@ -143,7 +182,7 @@
             </div>
         </div>
 
-        <!-- HOME VIEW -->
+        <!-- VIEW 1: HOME -->
         <div id="view-home" class="view-screen active">
             <div class="hero-layout">
                 <div class="hero-banner">
@@ -155,328 +194,276 @@
                     <div class="hero-content-area">
                         <div class="hero-tag">✨ Your Personal AI Assistant</div>
                         <h1 class="hero-title">Snaaya <span>AI</span><br>Think Smarter<br>Live Better</h1>
-                        <p class="hero-desc">Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter.</p>
+                        <p class="hero-desc">Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter than ever before.</p>
                         
                         <div class="hero-actions">
                             <button class="btn-start-now" onclick="switchView('chat')">Start Now →</button>
-                            <button class="btn-watch-video" onclick="speakAI('Snaaya AI में आपका स्वागत है। बोलकर या टाइप करके कुछ भी पूछिए!')">Watch Video</button>
+                            <button class="btn-watch-video" onclick="speakAI('Snaaya AI में आपका स्वागत है। कुछ भी पूछिए, मैं तैयार हूँ!')">Watch Video</button>
                         </div>
+                    </div>
+
+                    <div class="hero-footer-badges">
+                        <div>⚡ Unlimited AI</div>
+                        <div>🔒 Private</div>
+                        <div>🧠 Smart</div>
+                        <div>☁️ Always On</div>
                     </div>
                 </div>
 
-                <!-- Talk Card Widget -->
                 <div class="talk-card">
                     <div>
                         <div class="talk-top-title">Speak • Type • Get Results</div>
-                        <div class="talk-header">Talk to Snaaya AI</div>
-                        <div class="talk-subtitle">Ask anything, get instant answers and manage your tasks.</div>
+                        <div class="talk-header">
+                            <span>Talk to Snaaya AI</span>
+                            <span style="color: #22c55e; font-size: 11px; font-weight: normal;">● Auto-Rotation Active</span>
+                        </div>
+                        <div class="talk-subtitle">Ask anything, get instant answers, manage your tasks, and more — just like talking to a friend.</div>
+                    </div>
+
+                    <div class="sound-wave-bars">
+                        <div class="wave-bar" style="height: 8px;"></div>
+                        <div class="wave-bar" style="height: 20px;"></div>
+                        <div class="wave-bar" style="height: 12px;"></div>
+                        <div class="wave-bar" style="height: 28px;"></div>
+                        <div class="wave-bar" style="height: 16px;"></div>
+                    </div>
+
+                    <div class="chat-box" id="chatBox">
+                        <div class="msg ai-msg">नमस्ते! मैं Snaaya AI हूँ। मुझसे कुछ भी पूछिए!</div>
                     </div>
                     
-                    <div class="chat-box" id="homeChatBox">
-                        <div class="msg ai-msg">नमस्ते! मैं Snaaya AI हूँ। बोलिए या टाइप कीजिए!</div>
-                    </div>
-
                     <div class="input-row">
-                        <input type="text" id="homeUserInput" placeholder="Type your message..." onkeypress="handleHomeKey(event)">
-                        <button class="mic-circle-btn" id="homeMicBtn" onclick="toggleHomeMic()" title="Voice">🎤</button>
-                        <button class="send-arrow-btn" onclick="sendHomeQuery(false)">➤</button>
+                        <input type="text" id="userInput" placeholder="Or type your message..." onkeypress="if(event.key==='Enter') sendUserQuery()">
+                        <button type="button" class="mic-circle-btn" id="micBtn" onclick="toggleMic()" title="बोलकर बात करें">🎙️</button>
+                        <button type="button" class="send-arrow-btn" onclick="sendUserQuery()" title="संदेश भेजें">➔</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <script>
-        // यहाँ अपनी Gemini API Key डालें
-        const apiKey = "YAHAN_APNI_GEMINI_API_KEY_DAALEIN";
+            <div class="section-title">Everything You Need in One Place</div>
+            <div class="section-desc">From daily tasks to deep research, Snaaya AI gives you the tools to stay organized, productive and ahead — always.</div>
 
-        function switchView(viewName) {
-            document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
-            const target = document.getElementById('view-' + viewName);
-            if (target) target.classList.add('active');
-        }
-
-        function toggleMobileSidebar() {
-            document.getElementById('appSidebar').classList.toggle('mobile-open');
-        }
-
-        function closeMobileMenu() {
-            document.getElementById('appSidebar').classList.remove('mobile-open');
-        }
-
-        function appendHomeMsg(text, sender) {
-            const box = document.getElementById('homeChatBox');
-            const div = document.createElement('div');
-            div.className = `msg ${sender === 'user' ? 'user-msg' : 'ai-msg'}`;
-            div.innerText = text;
-            box.appendChild(div);
-            box.scrollTop = box.scrollHeight;
-        }
-
-        async function sendHomeQuery(isVoice = false) {
-            const input = document.getElementById('homeUserInput');
-            const prompt = input.value.trim();
-            if (!prompt) return;
-
-            appendHomeMsg(prompt, 'user');
-            input.value = '';
-
-            const loading = document.createElement('div');
-            loading.className = 'msg ai-msg';
-            loading.innerText = "Snaaya soch rahi hai...";
-            document.getElementById('homeChatBox').appendChild(loading);
-
-            try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                const data = await res.json();
-                document.getElementById('homeChatBox').removeChild(loading);
-
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    const reply = data.candidates[0].content.parts[0].text;
-                    appendHomeMsg(reply, 'ai');
-                    if (isVoice) speakAI(reply);
-                } else {
-                    appendHomeMsg("माफ़ कीजिए, कुछ तकनीकी समस्या है।", 'ai');
-                }
-            } catch (err) {
-                document.getElementById('homeChatBox').removeChild(loading);
-                appendHomeMsg("कनेक्शन त्रुटि। कृपया API Key जांचें।", 'ai');
-            }
-        }
-
-        function handleHomeKey(e) {
-            if (e.key === 'Enter') sendHomeQuery(false);
-        }
-
-        function toggleHomeMic() {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                alert("आपका ब्राउज़र वॉइस रिकग्निशन सपोर्ट नहीं करता।");
-                return;
-            }
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            const rec = new SpeechRecognition();
-            rec.lang = 'hi-IN';
-            const micBtn = document.getElementById('homeMicBtn');
-            micBtn.classList.add('listening');
-
-            rec.onresult = function(e) {
-                micBtn.classList.remove('listening');
-                document.getElementById('homeUserInput').value = e.results[0][0].transcript;
-                sendHomeQuery(true);
-            };
-            rec.onerror = () => micBtn.classList.remove('listening');
-            rec.onend = () => micBtn.classList.remove('listening');
-            rec.start();
-        }
-
-        function speakAI(text) {
-            if ('speechSynthesis' in window) {
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = 'hi-IN';
-                window.speechSynthesis.speak(utter);
-            }
-        }
-    </script>
-</body>
-</html>
-    <!-- Sidebar -->
-    <div class="sidebar" id="appSidebar">
-        <div>
-            <div class="logo-area">
-                <div class="logo-icon">🧠</div>
-                <div class="logo-text">
-                    <h2>Snaaya AI</h2>
-                    <span>THINK • ASSIST • GROW</span>
+            <div class="features-grid">
+                <div class="feature-card" onclick="switchView('chat')">
+                    <div>
+                        <div class="feature-icon" style="background: rgba(59,130,246,0.15); color: #3b82f6;">💬</div>
+                        <h5>Chat Assistant</h5>
+                        <p>Get instant answers, ideas, and solutions.</p>
+                    </div>
+                    <div class="card-link">Learn More →</div>
+                </div>
+                <div class="feature-card" onclick="switchView('voice')">
+                    <div>
+                        <div class="feature-icon" style="background: rgba(168,85,247,0.15); color: #c084fc;">🎙️</div>
+                        <h5>Voice Assistant</h5>
+                        <p>Speak naturally and get things done.</p>
+                    </div>
+                    <div class="card-link">Learn More →</div>
+                </div>
+                <div class="feature-card" onclick="switchView('memory')">
+                    <div>
+                        <div class="feature-icon" style="background: rgba(34,197,94,0.15); color: #22c55e;">🧠</div>
+                        <h5>Memory System</h5>
+                        <p>Remember important things, notes and numbers.</p>
+                    </div>
+                    <div class="card-link">Learn More →</div>
+                </div>
+                <div class="feature-card" onclick="switchView('tasks')">
+                    <div>
+                        <div class="feature-icon" style="background: rgba(234,179,8,0.15); color: #eab308;">📋</div>
+                        <h5>Task Manager</h5>
+                        <p>Set reminders, create todos and stay organized.</p>
+                    </div>
+                    <div class="card-link">Learn More →</div>
                 </div>
             </div>
-            <div class="menu-list">
-                <div class="menu-item active" onclick="switchView('home'); closeMobileMenu();" id="side-home">🏠 Home</div>
-                <div class="menu-item" onclick="switchView('chat'); closeMobileMenu();" id="side-chat">💬 Chat Assistant</div>
-                <div class="menu-item" onclick="switchView('voice'); closeMobileMenu();" id="side-voice">🎙️ Voice Assistant</div>
-                <div class="menu-item" onclick="switchView('memory'); closeMobileMenu();" id="side-memory">🧠 Memory Center</div>
-                <div class="menu-item" onclick="switchView('tasks'); closeMobileMenu();" id="side-tasks">📋 Task Manager</div>
-                <div class="menu-item" onclick="switchView('knowledge'); closeMobileMenu();" id="side-knowledge">📚 Knowledge Hub</div>
-                <div class="menu-item" onclick="switchView('settings'); closeMobileMenu();" id="side-settings">⚙️ Settings</div>
-            </div>
-        </div>
-        <div>
-            <div class="pro-box">
-                <h4>👑 Snaaya AI Pro</h4>
-                <p>Unlock more powerful features and get premium benefits.</p>
-                <button class="upgrade-btn" onclick="switchView('pricing'); closeMobileMenu();">Upgrade Now →</button>
-            </div>
-        </div>
-    </div>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Top Navigation Bar -->
-        <div class="top-nav">
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
-                <div class="logo-area" style="margin-bottom:0;" onclick="switchView('home')">
-                    <div class="logo-icon">🧠</div>
+            <div class="site-footer">
+                <div class="logo-area" style="margin-bottom:0;">
+                    <div class="logo-icon" style="width:28px; height:28px; font-size:14px;">🧠</div>
                     <div class="logo-text">
-                        <h2>Snaaya AI</h2>
-                        <span>Think • Assist • Grow</span>
+                        <h2 style="font-size:14px;">Snaaya AI</h2>
+                        <span style="font-size:7px;">Think • Assist • Grow</span>
                     </div>
                 </div>
-            </div>
-            <div class="nav-links">
-                <span class="active" onclick="switchView('home')" id="nav-home">🏠 Home</span>
-                <span onclick="switchView('features')" id="nav-features">⚡ Features</span>
-                <span onclick="switchView('memory')" id="nav-memory">🧠 Memory</span>
-                <span onclick="switchView('pricing')" id="nav-pricing">👑 Pricing</span>
-            </div>
-            <div class="auth-btns">
-                <button class="btn-theme" title="डार्क मोड">🌙</button>
-                <button class="btn-login" onclick="alert('लॉगिन पोर्टल सक्रिय है!')">Login</button>
-                <button class="btn-get-started" onclick="switchView('features')">Get Started →</button>
+                <div>Made with ❤️ for a better tomorrow</div>
             </div>
         </div>
 
-        <!-- HOME VIEW -->
-        <div id="view-home" class="view-screen active">
-            <div class="hero-layout">
-                <div class="hero-banner">
-                    <div class="neural-bg-lines"></div>
-                    <div class="brain-graphic-box"></div>
-                    <div class="brain-center-icon">🧠</div>
-                    <div class="watermark-text">Not Just AI... Your Personal Partner</div>
-                    
-                    <div class="hero-content-area">
-                        <div class="hero-tag">✨ Your Personal AI Assistant</div>
-                        <h1 class="hero-title">Snaaya <span>AI</span><br>Think Smarter<br>Live Better</h1>
-                        <p class="hero-desc">Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter.</p>
-                        
-                        <div class="hero-actions">
-                            <button class="btn-start-now" onclick="switchView('chat')">Start Now →</button>
-                            <button class="btn-watch-video" onclick="speakAI('Snaaya AI में आपका स्वागत है। बोलकर या टाइप करके कुछ भी पूछिए!')">Watch Video</button>
-                        </div>
-                    </div>
+        <!-- VIEW 2: CHAT ASSISTANT -->
+        <div id="view-chat" class="view-screen">
+            <div class="section-title">💬 Chat Assistant</div>
+            <div class="section-desc">यहाँ आप किसी भी प्रकार के कठिन सवाल या विषय पर बातचीत कर सकते हैं।</div>
+            <div class="talk-card" style="max-width: 900px; margin-top: 15px;">
+                <div class="chat-box" id="fullChatBox" style="height: 350px;">
+                    <div class="msg ai-msg">नमस्ते! चैट असिस्टेंट में आपका स्वागत है। बताइए मैं आपकी क्या सहायता कर सकता हूँ?</div>
                 </div>
+                <div class="input-row" style="margin-top: 15px;">
+                    <input type="text" id="fullUserInput" placeholder="यहाँ अपना सवाल टाइप करें..." onkeypress="if(event.key==='Enter') sendFullChatQuery()">
+                    <button type="button" class="send-arrow-btn" onclick="sendFullChatQuery()">➔</button>
+                </div>
+            </div>
+        </div>
 
-                <!-- Talk Card Widget -->
-                <div class="talk-card">
+        <!-- VIEW 3: VOICE ASSISTANT -->
+        <div id="view-voice" class="view-screen">
+            <div class="section-title">🎙️ Voice Assistant</div>
+            <div class="section-desc">बोलकर निर्देश दें और अपने हाथों को रखें पूरी तरह फ्री।</div>
+            <div style="background: #071022; border: 1px solid rgba(56,189,248,0.25); border-radius: 20px; padding: 30px; text-align: center; max-width: 600px; margin: 30px auto;">
+                <div style="font-size: 60px; margin-bottom: 20px;">🎙️</div>
+                <h3 style="color: white; margin-bottom: 10px;">Voice Mode Active</h3>
+                <p style="color: #94a3b8; font-size: 13px; margin-bottom: 25px;">होम पेज पर दिए गए माइक बटन पर क्लिक करके सीधे बोलकर बात करें।</p>
+                <button class="btn-get-started" onclick="switchView('home')">होम पेज पर जाएं →</button>
+            </div>
+        </div>
+
+        <!-- VIEW 4: MEMORY CENTER -->
+        <div id="view-memory" class="view-screen">
+            <div class="section-title">🧠 Memory Center</div>
+            <div class="section-desc">आपकी महत्वपूर्ण यादें और नोट्स यहाँ सुरक्षित रहते हैं।</div>
+            <div class="features-grid" style="margin-top: 20px;">
+                <div class="feature-card"><h5>📌 Saved Notes</h5><p>आपके सभी महत्वपूर्ण नोट्स और आइडियाज सुरक्षित हैं।</p></div>
+                <div class="feature-card"><h5>🔗 AI Context</h5><p>Snaaya AI आपकी पिछली बातचीत को याद रखती है।</p></div>
+            </div>
+        </div>
+
+        <!-- VIEW 5: TASK MANAGER -->
+        <div id="view-tasks" class="view-screen">
+            <div class="section-title">📋 Task Manager</div>
+            <div class="section-desc">अपने डेली टास्क और टू-डू लिस्ट प्रबंधित करें।</div>
+            <div style="background: #071022; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 25px; max-width: 800px; margin-top: 20px;">
+                <h4 style="color: white; margin-bottom: 15px;">Today's Tasks</h4>
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <input type="text" id="newTaskInput" placeholder="नया टास्क लिखें..." style="flex:1; background: #030712; border: 1px solid rgba(255,255,255,0.15); padding: 10px 15px; border-radius: 10px; color: white; outline: none;">
+                    <button class="btn-get-started" onclick="addTask()">Add Task</button>
+                </div>
+                <div id="taskList" style="display: flex; flex-direction: column; gap: 10px; color: #94a3b8; font-size: 13px;">
+                    <div>✅ Unlimited AI Engine & Auto-Rotation Active</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 6: KNOWLEDGE HUB -->
+        <div id="view-knowledge" class="view-screen">
+            <div class="section-title">📚 Knowledge Hub</div>
+            <div class="section-desc">ज्ञान, विज्ञान और विभिन्न विषयों की जानकारी प्राप्त करने का केंद्र।</div>
+            <div class="features-grid" style="margin-top: 20px;">
+                <div class="feature-card" onclick="switchView('chat')"><h5>🔬 Science & Tech</h5><p>नई तकनीक, कोडिंग और साइंस के बारे में जानें।</p></div>
+                <div class="feature-card" onclick="switchView('chat')"><h5>📖 History & Culture</h5><p>इतिहास, संस्कृति और दुनिया की महत्वपूर्ण बातें।</p></div>
+            </div>
+        </div>
+
+        <!-- VIEW 7: SETTINGS -->
+        <div id="view-settings" class="view-screen">
+            <div class="section-title">⚙️ Settings</div>
+            <div class="section-desc">सिस्टम सेटिंग्स।</div>
+            <div style="background: #071022; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 25px; max-width: 800px; margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <div class="talk-top-title">Speak • Type • Get Results</div>
-                        <div class="talk-header">Talk to Snaaya AI</div>
-                        <div class="talk-subtitle">Ask anything, get instant answers and manage your tasks.</div>
-                    </div>
-                    
-                    <div class="chat-box" id="homeChatBox">
-                        <div class="msg ai-msg">नमस्ते! मैं Snaaya AI हूँ। बोलिए या टाइप कीजिए!</div>
-                    </div>
-
-                    <div class="input-row">
-                        <input type="text" id="homeUserInput" placeholder="Type your message..." onkeypress="handleHomeKey(event)">
-                        <button class="mic-circle-btn" id="homeMicBtn" onclick="toggleHomeMic()" title="Voice">🎤</button>
-                        <button class="send-arrow-btn" onclick="sendHomeQuery(false)">➤</button>
+                        <h5 style="color: white; font-size: 15px;">AI System Status</h5>
+                        <p style="color: #22c55e; font-size: 12px;">● 100% Online & Active (No Errors)</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- VIEW 8: FEATURES -->
+        <div id="view-features" class="view-screen">
+            <div class="section-title">⚡ All Features</div>
+            <div class="section-desc">Snaaya AI की सभी शक्तिशाली क्षमताएं।</div>
+            <div class="features-grid" style="margin-top: 20px;">
+                <div class="feature-card"><h5>💬 Unlimited Chat</h5><p>किसी भी विषय पर असीमित और सटीक बातचीत।</p></div>
+                <div class="feature-card"><h5>🎙️ Voice Control</h5><p>बोलकर कमांड दें और सुनें।</p></div>
+            </div>
+        </div>
+
+        <!-- VIEW 9: PRICING -->
+        <div id="view-pricing" class="view-screen">
+            <div class="section-title">👑 Pricing Plans</div>
+            <div class="section-desc">सभी प्रो फीचर्स आपके लिए पूरी तरह निःशुल्क उपलब्ध हैं!</div>
+            <div style="background: linear-gradient(135deg, #050b18, #111c30); border: 1px solid rgba(139,92,246,0.3); border-radius: 20px; padding: 30px; max-width: 500px; margin: 30px auto; text-align: center;">
+                <h3 style="color: #c084fc; font-size: 22px; margin-bottom: 10px;">Snaaya AI Pro Lifetime</h3>
+                <h1 style="color: white; font-size: 36px; margin-bottom: 15px;">₹0 <span style="font-size: 14px; color: #94a3b8;">/ हमेशा के लिए मुफ्त</span></h1>
+                <p style="color: #94a3b8; font-size: 13px; margin-bottom: 25px;">बिना किसी रुकावट के सभी प्रीमियम फीचर्स का आनंद लें।</p>
+                <button class="upgrade-btn" onclick="alert('आप पहले से ही प्रो यूजर हैं!')" style="width: 100%; background: linear-gradient(135deg, #8b5cf6, #3b82f6); color: white; border: none; padding: 10px; border-radius: 20px; font-weight: bold; cursor: pointer;">Activated 🎉</button>
+            </div>
+        </div>
+
+        <!-- VIEW 10: ABOUT -->
+        <div id="view-about" class="view-screen">
+            <div class="section-title">ℹ️ About Snaaya AI</div>
+            <div class="section-desc">Snaaya AI OS — आपका अपना स्मार्ट पर्सनल असिस्टेंट।</div>
+            <div style="background: #071022; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 25px; max-width: 800px; margin-top: 20px; color: #94a3b8; font-size: 13.5px; line-height: 1.6;">
+                <p>Snaaya AI को आपके सभी प्रकार के सवालों के जवाब देने और रोजमर्रा के कामों को आसान बनाने के लिए डिजाइन किया गया है।</p>
+            </div>
+        </div>
+
+        <!-- VIEW 11: CONTACT -->
+        <div id="view-contact" class="view-screen">
+            <div class="section-title">📞 Contact Support</div>
+            <div class="section-desc">सहायता या सुझाव के लिए संपर्क करें।</div>
+            <div style="background: #071022; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 25px; max-width: 600px; margin-top: 20px;">
+                <input type="text" placeholder="आपका नाम" style="width:100%; background: #030712; border: 1px solid rgba(255,255,255,0.15); padding: 10px 15px; border-radius: 10px; color: white; margin-bottom: 12px; outline: none;">
+                <textarea placeholder="अपना संदेश यहाँ लिखें..." rows="4" style="width:100%; background: #030712; border: 1px solid rgba(255,255,255,0.15); padding: 10px 15px; border-radius: 10px; color: white; margin-bottom: 15px; outline: none;"></textarea>
+                <button class="btn-get-started" onclick="alert('संदेश भेज दिया गया है!')">Send Message</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // यहाँ अपनी Gemini API Key डालें
-        const apiKey = "YAHAN_APNI_GEMINI_API_KEY_DAALEIN";
+<script>
+    const geminiKeys = [
+        "AIzaSyD-PRIMARY_KEY_HERE",
+        "AIzaSyD-BACKUP_KEY_HERE"
+    ];
+    let currentKeyIndex = 0;
 
-        function switchView(viewName) {
-            document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
-            const target = document.getElementById('view-' + viewName);
-            if (target) target.classList.add('active');
-        }
+    function getActiveKey() {
+        return geminiKeys[currentKeyIndex] || geminiKeys[0];
+    }
 
-        function toggleMobileSidebar() {
-            document.getElementById('appSidebar').classList.toggle('mobile-open');
-        }
+    function rotateKey() {
+        currentKeyIndex = (currentKeyIndex + 1) % geminiKeys.length;
+    }
 
-        function closeMobileMenu() {
-            document.getElementById('appSidebar').classList.remove('mobile-open');
-        }
+    window.toggleMobileSidebar = function() {
+        document.getElementById('appSidebar').classList.toggle('mobile-open');
+    }
 
-        function appendHomeMsg(text, sender) {
-            const box = document.getElementById('homeChatBox');
-            const div = document.createElement('div');
-            div.className = `msg ${sender === 'user' ? 'user-msg' : 'ai-msg'}`;
-            div.innerText = text;
-            box.appendChild(div);
-            box.scrollTop = box.scrollHeight;
-        }
+    window.closeMobileMenu = function() {
+        document.getElementById('appSidebar').classList.remove('mobile-open');
+    }
 
-        async function sendHomeQuery(isVoice = false) {
-            const input = document.getElementById('homeUserInput');
-            const prompt = input.value.trim();
-            if (!prompt) return;
+    window.switchView = function(viewId) {
+        document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.nav-links span').forEach(el => el.classList.remove('active'));
 
-            appendHomeMsg(prompt, 'user');
-            input.value = '';
+        const target = document.getElementById('view-' + viewId);
+        if (target) target.classList.add('active');
 
-            const loading = document.createElement('div');
-            loading.className = 'msg ai-msg';
-            loading.innerText = "Snaaya soch rahi hai...";
-            document.getElementById('homeChatBox').appendChild(loading);
+        const sideElem = document.getElementById('side-' + viewId);
+        if (sideElem) sideElem.classList.add('active');
 
-            try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                const data = await res.json();
-                document.getElementById('homeChatBox').removeChild(loading);
+        const navElem = document.getElementById('nav-' + viewId);
+        if (navElem) navElem.classList.add('active');
+        
+        document.querySelector('.main-container').scrollTop = 0;
+    }
 
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    const reply = data.candidates[0].content.parts[0].text;
-                    appendHomeMsg(reply, 'ai');
-                    if (isVoice) speakAI(reply);
-                } else {
-                    appendHomeMsg("माफ़ कीजिए, कुछ तकनीकी समस्या है।", 'ai');
-                }
-            } catch (err) {
-                document.getElementById('homeChatBox').removeChild(loading);
-                appendHomeMsg("कनेक्शन त्रुटि। कृपया API Key जांचें।", 'ai');
-            }
-        }
+    window.onload = function() {
+        const proBox = document.getElementById('proUpgradeBox');
+        if(proBox) proBox.style.display = 'none';
+    };
 
-        function handleHomeKey(e) {
-            if (e.key === 'Enter') sendHomeQuery(false);
-        }
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+    let recognition;
+    let isListening = false;
 
-        function toggleHomeMic() {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                alert("आपका ब्राउज़र वॉइस रिकग्निशन सपोर्ट नहीं करता।");
-                return;
-            }
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            const rec = new SpeechRecognition();
-            rec.lang = 'hi-IN';
-            const micBtn = document.getElementById('homeMicBtn');
-            micBtn.classList.add('listening');
-
-            rec.onresult = function(e) {
-                micBtn.classList.remove('listening');
-                document.getElementById('homeUserInput').value = e.results[0][0].transcript;
-                sendHomeQuery(true);
-            };
-            rec.onerror = () => micBtn.classList.remove('listening');
-            rec.onend = () => micBtn.classList.remove('listening');
-            rec.start();
-        }
-
-        function speakAI(text) {
-            if ('speechSynthesis' in window) {
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = 'hi-IN';
-                window.speechSynthesis.speak(utter);
-            }
-        }
-    </script>
-</body>
-</html>
-
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN';
+        recognition.onresult = function(event) {
+            userInput.value = event.results[0][0].transcript;
+          
