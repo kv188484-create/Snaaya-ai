@@ -249,6 +249,122 @@
                     <div class="input-row">
                         <input type="text" id="userInput" placeholder="Or type your message..." onkeypress="if(event.key==='Enter') sendUserQuery()">
                         <button type="button" class="mic-circle-btn" id="micBtn" onclick="toggleMic()" title="बोलकर बात करें">🎙️</button>
+                        <button type="button" class="
+                                <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            <div class="logo-area" ondblclick="toggleAdminMode()" title="डबल क्लिक करके एडमिन मोड एक्टिव करें">
+                <div class="logo-icon">🧠</div>
+                <div class="logo-text">
+                    <h2>Snaaya AI</h2>
+                    <span>THINK • ASSIST • GROW</span>
+                </div>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item active" onclick="switchView('home')" id="side-home">🏠 Home</div>
+                <div class="menu-item" onclick="switchView('chat')" id="side-chat">💬 Chat Assistant</div>
+                <div class="menu-item" onclick="switchView('voice')" id="side-voice">🎙️ Voice Assistant</div>
+                <div class="menu-item" onclick="switchView('memory')" id="side-memory">🧠 Memory Center</div>
+                <div class="menu-item" onclick="switchView('tasks')" id="side-tasks">📋 Task Manager</div>
+                <div class="menu-item" onclick="switchView('knowledge')" id="side-knowledge">📚 Knowledge Hub</div>
+                <div class="menu-item" onclick="switchView('settings')" id="side-settings">⚙️ Settings</div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="pro-box" id="proUpgradeBox">
+                <h4>👑 Snaaya AI Pro</h4>
+                <p>Unlock more powerful features and get premium benefits.</p>
+                <button class="upgrade-btn" onclick="alert('प्रो वर्जन अपग्रेड करने के लिए पेज खुल रहा है!')">Upgrade Now →</button>
+            </div>
+            <div class="journey-box">
+                <h6>Your AI Journey Starts Here</h6>
+                <p>Smart tools. Better decisions. A more productive you.</p>
+                <div class="journey-wave"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Top Navigation Bar -->
+        <div class="top-nav">
+            <div class="logo-area" style="margin-bottom:0;" onclick="switchView('home')">
+                <div class="logo-icon">🧠</div>
+                <div class="logo-text">
+                    <h2>Snaaya AI</h2>
+                    <span>Think • Assist • Grow</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <span class="active" onclick="switchView('home')" id="nav-home">🏠 Home</span>
+                <span onclick="switchView('features')" id="nav-features">⚡ Features</span>
+                <span onclick="switchView('memory')" id="nav-memory">🧠 Memory</span>
+                <span onclick="switchView('pricing')" id="nav-pricing">👑 Pricing</span>
+                <span onclick="switchView('about')" id="nav-about">ℹ️ About</span>
+                <span onclick="switchView('contact')" id="nav-contact">📞 Contact</span>
+            </div>
+            <div class="auth-btns">
+                <button class="btn-theme" title="डार्क मोड">🌙</button>
+                <button class="btn-login" onclick="alert('लॉगिन पोर्टल सक्रिय है!')">Login</button>
+                <button class="btn-get-started" onclick="switchView('features')">Get Started →</button>
+            </div>
+        </div>
+
+        <!-- VIEW 1: HOME -->
+        <div id="view-home" class="view-screen active">
+            <div class="hero-layout">
+                <div class="hero-banner">
+                    <div class="neural-bg-lines"></div>
+                    <div class="brain-graphic-box"></div>
+                    <div class="brain-center-icon">🧠</div>
+                    <div class="watermark-text">Not Just AI... Your Personal Partner</div>
+                    
+                    <div class="hero-content-area">
+                        <div class="hero-tag">✨ Your Personal AI Assistant</div>
+                        <h1 class="hero-title">Snaaya <span>AI</span><br>Think Smarter<br>Live Better</h1>
+                        <p class="hero-desc">Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter than ever before.</p>
+                        
+                        <div class="hero-actions">
+                            <button class="btn-start-now" onclick="switchView('chat')">Start Now →</button>
+                            <button class="btn-watch-video" onclick="speakAI('Snaaya AI में आपका स्वागत है। बोलकर या टाइप करके कुछ भी पूछिए!')">Watch Video</button>
+                        </div>
+                    </div>
+
+                    <div class="hero-footer-badges">
+                        <div>⚡ Fast</div>
+                        <div>🔒 Private</div>
+                        <div>🧠 Smart</div>
+                        <div>☁️ Always On</div>
+                    </div>
+                </div>
+
+                <div class="talk-card">
+                    <div>
+                        <div class="talk-top-title">Speak • Type • Get Results</div>
+                        <div class="talk-header">
+                            <span>Talk to Snaaya AI</span>
+                            <span style="color: #22c55e; font-size: 11px; font-weight: normal;">● 10 Keys Multi-Active</span>
+                        </div>
+                        <div class="talk-subtitle">Ask anything, get instant answers, manage your tasks, and more — just like talking to a friend.</div>
+                    </div>
+                    
+                    <div class="sound-wave-bars">
+                        <div class="wave-bar" style="animation-delay: 0.1s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.3s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.2s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.5s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.15s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+                    </div>
+
+                    <div class="chat-box" id="chatBox">
+                        <div class="msg ai-msg">नमस्ते! मैं Snaaya AI हूँ। आपकी सभी 10 API Keys सिस्टम में कनेक्ट हैं। मुझसे कोई भी सवाल पूछिए!</div>
+                    </div>
+                    
+                    <div class="input-row">
+                        <input type="text" id="userInput" placeholder="Or type your message..." onkeypress="if(event.key==='Enter') sendUserQuery()">
+                        <button type="button" class="mic-circle-btn" id="micBtn" onclick="toggleMic()" title="बोलकर बात करें">🎙️</button>
                         <button type="button" class="send-arrow-btn" onclick="sendUserQuery()" title="संदेश भेजें">➔</button>
                     </div>
                 </div>
@@ -349,7 +465,6 @@
                 </div>
             </div>
 
-            <!-- Footer -->
             <div class="site-footer">
                 <div class="logo-area" style="margin-bottom:0;">
                     <div class="logo-icon" style="width:28px; height:28px; font-size:14px;">🧠</div>
@@ -363,92 +478,16 @@
         </div>
 
         <!-- OTHER VIEWS -->
-        <div id="view-chat" class="view-screen">
-            <div class="page-header">💬 Chat Assistant</div>
-            <div class="page-desc">यहाँ आप Snaaya AI से किसी भी विषय पर खुलकर बातचीत कर सकते हैं।</div>
-            <div class="content-grid">
-                <div class="inner-card"><h4>Smart Conversational AI</h4><p>चैट के जरिए अपने सभी सवालों के तुरंत जवाब पाएं।</p></div>
-            </div>
-        </div>
-
-        <div id="view-voice" class="view-screen">
-            <div class="page-header">🎙️ Voice Assistant</div>
-            <div class="page-desc">बोलकर निर्देश दें और अपने हाथों को रखें पूरी तरह फ्री।</div>
-            <div class="content-grid">
-                <div class="inner-card" style="text-align: center; padding: 40px;">
-                    <div style="font-size: 50px; margin-bottom: 15px;">🎙️</div>
-                    <h4>Voice Recognition Ready</h4>
-                    <p>माइक आइकॉन पर क्लिक करें और बोलकर अपने कमांड दें।</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="view-memory" class="view-screen">
-            <div class="page-header">🧠 Memory Center</div>
-            <div class="page-desc">आपकी महत्वपूर्ण यादें, नोट्स और डेटा यहाँ सुरक्षित रहते हैं।</div>
-            <div class="content-grid">
-                <div class="inner-card"><h4>Saved Notes & Context</h4><p>AI आपकी महत्वपूर्ण बातों को याद रखता है।</p></div>
-            </div>
-        </div>
-
-        <div id="view-tasks" class="view-screen">
-            <div class="page-header">📋 Task Manager</div>
-            <div class="page-desc">अपने डेली टास्क, रिमाइंडर और टू-डू लिस्ट प्रबंधित करें।</div>
-            <div class="content-grid">
-                <div class="inner-card"><h4>Today's Goals</h4><p>✅ प्रोजेक्ट पूरा करना<br>✅ क्लाइंट मीटिंग शेड्यूल करना</p></div>
-            </div>
-        </div>
-
-        <div id="view-knowledge" class="view-screen">
-            <div class="page-header">📚 Knowledge Hub</div>
-            <div class="page-desc">ज्ञान, विज्ञान और विभिन्न विषयों की जानकारी प्राप्त करने का केंद्र।</div>
-            <div class="content-grid">
-                <div class="inner-card"><h4>Explore Topics</h4><p>आर्टिफिशियल इंटेलिजेंस और टेक्नोलॉजी से जुड़ी जानकारियां।</p></div>
-            </div>
-        </div>
-
-        <div id="view-settings" class="view-screen">
-            <div class="page-header">⚙️ Settings</div>
-            <div class="page-desc">अपनी पसंद के अनुसार ऐप सेटिंग्स को कस्टमाइज़ करें।</div>
-            <div class="content-grid">
-                <div class="inner-card"><h4>App Preferences</h4><p>भाषा: हिंदी (Hindi)<br>थीम: डार्क मोड (Active)</p></div>
-            </div>
-        </div>
-
-        <div id="view-features" class="view-screen">
-            <div class="page-header">⚡ All Features</div>
-            <div class="page-desc">Snaaya AI की सभी शक्तिशाली क्षमताएं आपके लिए उपलब्ध हैं।</div>
-            <div class="content-grid">
-                <div class="inner-card"><h4>Chat & Voice</h4><p>लिखकर या बोलकर बात करें।</p></div>
-            </div>
-        </div>
-
-        <div id="view-pricing" class="view-screen">
-            <div class="page-header">👑 Pricing Plans</div>
-            <div class="page-desc">सभी प्रो फीचर्स पूरी तरह निःशुल्क हैं!</div>
-            <div class="content-grid">
-                <div class="inner-card" style="text-align: center;">
-                    <h3 style="color: #c084fc; margin-bottom: 10px;">Snaaya AI Pro Lifetime Access</h3>
-                    <p>सभी फीचर्स आपके लिए पूरी तरह निःशुल्क हैं।</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="view-about" class="view-screen">
-            <div class="page-header">ℹ️ About Snaaya AI</div>
-            <div class="page-desc">Snaaya AI OS v7.2 — आपका अपना स्मार्ट पर्सनल असिस्टेंट।</div>
-            <div class="content-grid">
-                <div class="inner-card"><p>यह एप्लिकेशन आपके रोजमर्रा के कामों को आसान बनाने के लिए डिज़ाइन किया गया है।</p></div>
-            </div>
-        </div>
-
-        <div id="view-contact" class="view-screen">
-            <div class="page-header">📞 Contact Support</div>
-            <div class="page-desc">सहायता या सुझाव के लिए संपर्क करें।</div>
-            <div class="content-grid">
-                <div class="inner-card"><p>डेवलपर सपोर्ट: support@snaaya-ai.com<br>लोकेशन: भारत</p></div>
-            </div>
-        </div>
+        <div id="view-chat" class="view-screen"><div class="section-title">💬 Chat Assistant</div><div class="section-desc">यहाँ आप Snaaya AI से किसी भी विषय पर खुलकर बातचीत कर सकते हैं।</div></div>
+        <div id="view-voice" class="view-screen"><div class="section-title">🎙️ Voice Assistant</div><div class="section-desc">बोलकर निर्देश दें और अपने हाथों को रखें पूरी तरह फ्री।</div></div>
+        <div id="view-memory" class="view-screen"><div class="section-title">🧠 Memory Center</div><div class="section-desc">आपकी महत्वपूर्ण यादें, नोट्स और डेटा यहाँ सुरक्षित रहते हैं।</div></div>
+        <div id="view-tasks" class="view-screen"><div class="section-title">📋 Task Manager</div><div class="section-desc">अपने डेली टास्क, रिमाइंडर और टू-डू लिस्ट प्रबंधित करें।</div></div>
+        <div id="view-knowledge" class="view-screen"><div class="section-title">📚 Knowledge Hub</div><div class="section-desc">ज्ञान, विज्ञान और विभिन्न विषयों की जानकारी प्राप्त करने का केंद्र।</div></div>
+        <div id="view-settings" class="view-screen"><div class="section-title">⚙️ Settings</div><div class="section-desc">अपनी पसंद के अनुसार ऐप सेटिंग्स को कस्टमाइज़ करें।</div></div>
+        <div id="view-features" class="view-screen"><div class="section-title">⚡ All Features</div><div class="section-desc">Snaaya AI की सभी शक्तिशाली क्षमताएं आपके लिए उपलब्ध हैं।</div></div>
+        <div id="view-pricing" class="view-screen"><div class="section-title">👑 Pricing Plans</div><div class="section-desc">सभी प्रो फीचर्स पूरी तरह निःशुल्क हैं!</div></div>
+        <div id="view-about" class="view-screen"><div class="section-title">ℹ️ About Snaaya AI</div><div class="section-desc">Snaaya AI OS v7.2 — आपका अपना स्मार्ट पर्सनल असिस्टेंट।</div></div>
+        <div id="view-contact" class="view-screen"><div class="section-title">📞 Contact Support</div><div class="section-desc">सहायता या सुझाव के लिए संपर्क करें।</div></div>
     </div>
 
 <script>
@@ -528,20 +567,9 @@
         if(micBtn) micBtn.classList.remove('listening');
     }
 
-    // ==========================================
-    // आपकी 10 API Keys को स्टोर करने और मैनेज करने की व्यवस्था
-    // ==========================================
     const apiKeys = [
-        "YOUR_API_KEY_1",
-        "YOUR_API_KEY_2",
-        "YOUR_API_KEY_3",
-        "YOUR_API_KEY_4",
-        "YOUR_API_KEY_5",
-        "YOUR_API_KEY_6",
-        "YOUR_API_KEY_7",
-        "YOUR_API_KEY_8",
-        "YOUR_API_KEY_9",
-        "YOUR_API_KEY_10"
+        "YOUR_API_KEY_1", "YOUR_API_KEY_2", "YOUR_API_KEY_3", "YOUR_API_KEY_4", "YOUR_API_KEY_5",
+        "YOUR_API_KEY_6", "YOUR_API_KEY_7", "YOUR_API_KEY_8", "YOUR_API_KEY_9", "YOUR_API_KEY_10"
     ];
     let currentKeyIndex = 0;
 
@@ -551,7 +579,6 @@
         return key;
     }
 
-    // असली Gemini API से कनेक्ट करने वाला स्मार्ट कोड (10 Keys सपोर्ट के साथ)
     async function sendUserQuery() {
         const text = userInput.value.trim();
         if (!text) return;
@@ -569,21 +596,12 @@
             let activeApiKey = getNextApiKey();
             try {
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${activeApiKey}`;
-
                 const response = await fetch(url, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: "तुम Snaaya AI हो। यूजर के इस सवाल का हिंदी में बिल्कुल सटीक और सही जवाब दो: " + text }]
-                        }]
-                    })
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: "तुम Snaaya AI हो। यूजर के इस सवाल का हिंदी में बिल्कुल सटीक और सही जवाब दो: " + text }] }] })
                 });
-
                 const data = await response.json();
-
                 if (data.candidates && data.candidates[0].content) {
                     aiReply = data.candidates[0].content.parts[0].text;
                     success = true;
@@ -598,4 +616,33 @@
         if (loadingElem) loadingElem.remove();
 
         if (success) {
-            appendMessage(aiR
+            appendMessage(aiReply, 'ai-msg');
+            speakAI(aiReply);
+        } else {
+            appendMessage("क्षमा करें, सभी एपीआई की (API Keys) की सीमा समाप्त हो गई है या कनेक्शन में त्रुटि है। कृपया अपनी की जाँच करें।", 'ai-msg');
+        }
+    }
+
+    function appendMessage(text, className, customId = "") {
+        const div = document.createElement('div');
+        div.className = `msg ${className}`;
+        if (customId) div.id = customId;
+        div.innerText = text;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function speakAI(text, lang = 'hi-IN') {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            utterance.rate = 0.95;
+            utterance.pitch = 1.1;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+</script>
+</body>
+    </html>
+    
