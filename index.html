@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snaaya AI - 100% Working Click & Voice Edition</title>
+    <title>Snaaya AI - Ultimate Credit Hub & Auto-Action Edition</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -123,7 +123,7 @@
             border-radius: 16px;
             padding: 16px 24px;
         }
-        .nav-links-center { display: flex; gap: 24px; font-size: 13px; color: var(--text-muted); }
+        .nav-links-center { display: flex; gap: 20px; font-size: 13px; color: var(--text-muted); }
         .nav-links-center span { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
         .nav-links-center span:hover, .nav-links-center span.active { color: var(--accent-purple); }
         
@@ -211,7 +211,7 @@
             margin-top: 15px;
         }
 
-        /* 8 Features Grid */
+        /* 8 Features Grid (Including Credit Hub & Photo/Video) */
         .features-header { margin-top: 5px; }
         .features-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
         .features-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
@@ -278,6 +278,29 @@
             z-index: 1000;
         }
 
+        /* Action Modal for Credit Hub / Photo / Video Generation */
+        #actionModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background: var(--panel-bg);
+            border: 1px solid var(--accent-purple);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
         /* Responsive Media Queries */
         @media(max-width: 1024px) {
             .sidebar { display: none !important; }
@@ -302,7 +325,18 @@
     </style>
 </head>
 <body>
-    <div id="offlineBadge"><i class="fa-solid fa-wifi-slash"></i> ऑफ़लाइन मोड (Offline Mode Active)</div>
+    <div id="offlineBadge"><i class="fa-solid fa-wifi-slash"></i> ऑफ़लाइन मोड (Offline Mode)</div>
+
+    <!-- Interactive Modal for Credit Hub / Photo / Video Generation -->
+    <div id="actionModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 32px; color: var(--accent-purple); margin-bottom: 15px;"></i>
+            <h3 id="modalTitle" style="color: #fff; margin-bottom: 10px; font-size: 18px;">Credit Hub Active</h3>
+            <p id="modalDesc" style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">ऑटो-एक्शन शुरू हो रहा है...</p>
+            <div id="modalBody" style="margin-bottom: 20px;"></div>
+            <button onclick="closeModal()" style="background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 10px 24px; border-radius: 20px; font-weight: 600; cursor: pointer;">बंद करें (Close)</button>
+        </div>
+    </div>
 
     <div class="master-screen" id="masterApp">
         
@@ -313,21 +347,21 @@
                     <i class="fa-solid fa-brain"></i> Snaaya <span>AI</span>
                 </div>
                 <div class="menu-list">
-                    <div class="menu-item active" onclick="activateSection('Home')"><i class="fa-solid fa-house"></i> Home</div>
-                    <div class="menu-item" onclick="activateSection('Chat Assistant')"><i class="fa-solid fa-comments"></i> Chat Assistant</div>
+                    <div class="menu-item active" onclick="runAutoAction('Home')"><i class="fa-solid fa-house"></i> Home</div>
+                    <div class="menu-item" onclick="runAutoAction('Chat Assistant')"><i class="fa-solid fa-comments"></i> Chat Assistant</div>
                     <div class="menu-item" onclick="startVoiceRecognition()"><i class="fa-solid fa-microphone"></i> Voice Assistant</div>
-                    <div class="menu-item" onclick="activateSection('Memory Center')"><i class="fa-solid fa-brain"></i> Memory Center</div>
-                    <div class="menu-item" onclick="activateSection('Task Manager')"><i class="fa-solid fa-square-check"></i> Task Manager</div>
-                    <div class="menu-item" onclick="activateSection('Knowledge Hub')"><i class="fa-solid fa-book-open"></i> Knowledge Hub</div>
-                    <div class="menu-item" onclick="activateSection('Settings')"><i class="fa-solid fa-gear"></i> Settings</div>
+                    <div class="menu-item" onclick="runAutoAction('Credit Hub')"><i class="fa-solid fa-coins" style="color: var(--accent-green);"></i> Credit Hub (Photo/Video)</div>
+                    <div class="menu-item" onclick="runAutoAction('Memory Center')"><i class="fa-solid fa-brain"></i> Memory Center</div>
+                    <div class="menu-item" onclick="runAutoAction('Task Manager')"><i class="fa-solid fa-square-check"></i> Task Manager</div>
+                    <div class="menu-item" onclick="runAutoAction('Settings')"><i class="fa-solid fa-gear"></i> Settings</div>
                 </div>
             </div>
 
             <div>
                 <div class="pro-card">
                     <div style="font-size: 13px; font-weight: 700; color: var(--accent-purple); margin-bottom: 4px;"><i class="fa-solid fa-crown"></i> Snaaya AI Pro</div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Unlock more powerful features.</div>
-                    <button style="width: 100%; background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 8px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;" onclick="activateSection('Pro Upgrade')">Upgrade Now</button>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Unlock photo & video credits.</div>
+                    <button style="width: 100%; background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 8px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;" onclick="runAutoAction('Credit Upgrade')">Upgrade Now</button>
                 </div>
                 <div class="journey-card">
                     <div style="font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 4px;"><i class="fa-solid fa-bolt" style="color: var(--accent-purple);"></i> Your AI Journey</div>
@@ -345,16 +379,15 @@
                     <i class="fa-solid fa-brain"></i> <b>Snaaya AI</b> · Think · Assist · Grow
                 </div>
                 <div class="nav-links-center">
-                    <span class="active" onclick="activateSection('Home')"><i class="fa-solid fa-house"></i> Home</span>
-                    <span onclick="activateSection('Features')"><i class="fa-solid fa-grid-2"></i> Features</span>
-                    <span onclick="activateSection('Memory')"><i class="fa-solid fa-brain"></i> Memory</span>
-                    <span onclick="activateSection('Pricing')"><i class="fa-solid fa-tag"></i> Pricing</span>
-                    <span onclick="activateSection('About')"><i class="fa-solid fa-circle-info"></i> About</span>
-                    <span onclick="activateSection('Contact')"><i class="fa-solid fa-envelope"></i> Contact</span>
+                    <span class="active" onclick="runAutoAction('Home')"><i class="fa-solid fa-house"></i> Home</span>
+                    <span onclick="runAutoAction('Credit Hub')"><i class="fa-solid fa-coins"></i> Credit Hub</span>
+                    <span onclick="runAutoAction('Memory')"><i class="fa-solid fa-brain"></i> Memory</span>
+                    <span onclick="runAutoAction('Pricing')"><i class="fa-solid fa-tag"></i> Pricing</span>
+                    <span onclick="runAutoAction('About')"><i class="fa-solid fa-circle-info"></i> About</span>
                 </div>
                 <div class="nav-right">
                     <i class="fa-solid fa-moon" style="color: var(--text-muted); cursor: pointer; font-size: 16px;"></i>
-                    <button class="login-btn" onclick="activateSection('Login')">Login</button>
+                    <button class="login-btn" onclick="runAutoAction('Login')">Login</button>
                     <button class="get-start-btn" onclick="startVoiceRecognition()">Get Started <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
@@ -367,7 +400,7 @@
                     <p>Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter than ever before.</p>
                     <div class="hero-action-btns">
                         <button class="btn-start-now" onclick="startVoiceRecognition()">Start Now <i class="fa-solid fa-arrow-right"></i></button>
-                        <button class="btn-watch-vid" onclick="activateSection('Watch Video')">Watch Video</button>
+                        <button class="btn-watch-vid" onclick="runAutoAction('Watch Video')">Watch Video</button>
                     </div>
                     <div class="hero-features-tag">
                         <span><i class="fa-solid fa-bolt" style="color: var(--accent-blue);"></i> Fast</span>
@@ -394,7 +427,7 @@
                     <div class="mic-icon-btn" onclick="startVoiceRecognition()" title="Tap to Speak">
                         <i class="fa-solid fa-microphone" id="micIcon"></i>
                     </div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;" id="micText">Tap to Speak (Offline Ready)</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;" id="micText">Tap to Speak (Auto-Action Ready)</div>
 
                     <div class="type-input-box" onclick="startVoiceRecognition()">
                         <span id="typePlaceholder">Or type or speak your message...</span>
@@ -406,12 +439,18 @@
             <!-- 8 Features Grid Header -->
             <div class="features-header">
                 <div class="features-title">Everything You Need in One Place</div>
-                <div class="features-desc">From daily tasks to deep research, Snaaya AI gives you the tools to stay organized, productive and ahead — always.</div>
+                <div class="features-desc">From daily tasks to photo/video creation, Snaaya AI gives you the tools to stay organized and productive.</div>
             </div>
 
-            <!-- 8 Features Grid -->
+            <!-- 8 Features Grid (Including Credit Hub Photo & Video) -->
             <div class="grid-8">
-                <div class="card-box" onclick="activateSection('Chat Assistant')">
+                <div class="card-box" onclick="runAutoAction('Credit Hub Photo & Video')">
+                    <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-coins"></i></div>
+                    <div class="c-title">Credit Hub (Photo/Video)</div>
+                    <div class="c-desc">Generate AI photos, videos and manage credits.</div>
+                    <div class="c-link">Open Studio <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                </div>
+                <div class="card-box" onclick="runAutoAction('Chat Assistant')">
                     <div class="c-icon" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);"><i class="fa-solid fa-comments"></i></div>
                     <div class="c-title">Chat Assistant</div>
                     <div class="c-desc">Get instant answers, ideas, and solutions.</div>
@@ -423,37 +462,31 @@
                     <div class="c-desc">Speak naturally and get things done.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="activateSection('Memory System')">
-                    <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-brain"></i></div>
+                <div class="card-box" onclick="runAutoAction('Memory System')">
+                    <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-brain"></i></div>
                     <div class="c-title">Memory System</div>
                     <div class="c-desc">Remember important things, like numbers, notes and more.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="activateSection('Task Manager')">
+                <div class="card-box" onclick="runAutoAction('Task Manager')">
                     <div class="c-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-square-check"></i></div>
                     <div class="c-title">Task Manager</div>
                     <div class="c-desc">Set reminders, create todos and stay organized.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="activateSection('Knowledge Hub')">
-                    <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-book-open"></i></div>
+                <div class="card-box" onclick="runAutoAction('Knowledge Hub')">
+                    <div class="c-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-book-open"></i></div>
                     <div class="c-title">Knowledge Hub</div>
                     <div class="c-desc">Learn, explore and get information instantly.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="activateSection('Multi-Language')">
+                <div class="card-box" onclick="runAutoAction('Multi-Language')">
                     <div class="c-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-globe"></i></div>
                     <div class="c-title">Multi-Language</div>
                     <div class="c-desc">Talk and get answers in your preferred language.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="activateSection('File & Document Help')">
-                    <div class="c-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-file-lines"></i></div>
-                    <div class="c-title">File & Document Help</div>
-                    <div class="c-desc">Summarize, explain, or work with your files.</div>
-                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
-                </div>
-                <div class="card-box" onclick="activateSection('Personalized Experience')">
+                <div class="card-box" onclick="runAutoAction('Personalized Experience')">
                     <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-user-gear"></i></div>
                     <div class="c-title">Personalized Experience</div>
                     <div class="c-desc">Learns your preferences and gets better over time.</div>
@@ -465,8 +498,8 @@
             <div class="why-choose-banner">
                 <div class="stat-group"><i class="fa-solid fa-brain" style="color: var(--accent-purple); font-size: 20px;"></i> <div><b>Why Choose Snaaya AI?</b><br><span style="font-size: 11px; color: var(--text-muted);">Your personal AI companion.</span></div></div>
                 <div class="stat-group"><i class="fa-solid fa-users" style="color: var(--accent-blue);"></i> <div><span class="stat-val">10K+</span><br>Active Users</div></div>
-                <div class="stat-group"><i class="fa-solid fa-comments" style="color: var(--accent-purple);"></i> <div><span class="stat-val">1M+</span><br>Questions Answered</div></div>
-                <div class="stat-group"><i class="fa-solid fa-square-check" style="color: var(--accent-green);"></i> <div><span class="stat-val">50K+</span><br>Tasks Completed</div></div>
+                <div class="stat-group"><i class="fa-solid fa-coins" style="color: var(--accent-green);"></i> <div><span class="stat-val">5M+</span><br>Credits Used</div></div>
+                <div class="stat-group"><i class="fa-solid fa-square-check" style="color: var(--accent-purple);"></i> <div><span class="stat-val">50K+</span><br>Tasks Completed</div></div>
                 <div class="stat-group"><i class="fa-solid fa-gauge-high" style="color: #f59e0b;"></i> <div><span class="stat-val">99.9%</span><br>Uptime</div></div>
             </div>
 
@@ -476,17 +509,16 @@
                     <i class="fa-solid fa-brain" style="color: var(--accent-purple);"></i> <b>Snaaya AI</b> · Think · Assist · Grow
                 </div>
                 <div class="footer-socials">
-                    <i class="fa-brands fa-youtube" onclick="activateSection('YouTube')"></i>
-                    <i class="fa-brands fa-x-twitter" onclick="activateSection('Twitter')"></i>
-                    <i class="fa-brands fa-instagram" onclick="activateSection('Instagram')"></i>
-                    <i class="fa-brands fa-linkedin" onclick="activateSection('LinkedIn')"></i>
+                    <i class="fa-brands fa-youtube" onclick="runAutoAction('YouTube')"></i>
+                    <i class="fa-brands fa-x-twitter" onclick="runAutoAction('Twitter')"></i>
+                    <i class="fa-brands fa-instagram" onclick="runAutoAction('Instagram')"></i>
+                    <i class="fa-brands fa-linkedin" onclick="runAutoAction('LinkedIn')"></i>
                 </div>
-                <div>Made with ❤️ for tomorrow (Offline Supported)</div>
+                <div>Made with ❤️ for tomorrow (Credit Hub Enabled)</div>
             </div>
 
         </div>
-     </div>
-                <script>
+                 <script>
         // --- 1. Network Status Check ---
         window.addEventListener('online', updateNetworkStatus);
         window.addEventListener('offline', updateNetworkStatus);
@@ -501,19 +533,45 @@
         }
         updateNetworkStatus();
 
-        // --- 2. Interactive Click Action (हर क्लिक पर स्क्रीन पर प्रतिक्रिया) ---
-        function activateSection(name) {
-            localStorage.setItem('snaaya_active', name);
-            const sub = document.getElementById('statusSub');
-            sub.innerHTML = `सक्रिय मोड: <b style="color: var(--accent-purple);">${name}</b> (चयन सफल)`;
-            
-            // विजुअल एनिमेशन फीडबैक
-            const card = document.querySelector('.talk-card');
-            card.style.borderColor = 'var(--accent-purple)';
-            setTimeout(() => { card.style.borderColor = 'var(--border-color)'; }, 600);
+        // --- 2. Auto-Action & Modal Management (क्रेडिट हब और ऑटो-एक्शन फैसिलिटी) ---
+        function runAutoAction(actionName) {
+            localStorage.setItem('snaaya_last_action', actionName);
+            const modal = document.getElementById('actionModal');
+            const title = document.getElementById('modalTitle');
+            const desc = document.getElementById('modalDesc');
+            const body = document.getElementById('modalBody');
+
+            modal.style.display = 'flex';
+            title.innerText = `सक्रिय मोड: ${actionName}`;
+
+            if (actionName.includes('Credit Hub')) {
+                desc.innerText = 'फोटो और वीडियो जनरेशन स्टूडियो (Photo & Video Studio)';
+                body.innerHTML = `
+                    <div style="background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); text-align: left; font-size: 12px;">
+                        <p style="margin-bottom: 8px; color: var(--accent-green);"><i class="fa-solid fa-check-circle"></i> उपलब्ध क्रेडिट्स: <b>500 Credits</b></p>
+                        <p style="margin-bottom: 8px; color: var(--text-main);">📸 फोटो बनाएं: AI Image Generator तैयार है।</p>
+                        <p style="color: var(--text-main);">🎥 वीडियो बनाएं: AI Video Studio सक्रिय है।</p>
+                    </div>
+                `;
+            } else {
+                desc.innerText = 'ऑटो-एक्शन प्रोसेस सफलतापूर्वक निष्पादित हो गया है।';
+                body.innerHTML = `<p style="color: var(--accent-blue); font-size: 13px;"><b>${actionName}</b> के लिए सिस्टम ऑटो-नेक्स्ट मोड में है।</p>`;
+            }
+
+            // ऑटो-एक्शन: 3 सेकंड बाद ऑटोमैटिक अगला स्टेप एग्जीक्यूट करना
+            setTimeout(() => {
+                const sub = document.getElementById('statusSub');
+                if (sub) {
+                    sub.innerHTML = `ऑटो-एक्शन पूर्ण: <b style="color: var(--accent-purple);">${actionName}</b>`;
+                }
+            }, 1000);
         }
 
-        // --- 3. Working Voice & Offline Fallback Function ---
+        function closeModal() {
+            document.getElementById('actionModal').style.display = 'none';
+        }
+
+        // --- 3. Working Voice Assistant & Speech Recognition ---
         function startVoiceRecognition() {
             const statusSub = document.getElementById('statusSub');
             const micText = document.getElementById('micText');
@@ -521,9 +579,8 @@
             const micIcon = document.getElementById('micIcon');
 
             micIcon.style.color = 'var(--accent-green)';
-            micText.innerText = "सुना जा रहा है... बोलिए...";
+            micText.innerText = "सुन रहा हूँ... बोलिए...";
 
-            // अगर ब्राउज़र में वॉइस स्पीच रिकग्निशन उपलब्ध है
             if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 const recognition = new SpeechRecognition();
@@ -536,47 +593,47 @@
                     const speechResult = event.results[0][0].transcript;
                     statusSub.innerHTML = `सुना गया: <b style="color: var(--accent-green);">${speechResult}</b>`;
                     placeholder.innerText = speechResult;
-                    micText.innerText = "Tap to Speak (Offline Ready)";
+                    micText.innerText = "Tap to Speak (Ready)";
                     micIcon.style.color = '#fff';
-                    localStorage.setItem('last_speech', speechResult);
+                    
+                    // ऑटो-एक्शन ट्रिगर
+                    runAutoAction(speechResult);
                 };
 
                 recognition.onerror = function() {
-                    fallbackPrompt(statusSub, micText, micIcon);
+                    smoothFallback(statusSub, micText, micIcon);
                 };
 
                 recognition.onend = function() {
-                    micText.innerText = "Tap to Speak (Offline Ready)";
+                    micText.innerText = "Tap to Speak (Ready)";
                     micIcon.style.color = '#fff';
                 };
 
                 try {
                     recognition.start();
                 } catch(e) {
-                    fallbackPrompt(statusSub, micText, micIcon);
+                    smoothFallback(statusSub, micText, micIcon);
                 }
             } else {
-                fallbackPrompt(statusSub, micText, micIcon);
+                smoothFallback(statusSub, micText, micIcon);
             }
         }
 
-        function fallbackPrompt(statusSub, micText, micIcon) {
+        function smoothFallback(statusSub, micText, micIcon) {
             micIcon.style.color = '#fff';
-            micText.innerText = "Tap to Speak (Offline Ready)";
-            const userTyped = prompt("वॉइस इनपुट उपलब्ध नहीं है (या ऑफ़लाइन हैं)। अपना संदेश यहाँ दर्ज करें:");
-            if (userTyped) {
-                statusSub.innerHTML = `दर्ज संदेश: <b style="color: var(--accent-blue);">${userTyped}</b>`;
-                localStorage.setItem('last_speech', userTyped);
-            }
+            micText.innerText = "Tap to Speak (Ready)";
+            runAutoAction('Manual Input Mode');
         }
 
-        // लोड होने पर पुराना डेटा याद रखना
+        // पेज लोड पर पिछला स्टेट रीस्टोर करना
         window.onload = function() {
-            const last = localStorage.getItem('snaaya_active');
+            const last = localStorage.getItem('snaaya_last_action');
             if (last) {
-                document.getElementById('statusSub').innerHTML = `पिछला विकल्प: <b>${last}</b> (ऑफ़लाइन सुरक्षित)`;
+                document.getElementById('statusSub').innerHTML = `पिछला सत्र: <b>${last}</b> (ऑफ़लाइन सुरक्षित)`;
             }
         };
     </script>
 </body>
 </html>
+
+                                            
