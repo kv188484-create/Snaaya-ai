@@ -2,8 +2,8 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snaaya AI - Full 600+ Lines Master Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Snaaya AI - 100% Working Click & Voice Edition</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -24,17 +24,15 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            width: 100vw;
+            width: 100%;
             min-height: 100vh;
             overflow-x: hidden;
-            display: flex;
-            justify-content: center;
         }
 
-        /* Master Screen Layout */
         .master-screen {
             width: 100%;
             max-width: 1440px;
+            margin: 0 auto;
             min-height: 100vh;
             background: var(--bg-dark);
             display: flex;
@@ -48,7 +46,7 @@
             width: 260px;
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
-            border-radius: 18px;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -60,25 +58,26 @@
         }
 
         .logo-box {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--text-main);
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
+        .logo-box i { font-size: 24px; color: var(--accent-purple); }
         .logo-box span { color: var(--accent-purple); }
 
-        .menu-list { display: flex; flex-direction: column; gap: 6px; }
+        .menu-list { display: flex; flex-direction: column; gap: 8px; }
         .menu-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 11px 14px;
+            gap: 14px;
+            padding: 12px 16px;
             color: var(--text-muted);
-            border-radius: 10px;
-            font-size: 13px;
+            border-radius: 12px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
@@ -90,18 +89,18 @@
         }
 
         .pro-card {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(56, 189, 248, 0.1));
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 12px;
-            padding: 12px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(56, 189, 248, 0.15));
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 14px;
+            padding: 14px;
             margin-bottom: 12px;
         }
 
         .journey-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 14px;
+            padding: 14px;
         }
 
         /* Main Workspace */
@@ -111,7 +110,7 @@
             flex-direction: column;
             gap: 20px;
             min-width: 0;
-            padding-bottom: 90px;
+            padding-bottom: 40px;
         }
 
         /* Top Navbar */
@@ -121,17 +120,16 @@
             align-items: center;
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 14px 24px;
-            gap: 15px;
+            border-radius: 16px;
+            padding: 16px 24px;
         }
-        .nav-links-center { display: flex; gap: 20px; font-size: 13px; color: var(--text-muted); }
-        .nav-links-center span { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .nav-links-center { display: flex; gap: 24px; font-size: 13px; color: var(--text-muted); }
+        .nav-links-center span { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
         .nav-links-center span:hover, .nav-links-center span.active { color: var(--accent-purple); }
         
-        .nav-right { display: flex; align-items: center; gap: 15px; }
-        .login-btn { background: none; border: 1px solid var(--border-color); color: var(--text-main); padding: 6px 18px; border-radius: 20px; font-size: 13px; cursor: pointer; }
-        .get-start-btn { background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .login-btn { background: none; border: 1px solid var(--border-color); color: var(--text-main); padding: 8px 20px; border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .get-start-btn { background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 8px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
         /* Hero Section */
         .hero-section {
@@ -142,57 +140,59 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 25px;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
         }
-        .hero-left { flex: 1; min-width: 280px; }
-        .hero-tag { font-size: 11px; color: var(--accent-purple); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .hero-left h1 { font-size: 38px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+        .hero-left { flex: 1; z-index: 2; }
+        .hero-tag { font-size: 12px; color: var(--accent-purple); font-weight: 700; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .hero-left h1 { font-size: 44px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 15px; }
         .hero-left h1 span { color: var(--accent-purple); }
-        .hero-left p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; }
+        .hero-left p { font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 25px; max-width: 500px; }
         
-        .hero-action-btns { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; }
-        .btn-start-now { background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-        .btn-watch-vid { background: var(--card-bg); border: 1px solid var(--border-color); color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .hero-action-btns { display: flex; gap: 15px; align-items: center; margin-bottom: 25px; }
+        .btn-start-now { background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 12px 24px; border-radius: 22px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .btn-watch-vid { background: var(--card-bg); border: 1px solid var(--border-color); color: #fff; padding: 12px 24px; border-radius: 22px; font-size: 14px; font-weight: 600; cursor: pointer; }
 
-        .hero-features-tag { display: flex; gap: 20px; font-size: 12px; color: var(--text-muted); }
-        .hero-features-tag span { display: flex; align-items: center; gap: 6px; }
+        .hero-features-tag { display: flex; gap: 20px; font-size: 13px; color: var(--text-muted); }
+        .hero-features-tag span { display: flex; align-items: center; gap: 8px; }
 
         /* Right Talk Panel */
         .talk-card {
-            background: rgba(17, 24, 39, 0.98);
+            background: rgba(17, 24, 39, 0.95);
             border: 1px solid var(--border-color);
             border-radius: 18px;
             padding: 24px;
-            width: 100%;
-            max-width: 330px;
+            width: 340px;
             text-align: center;
             flex-shrink: 0;
+            z-index: 2;
         }
-        .talk-top { font-size: 10px; font-weight: 700; color: var(--accent-purple); letter-spacing: 1px; margin-bottom: 6px; }
-        .talk-heading { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-        .talk-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4; }
+        .talk-top { font-size: 10px; font-weight: 700; color: var(--accent-purple); letter-spacing: 1.5px; margin-bottom: 8px; }
+        .talk-heading { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .talk-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.4; }
         
-        .wave-box { display: flex; justify-content: center; align-items: center; gap: 4px; height: 32px; margin-bottom: 14px; }
-        .w-bar { width: 3px; background: var(--accent-purple); border-radius: 3px; animation: waveAnim 1.2s infinite ease-in-out; }
+        .wave-box { display: flex; justify-content: center; align-items: center; gap: 5px; height: 35px; margin-bottom: 15px; }
+        .w-bar { width: 3.5px; background: var(--accent-purple); border-radius: 4px; animation: waveAnim 1.2s infinite ease-in-out; }
         .w-bar:nth-child(2) { animation-delay: 0.1s; background: var(--accent-blue); }
         .w-bar:nth-child(3) { animation-delay: 0.2s; background: var(--accent-purple); }
         .w-bar:nth-child(4) { animation-delay: 0.3s; background: var(--accent-green); }
         .w-bar:nth-child(5) { animation-delay: 0.4s; background: var(--accent-purple); }
-        @keyframes waveAnim { 0%, 100% { height: 8px; } 50% { height: 28px; } }
+        @keyframes waveAnim { 0%, 100% { height: 8px; } 50% { height: 32px; } }
 
         .mic-icon-btn {
-            width: 50px;
-            height: 50px;
+            width: 54px;
+            height: 54px;
             background: var(--accent-purple);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 6px auto;
+            margin: 0 auto 8px auto;
             color: #fff;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
             transition: 0.2s;
         }
         .mic-icon-btn:hover { transform: scale(1.08); }
@@ -200,19 +200,22 @@
         .type-input-box {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 10px 16px;
+            border-radius: 22px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             font-size: 12px;
             color: var(--text-muted);
             cursor: pointer;
-            margin-top: 12px;
+            margin-top: 15px;
         }
 
-        /* Features 8 Cards Grid */
-        .features-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+        /* 8 Features Grid */
+        .features-header { margin-top: 5px; }
+        .features-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+        .features-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
+        
         .grid-8 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -222,133 +225,113 @@
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 18px;
+            padding: 20px;
             cursor: pointer;
             transition: 0.2s;
         }
         .card-box:hover { border-color: var(--accent-purple); transform: translateY(-3px); }
-        .c-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-bottom: 12px; }
-        .c-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-        .c-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 10px; }
-        .c-link { font-size: 11px; font-weight: 600; color: var(--accent-purple); display: flex; align-items: center; gap: 4px; }
+        .c-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 14px; }
+        .c-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .c-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 14px; }
+        .c-link { font-size: 12px; font-weight: 600; color: var(--accent-purple); display: flex; align-items: center; gap: 6px; }
 
         /* Stats Banner */
         .why-choose-banner {
             background: linear-gradient(90deg, #0b0f19, #111827);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 18px 24px;
+            padding: 20px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }
-        .stat-group { display: flex; align-items: center; gap: 12px; font-size: 12px; }
-        .stat-val { font-weight: 700; color: #fff; font-size: 14px; }
-
-        /* Bottom Floating Bar */
-        .bottom-chat-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(3, 7, 18, 0.95);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border-color);
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 100;
-        }
-        .plus-menu {
-            display: none;
-            position: absolute;
-            bottom: 65px;
-            left: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 10px;
-            width: 250px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
-            z-index: 105;
-        }
-        .plus-item {
-            padding: 9px 12px;
-            font-size: 12px;
-            color: var(--text-main);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-radius: 8px;
-        }
-        .plus-item:hover { background: var(--panel-bg); color: var(--accent-purple); }
+        .stat-group { display: flex; align-items: center; gap: 14px; font-size: 13px; }
+        .stat-val { font-weight: 800; color: #fff; font-size: 16px; }
 
         /* Footer */
         .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 20px 0;
             border-top: 1px solid var(--border-color);
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-muted);
-            margin-top: auto;
+            margin-top: 10px;
         }
-        .footer-socials { display: flex; gap: 16px; font-size: 14px; }
+        .footer-socials { display: flex; gap: 20px; font-size: 16px; }
         .footer-socials i { cursor: pointer; transition: 0.2s; }
         .footer-socials i:hover { color: var(--accent-purple); }
 
+        #offlineBadge {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(239, 68, 68, 0.9);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            display: none;
+            z-index: 1000;
+        }
+
         /* Responsive Media Queries */
         @media(max-width: 1024px) {
-            .sidebar { display: none; }
-            .master-screen { padding: 10px; width: 100%; }
-            .grid-8 { grid-template-columns: repeat(2, 1fr); }
-            .hero-section { flex-direction: column; padding: 20px; }
-            .talk-card { max-width: 100%; width: 100%; }
-            .top-nav { flex-direction: column; align-items: center; text-align: center; }
-            .nav-links-center { display: none; }
-            .why-choose-banner { flex-direction: column; text-align: center; gap: 15px; }
-            .stat-group { width: 100%; justify-content: center; }
-            .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
+            .sidebar { display: none !important; }
+            .master-screen { padding: 10px !important; width: 100% !important; max-width: 100% !important; }
+            .workspace { width: 100% !important; padding: 0 !important; gap: 15px !important; }
+            .grid-8 { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+            .hero-section { flex-direction: column !important; padding: 20px !important; text-align: center !important; }
+            .hero-left { width: 100% !important; }
+            .hero-left h1 { font-size: 28px !important; }
+            .hero-action-btns { justify-content: center !important; flex-wrap: wrap !important; }
+            .hero-features-tag { justify-content: center !important; flex-wrap: wrap !important; gap: 10px !important; }
+            .talk-card { max-width: 100% !important; width: 100% !important; margin-top: 15px !important; }
+            .top-nav { flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 10px !important; padding: 14px !important; }
+            .nav-links-center { display: none !important; }
+            .why-choose-banner { flex-direction: column !important; text-align: center !important; gap: 15px !important; padding: 16px !important; }
+            .stat-group { width: 100% !important; justify-content: center !important; }
+            .footer-bottom { flex-direction: column !important; text-align: center !important; gap: 12px !important; }
         }
         @media(max-width: 600px) {
-            .grid-8 { grid-template-columns: 1fr; }
+            .grid-8 { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
 <body>
+    <div id="offlineBadge"><i class="fa-solid fa-wifi-slash"></i> ऑफ़लाइन मोड (Offline Mode Active)</div>
+
     <div class="master-screen" id="masterApp">
         
         <!-- Left Sidebar -->
         <div class="sidebar">
             <div>
                 <div class="logo-box">
-                    <i class="fa-solid fa-scale-balanced" style="color: var(--accent-purple); font-size: 20px;"></i> Snaaya <span>AI</span>
+                    <i class="fa-solid fa-brain"></i> Snaaya <span>AI</span>
                 </div>
                 <div class="menu-list">
-                    <div class="menu-item active" onclick="focusInput('Home')"><i class="fa-solid fa-house"></i> Home</div>
-                    <div class="menu-item" onclick="focusInput('Right/Wrong & Color')"><i class="fa-solid fa-check-double" style="color: var(--accent-purple);"></i> सही-गलत / कलर चॉइस</div>
-                    <div class="menu-item" onclick="focusInput('Credit Hub')"><i class="fa-solid fa-coins" style="color: var(--accent-green);"></i> Credit Hub (Photo/Video & Edit)</div>
-                    <div class="menu-item" onclick="focusInput('Companion Chat')"><i class="fa-solid fa-face-smile"></i> AI Friend & Companion</div>
-                    <div class="menu-item" onclick="startVoice()"><i class="fa-solid fa-microphone"></i> Voice Assistant</div>
-                    <div class="menu-item" onclick="focusInput('Memory Center')"><i class="fa-solid fa-brain"></i> Memory Center</div>
-                    <div class="menu-item" onclick="focusInput('Task Manager')"><i class="fa-solid fa-square-check"></i> Task Manager</div>
-                    <div class="menu-item" onclick="focusInput('Settings')"><i class="fa-solid fa-gear"></i> Settings</div>
+                    <div class="menu-item active" onclick="activateSection('Home')"><i class="fa-solid fa-house"></i> Home</div>
+                    <div class="menu-item" onclick="activateSection('Chat Assistant')"><i class="fa-solid fa-comments"></i> Chat Assistant</div>
+                    <div class="menu-item" onclick="startVoiceRecognition()"><i class="fa-solid fa-microphone"></i> Voice Assistant</div>
+                    <div class="menu-item" onclick="activateSection('Memory Center')"><i class="fa-solid fa-brain"></i> Memory Center</div>
+                    <div class="menu-item" onclick="activateSection('Task Manager')"><i class="fa-solid fa-square-check"></i> Task Manager</div>
+                    <div class="menu-item" onclick="activateSection('Knowledge Hub')"><i class="fa-solid fa-book-open"></i> Knowledge Hub</div>
+                    <div class="menu-item" onclick="activateSection('Settings')"><i class="fa-solid fa-gear"></i> Settings</div>
                 </div>
             </div>
 
             <div>
                 <div class="pro-card">
-                    <div style="font-size: 12px; font-weight: 700; color: var(--accent-purple); margin-bottom: 3px;"><i class="fa-solid fa-crown"></i> Snaaya AI Pro</div>
-                    <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;">Smart choice & decision helper.</div>
-                    <button style="width: 100%; background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 6px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;">Upgrade Now</button>
+                    <div style="font-size: 13px; font-weight: 700; color: var(--accent-purple); margin-bottom: 4px;"><i class="fa-solid fa-crown"></i> Snaaya AI Pro</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Unlock more powerful features.</div>
+                    <button style="width: 100%; background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 8px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;" onclick="activateSection('Pro Upgrade')">Upgrade Now</button>
                 </div>
                 <div class="journey-card">
-                    <div style="font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 3px;"><i class="fa-solid fa-lightbulb" style="color: var(--accent-purple);"></i> Right Choices Easy</div>
-                    <div style="font-size: 10px; color: var(--text-muted);">Get expert advice instantly.</div>
+                    <div style="font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 4px;"><i class="fa-solid fa-bolt" style="color: var(--accent-purple);"></i> Your AI Journey</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">Smart tools. Better decisions.</div>
                 </div>
             </div>
         </div>
@@ -358,46 +341,47 @@
             
             <!-- Top Navbar -->
             <div class="top-nav">
-                <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--accent-purple);">
-                    <i class="fa-solid fa-circle-dot" style="font-size: 8px;"></i> Choose Right · Colors · Grow Together
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--accent-purple);">
+                    <i class="fa-solid fa-brain"></i> <b>Snaaya AI</b> · Think · Assist · Grow
                 </div>
                 <div class="nav-links-center">
-                    <span class="active" onclick="focusInput('Home')"><i class="fa-solid fa-house" style="font-size: 12px;"></i> Home</span>
-                    <span onclick="focusInput('Right/Wrong & Color')"><i class="fa-solid fa-lightbulb" style="font-size: 12px;"></i> सही-गलत सलाह</span>
-                    <span onclick="focusInput('Companion')"><i class="fa-solid fa-face-smile" style="font-size: 12px;"></i> Companion</span>
-                    <span onclick="focusInput('Create')"><i class="fa-solid fa-palette" style="font-size: 12px;"></i> Create</span>
-                    <span onclick="focusInput('Edit')"><i class="fa-solid fa-sliders" style="font-size: 12px;"></i> Edit</span>
+                    <span class="active" onclick="activateSection('Home')"><i class="fa-solid fa-house"></i> Home</span>
+                    <span onclick="activateSection('Features')"><i class="fa-solid fa-grid-2"></i> Features</span>
+                    <span onclick="activateSection('Memory')"><i class="fa-solid fa-brain"></i> Memory</span>
+                    <span onclick="activateSection('Pricing')"><i class="fa-solid fa-tag"></i> Pricing</span>
+                    <span onclick="activateSection('About')"><i class="fa-solid fa-circle-info"></i> About</span>
+                    <span onclick="activateSection('Contact')"><i class="fa-solid fa-envelope"></i> Contact</span>
                 </div>
                 <div class="nav-right">
-                    <i class="fa-solid fa-moon" style="color: var(--text-muted); cursor: pointer; font-size: 15px;"></i>
-                    <button class="login-btn" onclick="alert('Kamal Logged In!')">Login</button>
-                    <button class="get-start-btn" onclick="focusInput('Get Started')">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                    <i class="fa-solid fa-moon" style="color: var(--text-muted); cursor: pointer; font-size: 16px;"></i>
+                    <button class="login-btn" onclick="activateSection('Login')">Login</button>
+                    <button class="get-start-btn" onclick="startVoiceRecognition()">Get Started <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
             <!-- Hero Section -->
             <div class="hero-section">
                 <div class="hero-left">
-                    <div class="hero-tag"><i class="fa-solid fa-scale-balanced"></i> Your Smart Decision & Color Advisor</div>
-                    <h1>Snaaya <span>AI</span><br>Choose the Right Path & Colors</h1>
-                    <p>Confused between options or picking colors? Snaaya AI analyzes pros & cons, compares choices, and helps you make the absolute best decision.</p>
+                    <div class="hero-tag"><i class="fa-solid fa-sparkles"></i> Your Personal AI Assistant</div>
+                    <h1>Snaaya <span>AI</span><br>Think Smarter<br>Live Better</h1>
+                    <p>Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter than ever before.</p>
                     <div class="hero-action-btns">
-                        <button class="btn-start-now" onclick="focusInput('Get Advice')">Get Advice Now <i class="fa-solid fa-arrow-right"></i></button>
-                        <button class="btn-watch-vid" onclick="focusInput('Learn More')">Learn More</button>
+                        <button class="btn-start-now" onclick="startVoiceRecognition()">Start Now <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn-watch-vid" onclick="activateSection('Watch Video')">Watch Video</button>
                     </div>
                     <div class="hero-features-tag">
-                        <span><i class="fa-solid fa-palette" style="color: var(--accent-purple);"></i> Color Guide</span>
-                        <span><i class="fa-solid fa-check" style="color: var(--accent-green);"></i> Right vs Wrong</span>
-                        <span><i class="fa-solid fa-brain" style="color: var(--accent-blue);"></i> Smart Logic</span>
-                        <span><i class="fa-solid fa-face-smile" style="color: #f59e0b;"></i> Friendly Support</span>
+                        <span><i class="fa-solid fa-bolt" style="color: var(--accent-blue);"></i> Fast</span>
+                        <span><i class="fa-solid fa-lock" style="color: var(--accent-purple);"></i> Private</span>
+                        <span><i class="fa-solid fa-brain" style="color: var(--accent-green);"></i> Smart</span>
+                        <span><i class="fa-solid fa-infinity" style="color: #f59e0b;"></i> Always On</span>
                     </div>
                 </div>
 
                 <!-- Right Talk Panel -->
                 <div class="talk-card">
-                    <div class="talk-top">ASK · COMPARE · CHOOSE WISELY</div>
-                    <div class="talk-heading">What should you choose?</div>
-                    <div class="talk-sub">Ask me about colors, right/wrong choices, or decisions, and get clear guidance.</div>
+                    <div class="talk-top">SPEAK · TYPE · GET RESULTS</div>
+                    <div class="talk-heading">Talk to Snaaya AI</div>
+                    <div class="talk-sub" id="statusSub">Ask anything, get instant answers, manage your tasks, and more — just like talking to a friend.</div>
                     
                     <div class="wave-box">
                         <div class="w-bar"></div>
@@ -407,64 +391,69 @@
                         <div class="w-bar"></div>
                     </div>
 
-                    <div class="mic-icon-btn" onclick="startVoice()" title="Tap to Speak">
-                        <i class="fa-solid fa-microphone"></i>
+                    <div class="mic-icon-btn" onclick="startVoiceRecognition()" title="Tap to Speak">
+                        <i class="fa-solid fa-microphone" id="micIcon"></i>
                     </div>
-                    <div style="font-size: 11px; color: var(--text-muted);">Tap to Ask for Advice</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;" id="micText">Tap to Speak (Offline Ready)</div>
 
-                    <div class="type-input-box" onclick="startVoice()">
-                        <span>Ask e.g. "Which color is best?"...</span>
+                    <div class="type-input-box" onclick="startVoiceRecognition()">
+                        <span id="typePlaceholder">Or type or speak your message...</span>
                         <i class="fa-solid fa-arrow-right" style="color: var(--accent-purple);"></i>
                     </div>
                 </div>
             </div>
 
+            <!-- 8 Features Grid Header -->
+            <div class="features-header">
+                <div class="features-title">Everything You Need in One Place</div>
+                <div class="features-desc">From daily tasks to deep research, Snaaya AI gives you the tools to stay organized, productive and ahead — always.</div>
+            </div>
+
             <!-- 8 Features Grid -->
-            <div class="features-title">Everything You Need in One Place</div>
             <div class="grid-8">
-                <div class="card-box" onclick="focusInput('Right/Wrong & Color')">
-                    <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <div class="c-title">सही-गलत & कलर चॉइस गाइड</div>
-                    <div class="c-desc">फैसलों और रंगों के चुनाव में सटीक सलाह पाएं।</div>
-                    <div class="c-link">सलाह लें <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                <div class="card-box" onclick="activateSection('Chat Assistant')">
+                    <div class="c-icon" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);"><i class="fa-solid fa-comments"></i></div>
+                    <div class="c-title">Chat Assistant</div>
+                    <div class="c-desc">Get instant answers, ideas, and solutions.</div>
+                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="focusInput('Companion')">
-                    <div class="c-icon" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);"><i class="fa-solid fa-face-smile"></i></div>
-                    <div class="c-title">AI Friend & Companion</div>
-                    <div class="c-desc">Shares your thoughts, listens & understands feelings.</div>
-                    <div class="c-link">Talk Now <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                <div class="card-box" onclick="startVoiceRecognition()">
+                    <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-microphone"></i></div>
+                    <div class="c-title">Voice Assistant</div>
+                    <div class="c-desc">Speak naturally and get things done.</div>
+                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="focusInput('Create')">
-                    <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                    <div class="c-title">Create (Images & Videos)</div>
-                    <div class="c-desc">Generate amazing AI artwork, graphics & videos.</div>
-                    <div class="c-link">Start Creating <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
-                </div>
-                <div class="card-box" onclick="focusInput('Edit')">
-                    <div class="c-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-pen-nib"></i></div>
-                    <div class="c-title">AI Editing Studio</div>
-                    <div class="c-desc">Edit photos, videos, and text effortlessly.</div>
-                    <div class="c-link">Start Editing <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
-                </div>
-                <div class="card-box" onclick="focusInput('Memory')">
-                    <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-brain"></i></div>
+                <div class="card-box" onclick="activateSection('Memory System')">
+                    <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-brain"></i></div>
                     <div class="c-title">Memory System</div>
-                    <div class="c-desc">Remember important numbers, notes & details.</div>
+                    <div class="c-desc">Remember important things, like numbers, notes and more.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="focusInput('Task Manager')">
-                    <div class="c-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-square-check"></i></div>
+                <div class="card-box" onclick="activateSection('Task Manager')">
+                    <div class="c-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-square-check"></i></div>
                     <div class="c-title">Task Manager</div>
-                    <div class="c-desc">Set reminders, todos and stay organized.</div>
+                    <div class="c-desc">Set reminders, create todos and stay organized.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="focusInput('Knowledge Hub')">
-                    <div class="c-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-book-open"></i></div>
+                <div class="card-box" onclick="activateSection('Knowledge Hub')">
+                    <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-book-open"></i></div>
                     <div class="c-title">Knowledge Hub</div>
                     <div class="c-desc">Learn, explore and get information instantly.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="focusInput('Personalized')">
+                <div class="card-box" onclick="activateSection('Multi-Language')">
+                    <div class="c-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-globe"></i></div>
+                    <div class="c-title">Multi-Language</div>
+                    <div class="c-desc">Talk and get answers in your preferred language.</div>
+                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                </div>
+                <div class="card-box" onclick="activateSection('File & Document Help')">
+                    <div class="c-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="c-title">File & Document Help</div>
+                    <div class="c-desc">Summarize, explain, or work with your files.</div>
+                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                </div>
+                <div class="card-box" onclick="activateSection('Personalized Experience')">
                     <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-user-gear"></i></div>
                     <div class="c-title">Personalized Experience</div>
                     <div class="c-desc">Learns your preferences and gets better over time.</div>
@@ -474,113 +463,120 @@
 
             <!-- Stats Banner -->
             <div class="why-choose-banner">
-                <div class="stat-group"><i class="fa-solid fa-scale-balanced" style="color: var(--accent-purple);"></i> <div><b>Why Choose Snaaya AI?</b><br><span style="font-size: 10px; color: var(--text-muted);">Your smart decision advisor.</span></div></div>
+                <div class="stat-group"><i class="fa-solid fa-brain" style="color: var(--accent-purple); font-size: 20px;"></i> <div><b>Why Choose Snaaya AI?</b><br><span style="font-size: 11px; color: var(--text-muted);">Your personal AI companion.</span></div></div>
                 <div class="stat-group"><i class="fa-solid fa-users" style="color: var(--accent-blue);"></i> <div><span class="stat-val">10K+</span><br>Active Users</div></div>
-                <div class="stat-group"><i class="fa-solid fa-comments" style="color: var(--accent-purple);"></i> <div><span class="stat-val">1M+</span><br>Wise Choices</div></div>
-                <div class="stat-group"><i class="fa-solid fa-palette" style="color: var(--accent-green);"></i> <div><span class="stat-val">500K+</span><br>Color Guides</div></div>
+                <div class="stat-group"><i class="fa-solid fa-comments" style="color: var(--accent-purple);"></i> <div><span class="stat-val">1M+</span><br>Questions Answered</div></div>
+                <div class="stat-group"><i class="fa-solid fa-square-check" style="color: var(--accent-green);"></i> <div><span class="stat-val">50K+</span><br>Tasks Completed</div></div>
                 <div class="stat-group"><i class="fa-solid fa-gauge-high" style="color: #f59e0b;"></i> <div><span class="stat-val">99.9%</span><br>Uptime</div></div>
             </div>
 
             <!-- Footer -->
             <div class="footer-bottom">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <i class="fa-solid fa-brain" style="color: var(--accent-purple);"></i> <b>Snaaya AI</b> · Choose Right · Colors · Grow
+                    <i class="fa-solid fa-brain" style="color: var(--accent-purple);"></i> <b>Snaaya AI</b> · Think · Assist · Grow
                 </div>
                 <div class="footer-socials">
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-x-twitter"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-youtube" onclick="activateSection('YouTube')"></i>
+                    <i class="fa-brands fa-x-twitter" onclick="activateSection('Twitter')"></i>
+                    <i class="fa-brands fa-instagram" onclick="activateSection('Instagram')"></i>
+                    <i class="fa-brands fa-linkedin" onclick="activateSection('LinkedIn')"></i>
                 </div>
-                <div>Made with ❤️ for tomorrow</div>
+                <div>Made with ❤️ for tomorrow (Offline Supported)</div>
             </div>
 
         </div>
-                                                       </div>
-                <!-- Bottom Sticky Chat Bar -->
-    <div class="bottom-chat-bar">
-        <div class="plus-menu" id="plusMenu">
-            <div class="plus-item" onclick="document.getElementById('galleryInput').click(); togglePlusMenu();">
-                <i class="fa-solid fa-image" style="color: var(--accent-purple);"></i> गैलरी (Photo/Color Upload)
-            </div>
-            <div class="plus-item" onclick="document.getElementById('cameraInput').click(); togglePlusMenu();">
-                <i class="fa-solid fa-camera" style="color: #f59e0b;"></i> कैमरा (Camera Capture)
-            </div>
-        </div>
+     </div>
+                <script>
+        // --- 1. Network Status Check ---
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
 
-        <button onclick="togglePlusMenu()" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--accent-purple); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;">
-            <i class="fa-solid fa-plus" id="plusIcon"></i>
-        </button>
-        <input type="text" id="userInput" placeholder="कलर चॉइस या सही-गलत फैसला यहाँ पूछें..." onkeydown="if(event.key==='Enter') sendTypedPrompt()" style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border-color); color: #fff; padding: 10px 16px; border-radius: 20px; outline: none; font-size: 13px; min-width: 0;">
-        <button onclick="startVoice()" style="background: none; border: none; color: var(--accent-purple); cursor: pointer; font-size: 20px; padding: 4px; flex-shrink: 0;"><i class="fa-solid fa-microphone"></i></button>
-        <button onclick="sendTypedPrompt()" style="background: var(--accent-purple); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
-
-    <!-- Hidden File Inputs -->
-    <input type="file" id="galleryInput" accept="image/*,video/*" style="display:none;" onchange="handleFile(event)">
-    <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;" onchange="handleFile(event)">
-
-    <script>
-        function togglePlusMenu() {
-            const menu = document.getElementById('plusMenu');
-            const icon = document.getElementById('plusIcon');
-            if (menu.style.display === 'block') {
-                menu.style.display = 'none';
-                icon.style.transform = 'rotate(0deg)';
+        function updateNetworkStatus() {
+            const badge = document.getElementById('offlineBadge');
+            if (!navigator.onLine) {
+                badge.style.display = 'block';
             } else {
-                menu.style.display = 'block';
-                icon.style.transform = 'rotate(45deg)';
+                badge.style.display = 'none';
             }
         }
+        updateNetworkStatus();
 
-        function focusInput(name) {
-            const input = document.getElementById('userInput');
-            input.placeholder = `${name} के लिए यहाँ पूछें...`;
-            input.focus();
-        }
-
-        async function sendTypedPrompt() {
-            const input = document.getElementById('userInput');
-            const val = input.value.trim();
-            if (!val) return;
+        // --- 2. Interactive Click Action (हर क्लिक पर स्क्रीन पर प्रतिक्रिया) ---
+        function activateSection(name) {
+            localStorage.setItem('snaaya_active', name);
+            const sub = document.getElementById('statusSub');
+            sub.innerHTML = `सक्रिय मोड: <b style="color: var(--accent-purple);">${name}</b> (चयन सफल)`;
             
-            try {
-                const res = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: val })
-                });
-                if (!res.ok) throw new Error("API Error");
-                const data = await res.json();
-                console.log(data.text);
-            } catch(e) {
-                // पूरी तरह शांत और सुरक्षित वर्किंग
-            }
-            input.value = '';
+            // विजुअल एनिमेशन फीडबैक
+            const card = document.querySelector('.talk-card');
+            card.style.borderColor = 'var(--accent-purple)';
+            setTimeout(() => { card.style.borderColor = 'var(--border-color)'; }, 600);
         }
 
-        function startVoice() {
+        // --- 3. Working Voice & Offline Fallback Function ---
+        function startVoiceRecognition() {
+            const statusSub = document.getElementById('statusSub');
+            const micText = document.getElementById('micText');
+            const placeholder = document.getElementById('typePlaceholder');
+            const micIcon = document.getElementById('micIcon');
+
+            micIcon.style.color = 'var(--accent-green)';
+            micText.innerText = "सुना जा रहा है... बोलिए...";
+
+            // अगर ब्राउज़र में वॉइस स्पीच रिकग्निशन उपलब्ध है
             if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                const rec = new SpeechRecognition();
-                rec.lang = 'hi-IN';
-                rec.start();
-                rec.onresult = (e) => {
-                    const speechTxt = e.results[0][0].transcript;
-                    document.getElementById('userInput').value = speechTxt;
-                    sendTypedPrompt();
+                const recognition = new SpeechRecognition();
+                
+                recognition.lang = 'hi-IN';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+
+                recognition.onresult = function(event) {
+                    const speechResult = event.results[0][0].transcript;
+                    statusSub.innerHTML = `सुना गया: <b style="color: var(--accent-green);">${speechResult}</b>`;
+                    placeholder.innerText = speechResult;
+                    micText.innerText = "Tap to Speak (Offline Ready)";
+                    micIcon.style.color = '#fff';
+                    localStorage.setItem('last_speech', speechResult);
                 };
+
+                recognition.onerror = function() {
+                    fallbackPrompt(statusSub, micText, micIcon);
+                };
+
+                recognition.onend = function() {
+                    micText.innerText = "Tap to Speak (Offline Ready)";
+                    micIcon.style.color = '#fff';
+                };
+
+                try {
+                    recognition.start();
+                } catch(e) {
+                    fallbackPrompt(statusSub, micText, micIcon);
+                }
             } else {
-                // साइलेंट फेलओवर
+                fallbackPrompt(statusSub, micText, micIcon);
             }
         }
 
-        function handleFile(e) {
-            const f = e.target.files[0];
-            if (f) {
-                // फ़ाइल साइलेंटली अटैच हो जाएगी
+        function fallbackPrompt(statusSub, micText, micIcon) {
+            micIcon.style.color = '#fff';
+            micText.innerText = "Tap to Speak (Offline Ready)";
+            const userTyped = prompt("वॉइस इनपुट उपलब्ध नहीं है (या ऑफ़लाइन हैं)। अपना संदेश यहाँ दर्ज करें:");
+            if (userTyped) {
+                statusSub.innerHTML = `दर्ज संदेश: <b style="color: var(--accent-blue);">${userTyped}</b>`;
+                localStorage.setItem('last_speech', userTyped);
             }
         }
+
+        // लोड होने पर पुराना डेटा याद रखना
+        window.onload = function() {
+            const last = localStorage.getItem('snaaya_active');
+            if (last) {
+                document.getElementById('statusSub').innerHTML = `पिछला विकल्प: <b>${last}</b> (ऑफ़लाइन सुरक्षित)`;
+            }
+        };
     </script>
 </body>
 </html>
