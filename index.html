@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snaaya AI - Exact Master Replica</title>
+    <title>Snaaya AI - Decision & Master Edition</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Chart.js Engine -->
@@ -31,9 +31,9 @@
             overflow-x: hidden;
             overflow-y: auto;
             display: flex;
+            background-image: radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
         }
 
-        /* Exact Screenshot Layout Wrapper */
         .master-screen {
             width: 100%;
             max-width: 1440px;
@@ -71,7 +71,7 @@
             gap: 10px;
             margin-bottom: 25px;
         }
-        .logo-box span { color: var(--accent-blue); }
+        .logo-box span { color: var(--accent-purple); }
 
         .menu-list { display: flex; flex-direction: column; gap: 6px; }
         .menu-item {
@@ -88,7 +88,7 @@
         }
         .menu-item:hover, .menu-item.active {
             background: var(--card-bg);
-            color: var(--accent-blue);
+            color: var(--accent-purple);
             border: 1px solid var(--border-color);
         }
 
@@ -114,7 +114,7 @@
             flex-direction: column;
             gap: 20px;
             min-width: 0;
-            padding-bottom: 90px;
+            padding-bottom: 80px;
         }
 
         /* Top Navbar */
@@ -131,75 +131,75 @@
         }
         .nav-links-center { display: flex; gap: 25px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap; }
         .nav-links-center span { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
-        .nav-links-center span:hover, .nav-links-center span.active { color: var(--accent-blue); }
+        .nav-links-center span:hover, .nav-links-center span.active { color: var(--accent-purple); }
         
         .nav-right { display: flex; align-items: center; gap: 15px; }
         .login-btn { background: none; border: 1px solid var(--border-color); color: var(--text-main); padding: 6px 18px; border-radius: 20px; font-size: 13px; cursor: pointer; }
-        .get-start-btn { background: linear-gradient(135deg, #2563eb, #7c3aed); border: none; color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .get-start-btn { background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
-        /* Hero Section (Exact Replica) */
+        /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, #0b0f19, #090d16);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 35px;
+            padding: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 25px;
-            position: relative;
-            overflow: hidden;
+            flex-wrap: wrap;
         }
-        .hero-left { flex: 1; min-width: 300px; z-index: 2; }
-        .hero-tag { font-size: 11px; color: var(--accent-blue); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .hero-left h1 { font-size: 42px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
-        .hero-left h1 span { color: var(--accent-blue); }
-        .hero-left p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; max-width: 500px; }
+        .hero-left { flex: 1; min-width: 300px; }
+        .hero-tag { font-size: 11px; color: var(--accent-purple); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .hero-left h1 { font-size: 36px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+        .hero-left h1 span { color: var(--accent-purple); }
+        .hero-left p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; }
         
-        .hero-action-btns { display: flex; gap: 12px; align-items: center; margin-bottom: 25px; flex-wrap: wrap; }
-        .btn-start-now { background: linear-gradient(135deg, #2563eb, #7c3aed); border: none; color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .hero-action-btns { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn-start-now { background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .btn-watch-vid { background: var(--card-bg); border: 1px solid var(--border-color); color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
-        .hero-features-tag { display: flex; gap: 25px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; }
+        .hero-features-tag { display: flex; gap: 20px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; }
         .hero-features-tag span { display: flex; align-items: center; gap: 6px; }
 
-        /* Right Talk Panel (Exact Screenshot Style) */
+        /* Right Talk Panel */
         .talk-card {
-            background: rgba(17, 24, 39, 0.98);
+            background: rgba(17, 24, 39, 0.95);
             border: 1px solid var(--border-color);
             border-radius: 18px;
             padding: 24px;
             width: 100%;
-            max-width: 340px;
+            max-width: 330px;
             text-align: center;
             flex-shrink: 0;
-            z-index: 2;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
         }
-        .talk-top { font-size: 10px; font-weight: 700; color: var(--accent-blue); letter-spacing: 1px; margin-bottom: 6px; }
-        .talk-heading { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .talk-top { font-size: 10px; font-weight: 700; color: var(--accent-purple); letter-spacing: 1px; margin-bottom: 6px; }
+        .talk-heading { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
         .talk-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4; }
         
-        .wave-box { display: flex; justify-content: center; align-items: center; gap: 4px; height: 35px; margin-bottom: 14px; }
-        .w-bar { width: 3px; background: var(--accent-blue); border-radius: 3px; animation: waveAnim 1.2s infinite ease-in-out; }
-        .w-bar:nth-child(2) { animation-delay: 0.1s; background: var(--accent-purple); }
-        .w-bar:nth-child(3) { animation-delay: 0.2s; background: var(--accent-blue); }
+        .wave-box { display: flex; justify-content: center; align-items: center; gap: 4px; height: 32px; margin-bottom: 14px; }
+        .w-bar { width: 3px; background: var(--accent-purple); border-radius: 3px; animation: waveAnim 1.2s infinite ease-in-out; }
+        .w-bar:nth-child(2) { animation-delay: 0.1s; background: var(--accent-blue); }
+        .w-bar:nth-child(3) { animation-delay: 0.2s; background: var(--accent-purple); }
         .w-bar:nth-child(4) { animation-delay: 0.3s; background: var(--accent-green); }
-        .w-bar:nth-child(5) { animation-delay: 0.4s; background: var(--accent-blue); }
-        @keyframes waveAnim { 0%, 100% { height: 8px; } 50% { height: 30px; } }
+        .w-bar:nth-child(5) { animation-delay: 0.4s; background: var(--accent-purple); }
+        @keyframes waveAnim { 0%, 100% { height: 8px; } 50% { height: 28px; } }
 
         .mic-icon-btn {
             width: 50px;
             height: 50px;
-            background: var(--accent-blue);
+            background: var(--accent-purple);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 6px auto;
-            color: #030712;
+            color: #fff;
             font-size: 18px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
             transition: 0.2s;
         }
         .mic-icon-btn:hover { transform: scale(1.08); }
@@ -218,11 +218,11 @@
             margin-top: 12px;
         }
 
-        /* Features 8 Cards Grid (Including Credit Hub) */
+        /* Features 8 Cards Grid */
         .features-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; }
         .grid-8 {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 16px;
         }
         .card-box {
@@ -233,11 +233,11 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .card-box:hover { border-color: var(--accent-blue); transform: translateY(-3px); }
+        .card-box:hover { border-color: var(--accent-purple); transform: translateY(-3px); }
         .c-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-bottom: 12px; }
         .c-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
         .c-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 10px; }
-        .c-link { font-size: 11px; font-weight: 600; color: var(--accent-blue); display: flex; align-items: center; gap: 4px; }
+        .c-link { font-size: 11px; font-weight: 600; color: var(--accent-purple); display: flex; align-items: center; gap: 4px; }
 
         /* Stats Banner */
         .why-choose-banner {
@@ -292,22 +292,24 @@
             gap: 10px;
             border-radius: 8px;
         }
-        .plus-item:hover { background: var(--panel-bg); color: var(--accent-blue); }
+        .plus-item:hover { background: var(--panel-bg); color: var(--accent-purple); }
 
         /* Footer */
         .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 12px 0;
             border-top: 1px solid var(--border-color);
             font-size: 12px;
             color: var(--text-muted);
             margin-top: auto;
+            flex-wrap: wrap;
+            gap: 12px;
         }
         .footer-socials { display: flex; gap: 16px; font-size: 14px; }
         .footer-socials i { cursor: pointer; transition: 0.2s; }
-        .footer-socials i:hover { color: var(--accent-blue); }
+        .footer-socials i:hover { color: var(--accent-purple); }
 
         .terminal-box {
             background: var(--panel-bg);
@@ -317,9 +319,9 @@
             display: none;
         }
 
-        @media(max-width: 1100px) {
-            .grid-8 { grid-template-columns: repeat(2, 1fr); }
+        @media(max-width: 900px) {
             .sidebar { display: none; }
+            .master-screen { padding: 10px; }
         }
     </style>
 </head>
@@ -330,29 +332,29 @@
         <div class="sidebar">
             <div>
                 <div class="logo-box">
-                    <i class="fa-solid fa-brain" style="color: var(--accent-blue); font-size: 20px;"></i> Snaaya <span>AI</span>
+                    <i class="fa-solid fa-scale-balanced" style="color: var(--accent-purple); font-size: 20px;"></i> Snaaya <span>AI</span>
                 </div>
                 <div class="menu-list">
                     <div class="menu-item active" onclick="runAction('Home')"><i class="fa-solid fa-house"></i> Home</div>
-                    <div class="menu-item" onclick="runAction('Credit Hub')"><i class="fa-solid fa-coins" style="color: var(--accent-green);"></i> Credit Hub (Photo/Video & Edit)</div>
-                    <div class="menu-item" onclick="runAction('Chat Assistant')"><i class="fa-solid fa-comment-dots"></i> Chat Assistant</div>
+                    <div class="menu-item" onclick="runAction('Right/Wrong Decision & Color Helper')"><i class="fa-solid fa-check-double"></i> सही-गलत / कलर चॉइस गाइड</div>
+                    <div class="menu-item" onclick="runAction('Companion Chat')"><i class="fa-solid fa-face-smile"></i> AI Companion & Friend</div>
                     <div class="menu-item" onclick="startVoice()"><i class="fa-solid fa-microphone"></i> Voice Assistant</div>
+                    <div class="menu-item" onclick="runAction('Create Images & Videos')"><i class="fa-solid fa-wand-magic-sparkles"></i> Create & Generate</div>
+                    <div class="menu-item" onclick="runAction('AI Editing Studio')"><i class="fa-solid fa-pen-nib"></i> AI Editor</div>
                     <div class="menu-item" onclick="runAction('Memory Center')"><i class="fa-solid fa-brain"></i> Memory Center</div>
                     <div class="menu-item" onclick="runAction('Task Manager')"><i class="fa-solid fa-square-check"></i> Task Manager</div>
-                    <div class="menu-item" onclick="runAction('Knowledge Hub')"><i class="fa-solid fa-book-open"></i> Knowledge Hub</div>
-                    <div class="menu-item" onclick="runAction('Settings')"><i class="fa-solid fa-gear"></i> Settings</div>
                 </div>
             </div>
 
             <div>
                 <div class="pro-card">
                     <div style="font-size: 12px; font-weight: 700; color: var(--accent-purple); margin-bottom: 3px;"><i class="fa-solid fa-crown"></i> Snaaya AI Pro</div>
-                    <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;">Unlock powerful features.</div>
-                    <button style="width: 100%; background: linear-gradient(135deg, #2563eb, #7c3aed); border: none; color: #fff; padding: 6px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;">Upgrade Now</button>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;">Smart choice & decision helper.</div>
+                    <button style="width: 100%; background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 6px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;">Upgrade Now</button>
                 </div>
                 <div class="journey-card">
-                    <div style="font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 3px;"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-blue);"></i> AI Journey Starts Here</div>
-                    <div style="font-size: 10px; color: var(--text-muted);">Smart tools & decisions.</div>
+                    <div style="font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 3px;"><i class="fa-solid fa-lightbulb" style="color: var(--accent-purple);"></i> Right Choices Made Easy</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">Get expert advice instantly.</div>
                 </div>
             </div>
         </div>
@@ -362,17 +364,15 @@
             
             <!-- Top Navbar -->
             <div class="top-nav">
-                <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--accent-blue);">
-                    <i class="fa-solid fa-circle-dot" style="font-size: 8px;"></i> Think · Assist · Grow
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--accent-purple);">
+                    <i class="fa-solid fa-circle-dot" style="font-size: 8px;"></i> Choose Right · Pick Colors · Grow Together
                 </div>
                 <div class="nav-links-center">
                     <span class="active" onclick="runAction('Home')"><i class="fa-solid fa-house" style="font-size: 12px;"></i> Home</span>
-                    <span onclick="runAction('Credit Hub')"><i class="fa-solid fa-coins" style="font-size: 12px; color: var(--accent-green);"></i> Credit Hub</span>
-                    <span onclick="runAction('Features')"><i class="fa-solid fa-cubes" style="font-size: 12px;"></i> Features</span>
-                    <span onclick="runAction('Memory')"><i class="fa-solid fa-brain" style="font-size: 12px;"></i> Memory</span>
-                    <span onclick="runAction('Pricing')"><i class="fa-solid fa-tag" style="font-size: 12px;"></i> Pricing</span>
-                    <span onclick="runAction('About')"><i class="fa-solid fa-circle-info" style="font-size: 12px;"></i> About</span>
-                    <span onclick="runAction('Contact')"><i class="fa-solid fa-envelope" style="font-size: 12px;"></i> Contact</span>
+                    <span onclick="runAction('Right/Wrong Decision & Color Helper')"><i class="fa-solid fa-lightbulb" style="font-size: 12px;"></i> सही-गलत सलाह</span>
+                    <span onclick="runAction('Companion Chat')"><i class="fa-solid fa-face-smile" style="font-size: 12px;"></i> Companion</span>
+                    <span onclick="runAction('Create Images & Videos')"><i class="fa-solid fa-palette" style="font-size: 12px;"></i> Create</span>
+                    <span onclick="runAction('AI Editing Studio')"><i class="fa-solid fa-sliders" style="font-size: 12px;"></i> Edit</span>
                 </div>
                 <div class="nav-right">
                     <i class="fa-solid fa-moon" style="color: var(--text-muted); cursor: pointer; font-size: 15px;"></i>
@@ -384,35 +384,35 @@
             <!-- Terminal -->
             <div class="terminal-box" id="termBox">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="font-size: 12px; font-weight: 700; color: var(--accent-purple);"><i class="fa-solid fa-terminal"></i> Snaaya AI Terminal</span>
+                    <span style="font-size: 12px; font-weight: 700; color: var(--accent-purple);"><i class="fa-solid fa-terminal"></i> Snaaya AI - Decision & Choice Advisor</span>
                     <button onclick="document.getElementById('termBox').style.display='none'" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div id="termText" style="font-size: 12px; color: #fff;">सिस्टम तैयार है...</div>
+                <div id="termText" style="font-size: 12px; color: #fff;">कलर चॉइस या सही-गलत फैसला पूछिए, कमल... मैं पूरी सलाह दूंगा!</div>
             </div>
 
-            <!-- Hero Section (Exact Replica) -->
+            <!-- Hero Section -->
             <div class="hero-section">
                 <div class="hero-left">
-                    <div class="hero-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Your Personal AI Assistant</div>
-                    <h1>Snaaya <span>AI</span><br>Think Smarter<br>Live Better</h1>
-                    <p>Snaaya AI is your all-in-one personal assistant. Chat, search, plan, remember, and get things done — faster, easier and smarter than ever before.</p>
+                    <div class="hero-tag"><i class="fa-solid fa-scale-balanced"></i> Your Smart Decision & Color Advisor</div>
+                    <h1>Snaaya <span>AI</span><br>Choose the Right Path & Colors</h1>
+                    <p>Confused between options or picking colors? Snaaya AI analyzes pros & cons, compares choices, and helps you make the absolute best decision.</p>
                     <div class="hero-action-btns">
-                        <button class="btn-start-now" onclick="runAction('Credit Hub')">Start Now <i class="fa-solid fa-arrow-right"></i></button>
-                        <button class="btn-watch-vid" onclick="runAction('Watch Video')">Watch Video</button>
+                        <button class="btn-start-now" onclick="runAction('Right/Wrong Decision & Color Helper')">Get Advice Now <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn-watch-vid" onclick="runAction('Watch Video')">Learn More</button>
                     </div>
                     <div class="hero-features-tag">
-                        <span><i class="fa-solid fa-bolt" style="color: var(--accent-blue);"></i> Fast</span>
-                        <span><i class="fa-solid fa-lock" style="color: var(--accent-purple);"></i> Private</span>
-                        <span><i class="fa-solid fa-brain" style="color: var(--accent-green);"></i> Smart</span>
-                        <span><i class="fa-solid fa-infinity" style="color: #f59e0b;"></i> Always On</span>
+                        <span><i class="fa-solid fa-palette" style="color: var(--accent-purple);"></i> Color Guide</span>
+                        <span><i class="fa-solid fa-check" style="color: var(--accent-green);"></i> Right vs Wrong</span>
+                        <span><i class="fa-solid fa-brain" style="color: var(--accent-blue);"></i> Smart Logic</span>
+                        <span><i class="fa-solid fa-face-smile" style="color: #f59e0b;"></i> Friendly Support</span>
                     </div>
                 </div>
 
                 <!-- Right Talk Panel -->
                 <div class="talk-card">
-                    <div class="talk-top">SPEAK · TYPE · GET RESULTS</div>
-                    <div class="talk-heading">Talk to Snaaya AI</div>
-                    <div class="talk-sub">Ask anything, get instant answers, manage your tasks, and more — just like talking to a friend.</div>
+                    <div class="talk-top">ASK · COMPARE · CHOOSE WISELY</div>
+                    <div class="talk-heading">What should you choose?</div>
+                    <div class="talk-sub">Ask me about colors, right/wrong choices, or decisions, and get clear guidance.</div>
                     
                     <div class="wave-box">
                         <div class="w-bar"></div>
@@ -425,58 +425,58 @@
                     <div class="mic-icon-btn" onclick="startVoice()" title="Tap to Speak">
                         <i class="fa-solid fa-microphone"></i>
                     </div>
-                    <div style="font-size: 11px; color: var(--text-muted);">Tap to Speak</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">Tap to Ask for Advice</div>
 
                     <div class="type-input-box" onclick="startVoice()">
-                        <span>Or type your message...</span>
-                        <i class="fa-solid fa-arrow-right" style="color: var(--accent-blue);"></i>
+                        <span>Ask e.g. "Which color is best?"...</span>
+                        <i class="fa-solid fa-arrow-right" style="color: var(--accent-purple);"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- 8 Features Grid (Including Credit Hub) -->
+            <!-- 8 Features Grid -->
             <div class="features-title">Everything You Need in One Place</div>
             <div class="grid-8">
-                <div class="card-box" onclick="runAction('Credit Hub')">
-                    <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-coins"></i></div>
-                    <div class="c-title">Credit Hub (Create & Edit)</div>
-                    <div class="c-desc">Generate photos, videos, and edit media seamlessly.</div>
-                    <div class="c-link">Open Credit Hub <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                <div class="card-box" onclick="runAction('Right/Wrong Decision & Color Helper')">
+                    <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="c-title">सही-गलत & कलर चॉइस गाइड</div>
+                    <div class="c-desc">फैसलों और रंगों के चुनाव में सटीक सलाह पाएं।</div>
+                    <div class="c-link">सलाह लें <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('Chat Assistant')">
-                    <div class="c-icon" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);"><i class="fa-solid fa-comment-dots"></i></div>
-                    <div class="c-title">Chat Assistant</div>
-                    <div class="c-desc">Get instant answers, ideas, and solutions.</div>
-                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                <div class="card-box" onclick="runAction('Companion Chat')">
+                    <div class="c-icon" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);"><i class="fa-solid fa-face-smile"></i></div>
+                    <div class="c-title">AI Friend & Companion</div>
+                    <div class="c-desc">Shares your thoughts, listens & understands feelings.</div>
+                    <div class="c-link">Talk Now <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="startVoice()">
-                    <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-microphone"></i></div>
-                    <div class="c-title">Voice Assistant</div>
-                    <div class="c-desc">Speak naturally and get things done.</div>
-                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                <div class="card-box" onclick="runAction('Create Images & Videos')">
+                    <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="c-title">Create (Images & Videos)</div>
+                    <div class="c-desc">Generate amazing AI artwork, graphics & videos.</div>
+                    <div class="c-link">Start Creating <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
+                </div>
+                <div class="card-box" onclick="runAction('AI Editing Studio')">
+                    <div class="c-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-pen-nib"></i></div>
+                    <div class="c-title">AI Editing Studio</div>
+                    <div class="c-desc">Edit photos, videos, and text effortlessly.</div>
+                    <div class="c-link">Start Editing <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
                 <div class="card-box" onclick="runAction('Memory System')">
-                    <div class="c-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-brain"></i></div>
+                    <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-brain"></i></div>
                     <div class="c-title">Memory System</div>
-                    <div class="c-desc">Remember important things, like numbers, notes and more.</div>
+                    <div class="c-desc">Remember important numbers, notes & details.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
                 <div class="card-box" onclick="runAction('Task Manager')">
-                    <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-square-check"></i></div>
+                    <div class="c-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-square-check"></i></div>
                     <div class="c-title">Task Manager</div>
-                    <div class="c-desc">Set reminders, create todos and stay organized.</div>
+                    <div class="c-desc">Set reminders, todos and stay organized.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
                 <div class="card-box" onclick="runAction('Knowledge Hub')">
-                    <div class="c-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="c-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-book-open"></i></div>
                     <div class="c-title">Knowledge Hub</div>
                     <div class="c-desc">Learn, explore and get information instantly.</div>
-                    <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
-                </div>
-                <div class="card-box" onclick="runAction('File & Document Help')">
-                    <div class="c-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-file-lines"></i></div>
-                    <div class="c-title">File & Document Help</div>
-                    <div class="c-desc">Summarize, explain, or work with your files.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
                 <div class="card-box" onclick="runAction('Personalized Experience')">
@@ -489,25 +489,17 @@
 
             <!-- Stats Banner -->
             <div class="why-choose-banner">
-                <div class="stat-group"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-blue);"></i> <div><b>Why Choose Snaaya AI?</b><br><span style="font-size: 10px; color: var(--text-muted);">Your personal companion.</span></div></div>
+                <div class="stat-group"><i class="fa-solid fa-scale-balanced" style="color: var(--accent-purple);"></i> <div><b>Why Choose Snaaya AI?</b><br><span style="font-size: 10px; color: var(--text-muted);">Your smart decision advisor.</span></div></div>
                 <div class="stat-group"><i class="fa-solid fa-users" style="color: var(--accent-blue);"></i> <div><span class="stat-val">10K+</span><br>Active Users</div></div>
-                <div class="stat-group"><i class="fa-solid fa-comments" style="color: var(--accent-purple);"></i> <div><span class="stat-val">1M+</span><br>Answers</div></div>
-                <div class="stat-group"><i class="fa-solid fa-coins" style="color: var(--accent-green);"></i> <div><span class="stat-val">500K+</span><br>Creations</div></div>
+                <div class="stat-group"><i class="fa-solid fa-comments" style="color: var(--accent-purple);"></i> <div><span class="stat-val">1M+</span><br>Wise Choices</div></div>
+                <div class="stat-group"><i class="fa-solid fa-palette" style="color: var(--accent-green);"></i> <div><span class="stat-val">500K+</span><br>Color Guides</div></div>
                 <div class="stat-group"><i class="fa-solid fa-gauge-high" style="color: #f59e0b;"></i> <div><span class="stat-val">99.9%</span><br>Uptime</div></div>
             </div>
 
-            <!-- Footer (Exact Screenshot Style) -->
+            <!-- Footer -->
             <div class="footer-bottom">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <i class="fa-solid fa-brain" style="color: var(--accent-blue);"></i> <b>Snaaya AI</b> · Think · Assist · Grow
-                </div>
-                <div style="display: flex; gap: 20px; font-size: 12px; color: var(--text-muted);">
-                    <span style="cursor:pointer;" onclick="runAction('Home')">Home</span>
-                    <span style="cursor:pointer;" onclick="runAction('Features')">Features</span>
-                    <span style="cursor:pointer;" onclick="runAction('Memory')">Memory</span>
-                    <span style="cursor:pointer;" onclick="runAction('Pricing')">Pricing</span>
-                    <span style="cursor:pointer;" onclick="runAction('About')">About</span>
-                    <span style="cursor:pointer;" onclick="runAction('Contact')">Contact</span>
+                    <i class="fa-solid fa-brain" style="color: var(--accent-purple);"></i> <b>Snaaya AI</b> · Choose Right · Colors · Grow
                 </div>
                 <div class="footer-socials">
                     <i class="fa-brands fa-youtube"></i>
@@ -520,29 +512,29 @@
 
         </div>
     </div>
-        <!-- Bottom Sticky Chat Input & Plus Menu (Credit Hub Options) -->
+        <!-- Bottom Sticky Chat Input & Plus Menu -->
     <div class="bottom-chat-bar">
         <div class="plus-menu" id="plusMenu">
-            <div class="plus-item" onclick="runAction('Credit Hub - Photo/Video Generation'); togglePlusMenu();">
-                <i class="fa-solid fa-palette" style="color: var(--accent-green);"></i> क्रेडिट हब: फोटो/वीडियो बनाएं
+            <div class="plus-item" onclick="runAction('Right/Wrong Decision & Color Helper'); togglePlusMenu();">
+                <i class="fa-solid fa-scale-balanced" style="color: var(--accent-purple);"></i> सही-गलत या कलर की सलाह लें
             </div>
-            <div class="plus-item" onclick="runAction('Credit Hub - AI Editing Studio'); togglePlusMenu();">
-                <i class="fa-solid fa-sliders" style="color: var(--accent-purple);"></i> क्रेडिट हब: AI एडिटिंग
+            <div class="plus-item" onclick="runAction('Companion Chat'); togglePlusMenu();">
+                <i class="fa-solid fa-face-smile" style="color: var(--accent-blue);"></i> दोस्त से बात करें (Companion Mode)
+            </div>
+            <div class="plus-item" onclick="runAction('Create Images & Videos'); togglePlusMenu();">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-green);"></i> क्रिएट (फोटो/वीडियो बनाएं)
             </div>
             <div class="plus-item" onclick="document.getElementById('galleryInput').click(); togglePlusMenu();">
-                <i class="fa-solid fa-image" style="color: var(--accent-blue);"></i> गैलरी (Photo/Video Upload)
-            </div>
-            <div class="plus-item" onclick="document.getElementById('cameraInput').click(); togglePlusMenu();">
-                <i class="fa-solid fa-camera" style="color: #f59e0b;"></i> कैमरा (Camera Capture)
+                <i class="fa-solid fa-image" style="color: #f59e0b;"></i> गैलरी (Upload Photo/Color)
             </div>
         </div>
 
-        <button onclick="togglePlusMenu()" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--accent-blue); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;">
+        <button onclick="togglePlusMenu()" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--accent-purple); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;">
             <i class="fa-solid fa-plus" id="plusIcon"></i>
         </button>
-        <input type="text" id="userInput" placeholder="क्रेडिट हब या प्रॉम्प्ट लिखें..." onkeydown="if(event.key==='Enter') sendTypedPrompt()" style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border-color); color: #fff; padding: 10px 16px; border-radius: 20px; outline: none; font-size: 13px; min-width: 0;">
+        <input type="text" id="userInput" placeholder="कलर चॉइस या सही-गलत फैसला यहाँ पूछें..." onkeydown="if(event.key==='Enter') sendTypedPrompt()" style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border-color); color: #fff; padding: 10px 16px; border-radius: 20px; outline: none; font-size: 13px; min-width: 0;">
         <button onclick="startVoice()" style="background: none; border: none; color: var(--accent-purple); cursor: pointer; font-size: 20px; padding: 4px; flex-shrink: 0;"><i class="fa-solid fa-microphone"></i></button>
-        <button onclick="sendTypedPrompt()" style="background: var(--accent-blue); border: none; color: #030712; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
+        <button onclick="sendTypedPrompt()" style="background: var(--accent-purple); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
     </div>
 
     <!-- Hidden File Inputs -->
@@ -566,15 +558,15 @@
             const termBox = document.getElementById('termBox');
             const termText = document.getElementById('termText');
             termBox.style.display = 'block';
-            termText.innerHTML = `✨ <b>${name} मोड एक्टिव है:</b> कमल, फोटो/वीडियो जनरेशन या एडिटिंग शुरू करें!`;
-            speakText(`${name} तैयार है, कमल!`);
+            termText.innerHTML = `💡 <b>${name} एक्टिव है:</b> कमल, बताइए क्या फैसला करना है या कौन सा कलर चुनना है? मैं सही और गलत दोनों पहलू समझाकर आपकी मदद करूँगा।`;
+speakText(`हाँ कमल, बताइए क्या फैसला करना है?`);
         }
 
         async function sendPromptToAI(promptText) {
             const termBox = document.getElementById('termBox');
             const termText = document.getElementById('termText');
             termBox.style.display = 'block';
-            termText.innerHTML = `<b>कमल का अनुरोध:</b> "${promptText}"<br><span style="color: var(--accent-blue);">क्रेडिट हब प्रोसेस कर रहा है...</span>`;
+            termText.innerHTML = `<b>कमल का सवाल:</b> "${promptText}"<br><span style="color: var(--accent-purple);">Snaaya AI (Advisor):</span> सही-गलत और विकल्पों का विश्लेषण हो रहा है...`;
 
             try {
                 const res = await fetch('/api/chat', {
@@ -584,11 +576,11 @@
                 });
                 if (!res.ok) throw new Error("API Error");
                 const data = await res.json();
-                termText.innerHTML = `<div>${data.text || "जवाब तैयार है!"}</div>`;
-                speakText(data.text || "जवाब तैयार है!");
+                termText.innerHTML = `<div>${data.text || "सलाह तैयार है!"}</div>`;
+                speakText(data.text || "सलाह तैयार है!");
             } catch(e) {
-                termText.innerHTML = `<div><b>क्रेडिट हब (Snaaya AI):</b> कमल, आपका संदेश मिल गया है: "${promptText}"। यह फोटो/वीडियो जनरेशन या एडिटिंग के लिए दर्ज हो गया है!</div>`;
-                speakText("क्रेडिट हब में काम शुरू हो गया है, कमल।");
+                termText.innerHTML = `<div><b>Snaaya AI (Advisor):</b> कमल, आपके सवाल "${promptText}" के अनुसार, अगर आप कलर चुन रहे हैं तो ब्राइट और बैलेंस शेड्स अच्छे रहेंगे, और फैसले में जो आपके दिल और दिमाग दोनों को सही लगे वही चुनें। मैं हर कदम पर आपके साथ हूँ!</div>`;
+                speakText("मैंने पूरी सलाह दे दी है, कमल।");
             }
         }
 
@@ -630,8 +622,8 @@
                 const termBox = document.getElementById('termBox');
                 const termText = document.getElementById('termText');
                 termBox.style.display = 'block';
-                termText.innerHTML = `📁 फ़ाइल क्रेडिट हब में अपलोड हो गई: <b>${f.name}</b> — एडिटिंग के लिए तैयार।`;
-                speakText("फ़ाइल सेव हो गई है, कमल।");
+                termText.innerHTML = `📁 फ़ाइल/कलर सैंपल अटैच हो गया है: <b>${f.name}</b> — कमल, अब मैं इसके सही-गलत कॉम्बिनेशन की सलाह देता हूँ!`;
+                speakText("फ़ाइल आ गई है, कमल।");
             }
         }
     </script>
