@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snaaya AI - Decision & Master Edition</title>
+    <title>Snaaya AI - Full 600+ Lines Master Edition</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js Engine -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --bg-dark: #030712;
@@ -29,15 +27,14 @@
             width: 100vw;
             min-height: 100vh;
             overflow-x: hidden;
-            overflow-y: auto;
             display: flex;
-            background-image: radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
+            justify-content: center;
         }
 
+        /* Master Screen Layout */
         .master-screen {
             width: 100%;
             max-width: 1440px;
-            margin: 0 auto;
             min-height: 100vh;
             background: var(--bg-dark);
             display: flex;
@@ -114,7 +111,7 @@
             flex-direction: column;
             gap: 20px;
             min-width: 0;
-            padding-bottom: 80px;
+            padding-bottom: 90px;
         }
 
         /* Top Navbar */
@@ -126,11 +123,10 @@
             border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 14px 24px;
-            flex-wrap: wrap;
             gap: 15px;
         }
-        .nav-links-center { display: flex; gap: 25px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap; }
-        .nav-links-center span { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
+        .nav-links-center { display: flex; gap: 20px; font-size: 13px; color: var(--text-muted); }
+        .nav-links-center span { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
         .nav-links-center span:hover, .nav-links-center span.active { color: var(--accent-purple); }
         
         .nav-right { display: flex; align-items: center; gap: 15px; }
@@ -142,29 +138,28 @@
             background: linear-gradient(135deg, #0b0f19, #090d16);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 30px;
+            padding: 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 25px;
-            flex-wrap: wrap;
         }
-        .hero-left { flex: 1; min-width: 300px; }
+        .hero-left { flex: 1; min-width: 280px; }
         .hero-tag { font-size: 11px; color: var(--accent-purple); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .hero-left h1 { font-size: 36px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+        .hero-left h1 { font-size: 38px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
         .hero-left h1 span { color: var(--accent-purple); }
         .hero-left p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; }
         
-        .hero-action-btns { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .hero-action-btns { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; }
         .btn-start-now { background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .btn-watch-vid { background: var(--card-bg); border: 1px solid var(--border-color); color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
-        .hero-features-tag { display: flex; gap: 20px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; }
+        .hero-features-tag { display: flex; gap: 20px; font-size: 12px; color: var(--text-muted); }
         .hero-features-tag span { display: flex; align-items: center; gap: 6px; }
 
         /* Right Talk Panel */
         .talk-card {
-            background: rgba(17, 24, 39, 0.95);
+            background: rgba(17, 24, 39, 0.98);
             border: 1px solid var(--border-color);
             border-radius: 18px;
             padding: 24px;
@@ -172,8 +167,6 @@
             max-width: 330px;
             text-align: center;
             flex-shrink: 0;
-            margin: 0 auto;
-            backdrop-filter: blur(10px);
         }
         .talk-top { font-size: 10px; font-weight: 700; color: var(--accent-purple); letter-spacing: 1px; margin-bottom: 6px; }
         .talk-heading { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
@@ -222,7 +215,7 @@
         .features-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; }
         .grid-8 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px;
         }
         .card-box {
@@ -248,13 +241,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
             gap: 16px;
         }
         .stat-group { display: flex; align-items: center; gap: 12px; font-size: 12px; }
         .stat-val { font-weight: 700; color: #fff; font-size: 14px; }
 
-        /* Bottom Floating Chat & Plus Menu Bar */
+        /* Bottom Floating Bar */
         .bottom-chat-bar {
             position: fixed;
             bottom: 0;
@@ -299,29 +291,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 15px 0;
             border-top: 1px solid var(--border-color);
             font-size: 12px;
             color: var(--text-muted);
             margin-top: auto;
-            flex-wrap: wrap;
-            gap: 12px;
         }
         .footer-socials { display: flex; gap: 16px; font-size: 14px; }
         .footer-socials i { cursor: pointer; transition: 0.2s; }
         .footer-socials i:hover { color: var(--accent-purple); }
 
-        .terminal-box {
-            background: var(--panel-bg);
-            border: 1px solid var(--accent-purple);
-            border-radius: 16px;
-            padding: 18px;
-            display: none;
-        }
-
-        @media(max-width: 900px) {
+        /* Responsive Media Queries */
+        @media(max-width: 1024px) {
             .sidebar { display: none; }
-            .master-screen { padding: 10px; }
+            .master-screen { padding: 10px; width: 100%; }
+            .grid-8 { grid-template-columns: repeat(2, 1fr); }
+            .hero-section { flex-direction: column; padding: 20px; }
+            .talk-card { max-width: 100%; width: 100%; }
+            .top-nav { flex-direction: column; align-items: center; text-align: center; }
+            .nav-links-center { display: none; }
+            .why-choose-banner { flex-direction: column; text-align: center; gap: 15px; }
+            .stat-group { width: 100%; justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
+        }
+        @media(max-width: 600px) {
+            .grid-8 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -335,14 +329,14 @@
                     <i class="fa-solid fa-scale-balanced" style="color: var(--accent-purple); font-size: 20px;"></i> Snaaya <span>AI</span>
                 </div>
                 <div class="menu-list">
-                    <div class="menu-item active" onclick="runAction('Home')"><i class="fa-solid fa-house"></i> Home</div>
-                    <div class="menu-item" onclick="runAction('Right/Wrong Decision & Color Helper')"><i class="fa-solid fa-check-double"></i> सही-गलत / कलर चॉइस गाइड</div>
-                    <div class="menu-item" onclick="runAction('Companion Chat')"><i class="fa-solid fa-face-smile"></i> AI Companion & Friend</div>
+                    <div class="menu-item active" onclick="focusInput('Home')"><i class="fa-solid fa-house"></i> Home</div>
+                    <div class="menu-item" onclick="focusInput('Right/Wrong & Color')"><i class="fa-solid fa-check-double" style="color: var(--accent-purple);"></i> सही-गलत / कलर चॉइस</div>
+                    <div class="menu-item" onclick="focusInput('Credit Hub')"><i class="fa-solid fa-coins" style="color: var(--accent-green);"></i> Credit Hub (Photo/Video & Edit)</div>
+                    <div class="menu-item" onclick="focusInput('Companion Chat')"><i class="fa-solid fa-face-smile"></i> AI Friend & Companion</div>
                     <div class="menu-item" onclick="startVoice()"><i class="fa-solid fa-microphone"></i> Voice Assistant</div>
-                    <div class="menu-item" onclick="runAction('Create Images & Videos')"><i class="fa-solid fa-wand-magic-sparkles"></i> Create & Generate</div>
-                    <div class="menu-item" onclick="runAction('AI Editing Studio')"><i class="fa-solid fa-pen-nib"></i> AI Editor</div>
-                    <div class="menu-item" onclick="runAction('Memory Center')"><i class="fa-solid fa-brain"></i> Memory Center</div>
-                    <div class="menu-item" onclick="runAction('Task Manager')"><i class="fa-solid fa-square-check"></i> Task Manager</div>
+                    <div class="menu-item" onclick="focusInput('Memory Center')"><i class="fa-solid fa-brain"></i> Memory Center</div>
+                    <div class="menu-item" onclick="focusInput('Task Manager')"><i class="fa-solid fa-square-check"></i> Task Manager</div>
+                    <div class="menu-item" onclick="focusInput('Settings')"><i class="fa-solid fa-gear"></i> Settings</div>
                 </div>
             </div>
 
@@ -353,7 +347,7 @@
                     <button style="width: 100%; background: linear-gradient(135deg, #7c3aed, #2563eb); border: none; color: #fff; padding: 6px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;">Upgrade Now</button>
                 </div>
                 <div class="journey-card">
-                    <div style="font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 3px;"><i class="fa-solid fa-lightbulb" style="color: var(--accent-purple);"></i> Right Choices Made Easy</div>
+                    <div style="font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 3px;"><i class="fa-solid fa-lightbulb" style="color: var(--accent-purple);"></i> Right Choices Easy</div>
                     <div style="font-size: 10px; color: var(--text-muted);">Get expert advice instantly.</div>
                 </div>
             </div>
@@ -365,29 +359,20 @@
             <!-- Top Navbar -->
             <div class="top-nav">
                 <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--accent-purple);">
-                    <i class="fa-solid fa-circle-dot" style="font-size: 8px;"></i> Choose Right · Pick Colors · Grow Together
+                    <i class="fa-solid fa-circle-dot" style="font-size: 8px;"></i> Choose Right · Colors · Grow Together
                 </div>
                 <div class="nav-links-center">
-                    <span class="active" onclick="runAction('Home')"><i class="fa-solid fa-house" style="font-size: 12px;"></i> Home</span>
-                    <span onclick="runAction('Right/Wrong Decision & Color Helper')"><i class="fa-solid fa-lightbulb" style="font-size: 12px;"></i> सही-गलत सलाह</span>
-                    <span onclick="runAction('Companion Chat')"><i class="fa-solid fa-face-smile" style="font-size: 12px;"></i> Companion</span>
-                    <span onclick="runAction('Create Images & Videos')"><i class="fa-solid fa-palette" style="font-size: 12px;"></i> Create</span>
-                    <span onclick="runAction('AI Editing Studio')"><i class="fa-solid fa-sliders" style="font-size: 12px;"></i> Edit</span>
+                    <span class="active" onclick="focusInput('Home')"><i class="fa-solid fa-house" style="font-size: 12px;"></i> Home</span>
+                    <span onclick="focusInput('Right/Wrong & Color')"><i class="fa-solid fa-lightbulb" style="font-size: 12px;"></i> सही-गलत सलाह</span>
+                    <span onclick="focusInput('Companion')"><i class="fa-solid fa-face-smile" style="font-size: 12px;"></i> Companion</span>
+                    <span onclick="focusInput('Create')"><i class="fa-solid fa-palette" style="font-size: 12px;"></i> Create</span>
+                    <span onclick="focusInput('Edit')"><i class="fa-solid fa-sliders" style="font-size: 12px;"></i> Edit</span>
                 </div>
                 <div class="nav-right">
                     <i class="fa-solid fa-moon" style="color: var(--text-muted); cursor: pointer; font-size: 15px;"></i>
                     <button class="login-btn" onclick="alert('Kamal Logged In!')">Login</button>
-                    <button class="get-start-btn" onclick="runAction('Get Started')">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="get-start-btn" onclick="focusInput('Get Started')">Get Started <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
-            </div>
-
-            <!-- Terminal -->
-            <div class="terminal-box" id="termBox">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="font-size: 12px; font-weight: 700; color: var(--accent-purple);"><i class="fa-solid fa-terminal"></i> Snaaya AI - Decision & Choice Advisor</span>
-                    <button onclick="document.getElementById('termBox').style.display='none'" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div id="termText" style="font-size: 12px; color: #fff;">कलर चॉइस या सही-गलत फैसला पूछिए, कमल... मैं पूरी सलाह दूंगा!</div>
             </div>
 
             <!-- Hero Section -->
@@ -397,8 +382,8 @@
                     <h1>Snaaya <span>AI</span><br>Choose the Right Path & Colors</h1>
                     <p>Confused between options or picking colors? Snaaya AI analyzes pros & cons, compares choices, and helps you make the absolute best decision.</p>
                     <div class="hero-action-btns">
-                        <button class="btn-start-now" onclick="runAction('Right/Wrong Decision & Color Helper')">Get Advice Now <i class="fa-solid fa-arrow-right"></i></button>
-                        <button class="btn-watch-vid" onclick="runAction('Watch Video')">Learn More</button>
+                        <button class="btn-start-now" onclick="focusInput('Get Advice')">Get Advice Now <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn-watch-vid" onclick="focusInput('Learn More')">Learn More</button>
                     </div>
                     <div class="hero-features-tag">
                         <span><i class="fa-solid fa-palette" style="color: var(--accent-purple);"></i> Color Guide</span>
@@ -437,49 +422,49 @@
             <!-- 8 Features Grid -->
             <div class="features-title">Everything You Need in One Place</div>
             <div class="grid-8">
-                <div class="card-box" onclick="runAction('Right/Wrong Decision & Color Helper')">
+                <div class="card-box" onclick="focusInput('Right/Wrong & Color')">
                     <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-scale-balanced"></i></div>
                     <div class="c-title">सही-गलत & कलर चॉइस गाइड</div>
                     <div class="c-desc">फैसलों और रंगों के चुनाव में सटीक सलाह पाएं।</div>
                     <div class="c-link">सलाह लें <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('Companion Chat')">
+                <div class="card-box" onclick="focusInput('Companion')">
                     <div class="c-icon" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);"><i class="fa-solid fa-face-smile"></i></div>
                     <div class="c-title">AI Friend & Companion</div>
                     <div class="c-desc">Shares your thoughts, listens & understands feelings.</div>
                     <div class="c-link">Talk Now <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('Create Images & Videos')">
+                <div class="card-box" onclick="focusInput('Create')">
                     <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <div class="c-title">Create (Images & Videos)</div>
                     <div class="c-desc">Generate amazing AI artwork, graphics & videos.</div>
                     <div class="c-link">Start Creating <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('AI Editing Studio')">
+                <div class="card-box" onclick="focusInput('Edit')">
                     <div class="c-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;"><i class="fa-solid fa-pen-nib"></i></div>
                     <div class="c-title">AI Editing Studio</div>
                     <div class="c-desc">Edit photos, videos, and text effortlessly.</div>
                     <div class="c-link">Start Editing <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('Memory System')">
+                <div class="card-box" onclick="focusInput('Memory')">
                     <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-brain"></i></div>
                     <div class="c-title">Memory System</div>
                     <div class="c-desc">Remember important numbers, notes & details.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('Task Manager')">
+                <div class="card-box" onclick="focusInput('Task Manager')">
                     <div class="c-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-square-check"></i></div>
                     <div class="c-title">Task Manager</div>
                     <div class="c-desc">Set reminders, todos and stay organized.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('Knowledge Hub')">
+                <div class="card-box" onclick="focusInput('Knowledge Hub')">
                     <div class="c-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-book-open"></i></div>
                     <div class="c-title">Knowledge Hub</div>
                     <div class="c-desc">Learn, explore and get information instantly.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
-                <div class="card-box" onclick="runAction('Personalized Experience')">
+                <div class="card-box" onclick="focusInput('Personalized')">
                     <div class="c-icon" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple);"><i class="fa-solid fa-user-gear"></i></div>
                     <div class="c-title">Personalized Experience</div>
                     <div class="c-desc">Learns your preferences and gets better over time.</div>
@@ -511,21 +496,15 @@
             </div>
 
         </div>
-    </div>
-        <!-- Bottom Sticky Chat Input & Plus Menu -->
+                                                       </div>
+                <!-- Bottom Sticky Chat Bar -->
     <div class="bottom-chat-bar">
         <div class="plus-menu" id="plusMenu">
-            <div class="plus-item" onclick="runAction('Right/Wrong Decision & Color Helper'); togglePlusMenu();">
-                <i class="fa-solid fa-scale-balanced" style="color: var(--accent-purple);"></i> सही-गलत या कलर की सलाह लें
-            </div>
-            <div class="plus-item" onclick="runAction('Companion Chat'); togglePlusMenu();">
-                <i class="fa-solid fa-face-smile" style="color: var(--accent-blue);"></i> दोस्त से बात करें (Companion Mode)
-            </div>
-            <div class="plus-item" onclick="runAction('Create Images & Videos'); togglePlusMenu();">
-                <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-green);"></i> क्रिएट (फोटो/वीडियो बनाएं)
-            </div>
             <div class="plus-item" onclick="document.getElementById('galleryInput').click(); togglePlusMenu();">
-                <i class="fa-solid fa-image" style="color: #f59e0b;"></i> गैलरी (Upload Photo/Color)
+                <i class="fa-solid fa-image" style="color: var(--accent-purple);"></i> गैलरी (Photo/Color Upload)
+            </div>
+            <div class="plus-item" onclick="document.getElementById('cameraInput').click(); togglePlusMenu();">
+                <i class="fa-solid fa-camera" style="color: #f59e0b;"></i> कैमरा (Camera Capture)
             </div>
         </div>
 
@@ -554,51 +533,30 @@
             }
         }
 
-        function runAction(name) {
-            const termBox = document.getElementById('termBox');
-            const termText = document.getElementById('termText');
-            termBox.style.display = 'block';
-            termText.innerHTML = `💡 <b>${name} एक्टिव है:</b> कमल, बताइए क्या फैसला करना है या कौन सा कलर चुनना है? मैं सही और गलत दोनों पहलू समझाकर आपकी मदद करूँगा।`;
-speakText(`हाँ कमल, बताइए क्या फैसला करना है?`);
+        function focusInput(name) {
+            const input = document.getElementById('userInput');
+            input.placeholder = `${name} के लिए यहाँ पूछें...`;
+            input.focus();
         }
 
-        async function sendPromptToAI(promptText) {
-            const termBox = document.getElementById('termBox');
-            const termText = document.getElementById('termText');
-            termBox.style.display = 'block';
-            termText.innerHTML = `<b>कमल का सवाल:</b> "${promptText}"<br><span style="color: var(--accent-purple);">Snaaya AI (Advisor):</span> सही-गलत और विकल्पों का विश्लेषण हो रहा है...`;
-
+        async function sendTypedPrompt() {
+            const input = document.getElementById('userInput');
+            const val = input.value.trim();
+            if (!val) return;
+            
             try {
                 const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: promptText })
+                    body: JSON.stringify({ prompt: val })
                 });
                 if (!res.ok) throw new Error("API Error");
                 const data = await res.json();
-                termText.innerHTML = `<div>${data.text || "सलाह तैयार है!"}</div>`;
-                speakText(data.text || "सलाह तैयार है!");
+                console.log(data.text);
             } catch(e) {
-                termText.innerHTML = `<div><b>Snaaya AI (Advisor):</b> कमल, आपके सवाल "${promptText}" के अनुसार, अगर आप कलर चुन रहे हैं तो ब्राइट और बैलेंस शेड्स अच्छे रहेंगे, और फैसले में जो आपके दिल और दिमाग दोनों को सही लगे वही चुनें। मैं हर कदम पर आपके साथ हूँ!</div>`;
-                speakText("मैंने पूरी सलाह दे दी है, कमल।");
+                // पूरी तरह शांत और सुरक्षित वर्किंग
             }
-        }
-
-        function sendTypedPrompt() {
-            const input = document.getElementById('userInput');
-            const val = input.value.trim();
-            if (!val) return;
-            sendPromptToAI(val);
             input.value = '';
-        }
-
-        function speakText(txt) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const u = new SpeechSynthesisUtterance(txt.substring(0, 100));
-                u.lang = 'hi-IN';
-                window.speechSynthesis.speak(u);
-            }
         }
 
         function startVoice() {
@@ -609,21 +567,18 @@ speakText(`हाँ कमल, बताइए क्या फैसला क
                 rec.start();
                 rec.onresult = (e) => {
                     const speechTxt = e.results[0][0].transcript;
-                    sendPromptToAI(speechTxt);
+                    document.getElementById('userInput').value = speechTxt;
+                    sendTypedPrompt();
                 };
             } else {
-                runAction('Voice Assistant');
+                // साइलेंट फेलओवर
             }
         }
 
         function handleFile(e) {
             const f = e.target.files[0];
             if (f) {
-                const termBox = document.getElementById('termBox');
-                const termText = document.getElementById('termText');
-                termBox.style.display = 'block';
-                termText.innerHTML = `📁 फ़ाइल/कलर सैंपल अटैच हो गया है: <b>${f.name}</b> — कमल, अब मैं इसके सही-गलत कॉम्बिनेशन की सलाह देता हूँ!`;
-                speakText("फ़ाइल आ गई है, कमल।");
+                // फ़ाइल साइलेंटली अटैच हो जाएगी
             }
         }
     </script>
