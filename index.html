@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snaaya AI - Ultimate Master Edition</title>
+    <title>Snaaya AI - International Edition</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -278,15 +278,15 @@
             z-index: 1000;
         }
 
-        /* Responsive Media Queries (Mobile Perfect Scaling) */
+        /* Mobile Responsive Overrides */
         @media(max-width: 1024px) {
             .sidebar { display: none !important; }
-            .master-screen { padding: 10px !important; width: 100% !important; max-width: 100% !important; }
+            .master-screen { padding: 12px !important; width: 100% !important; max-width: 100% !important; }
             .workspace { width: 100% !important; padding: 0 !important; gap: 15px !important; }
             .grid-8 { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
             .hero-section { flex-direction: column !important; padding: 20px !important; text-align: center !important; }
             .hero-left { width: 100% !important; }
-            .hero-left h1 { font-size: 28px !important; }
+            .hero-left h1 { font-size: 30px !important; }
             .hero-action-btns { justify-content: center !important; flex-wrap: wrap !important; }
             .hero-features-tag { justify-content: center !important; flex-wrap: wrap !important; gap: 10px !important; }
             .talk-card { max-width: 100% !important; width: 100% !important; margin-top: 15px !important; }
@@ -302,7 +302,7 @@
     </style>
 </head>
 <body>
-    <div id="offlineBadge"><i class="fa-solid fa-wifi-slash"></i> ऑफ़लाइन मोड (Offline Mode)</div>
+    <div id="offlineBadge"><i class="fa-solid fa-wifi-slash"></i> ऑफ़लाइन मोड</div>
 
     <div class="master-screen" id="masterApp">
         
@@ -405,10 +405,10 @@
             <!-- 8 Features Grid Header -->
             <div class="features-header">
                 <div class="features-title">Everything You Need in One Place</div>
-                <div class="features-desc">From daily tasks to photo/video creation, Snaaya AI gives you the tools to stay organized and productive.</div>
+                <div class="features-desc">From daily tasks to photo/video creation, Snaaya AI gives you the tools to stay organized.</div>
             </div>
 
-            <!-- 8 Features Grid (Including Credit Hub & Photo/Video) -->
+            <!-- 8 Features Grid -->
             <div class="grid-8">
                 <div class="card-box feature-card" data-action="Credit Hub Photo & Video">
                     <div class="c-icon" style="background: rgba(34, 197, 94, 0.15); color: var(--accent-green);"><i class="fa-solid fa-coins"></i></div>
@@ -431,7 +431,7 @@
                 <div class="card-box feature-card" data-action="Memory System">
                     <div class="c-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-brain"></i></div>
                     <div class="c-title">Memory System</div>
-                    <div class="c-desc">Remember important things, like numbers, notes and more.</div>
+                    <div class="c-desc">Remember important things, like numbers, notes.</div>
                     <div class="c-link">Learn More <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></div>
                 </div>
                 <div class="card-box feature-card" data-action="Task Manager">
@@ -500,7 +500,7 @@
         }
         updateNetworkStatus();
 
-        // --- 2. Master Action Handler (सारे क्लिक्स के लिए मजबूत लॉजिक) ---
+        // --- 2. Master Action Handler ---
         function runAutoAction(actionName) {
             localStorage.setItem('snaaya_last_action', actionName);
             const sub = document.getElementById('statusSub');
@@ -513,7 +513,7 @@
             }
         }
 
-        // --- 3. Working Voice Assistant & Event Listeners Binding ---
+        // --- 3. Working Voice Assistant ---
         function startVoiceRecognition() {
             const statusSub = document.getElementById('statusSub');
             const micText = document.getElementById('micText');
@@ -565,9 +565,8 @@
             runAutoAction('Manual Input Mode');
         }
 
-        // --- 4. Robust Click Listeners (क्लिक कभी फेल नहीं होंगे) ---
+        // --- 4. Robust Click Event Listeners ---
         document.addEventListener('DOMContentLoaded', function() {
-            // सभी menu items, cards, और buttons जिन पर data-action है
             document.querySelectorAll('[data-action]').forEach(el => {
                 el.addEventListener('click', function() {
                     const action = this.getAttribute('data-action');
@@ -579,7 +578,6 @@
                 });
             });
 
-            // माइक बटन और इनपुट बॉक्स के लिए क्लिक बाइंडिंग
             const micBtn = document.getElementById('micBtn');
             if (micBtn) micBtn.addEventListener('click', startVoiceRecognition);
 
@@ -596,7 +594,7 @@
             if (getStartedBtn) getStartedBtn.addEventListener('click', startVoiceRecognition);
         });
 
-        // पेज लोड पर पिछला स्टेट रीस्टोर करना
+        // Restore Session State
         window.onload = function() {
             const last = localStorage.getItem('snaaya_last_action');
             if (last) {
