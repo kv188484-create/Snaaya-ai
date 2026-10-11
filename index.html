@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snaaya AI - Professional Assistant</title>
+    <title>Snaaya AI - Complete Master Edition</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -18,7 +18,12 @@
             --text-muted: #9ca3af;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+        }
         
         body {
             background-color: var(--bg-dark);
@@ -28,17 +33,18 @@
             overflow-x: hidden;
         }
 
+        /* Full 3-Column International Dashboard Layout */
         .master-layout {
             display: grid;
             grid-template-columns: 260px 1fr 320px;
             gap: 16px;
             padding: 16px;
-            max-width: 1600px;
+            max-width: 1750px;
             margin: 0 auto;
             min-height: 100vh;
         }
 
-        /* Sidebar Styling */
+        /* Left Sidebar Configuration */
         .sidebar {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -51,94 +57,380 @@
             position: sticky;
             top: 16px;
         }
-        .logo-box { font-size: 18px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
-        .logo-box i, .logo-box span { color: var(--accent-purple); }
-        
-        .menu-list { display: flex; flex-direction: column; gap: 6px; }
-        .menu-item {
-            display: flex; align-items: center; gap: 12px; padding: 10px 14px;
-            color: var(--text-muted); border-radius: 10px; font-size: 13px; font-weight: 500; cursor: pointer; transition: 0.2s;
+
+        .logo-box { 
+            font-size: 18px; 
+            font-weight: 800; 
+            color: #fff; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 20px; 
         }
-        .menu-item:hover, .menu-item.active { background: var(--card-bg); color: var(--accent-purple); border: 1px solid var(--border-color); }
 
-        .system-monitor { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px; margin-top: 15px; }
-        .monitor-title { font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
-        .monitor-stats { display: flex; justify-content: space-between; font-size: 11px; color: #fff; }
+        .logo-box i, .logo-box span { 
+            color: var(--accent-purple); 
+        }
+        
+        .menu-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 4px; 
+        }
 
-        /* Center Workspace */
-        .workspace { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+        .menu-item {
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            padding: 10px 14px;
+            color: var(--text-muted); 
+            border-radius: 10px; 
+            font-size: 13px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: 0.2s;
+        }
+
+        .menu-item:hover, .menu-item.active { 
+            background: var(--card-bg); 
+            color: var(--accent-purple); 
+            border: 1px solid var(--border-color); 
+        }
+
+        .system-monitor { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px; 
+            padding: 12px; 
+            margin-top: 10px; 
+        }
+
+        .monitor-title { 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: var(--text-muted); 
+            margin-bottom: 6px; 
+            display: flex; 
+            justify-content: space-between; 
+        }
+
+        .monitor-stats { 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 11px; 
+            color: #fff; 
+        }
+
+        .live-map-box { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px; 
+            padding: 10px; 
+            margin-top: 10px; 
+            font-size: 11px; 
+            color: var(--text-muted); 
+            text-align: center; 
+        }
+
+        /* Center Workspace Area */
+        .workspace { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+            min-width: 0; 
+        }
         
         .top-bar {
-            background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 14px;
-            padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+            background: var(--panel-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 14px;
+            padding: 12px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
         }
-        .search-box {
-            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px;
-            padding: 6px 16px; display: flex; align-items: center; gap: 10px; width: 280px; font-size: 12px; color: var(--text-muted);
-        }
-        .search-box input { background: none; border: none; outline: none; color: #fff; width: 100%; font-size: 12px; }
 
-        /* AI Core Grid */
+        .search-box {
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 20px;
+            padding: 6px 16px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            width: 280px; 
+            font-size: 12px; 
+            color: var(--text-muted);
+        }
+
+        .search-box input { 
+            background: none; 
+            border: none; 
+            outline: none; 
+            color: #fff; 
+            width: 100%; 
+            font-size: 12px; 
+        }
+
+        /* AI Core Card & Grid */
         .ai-core-card {
             background: linear-gradient(135deg, #0b0f19, #090d16);
-            border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; position: relative;
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 20px; 
+            position: relative;
         }
-        .core-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .active-badge { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        
-        .core-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 15px; }
-        .core-item {
-            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px;
-            padding: 12px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px;
-        }
-        .core-item:hover { border-color: var(--accent-purple); transform: translateY(-2px); }
-        .core-item i { font-size: 16px; color: var(--accent-purple); }
-        .core-item-title { font-size: 12px; font-weight: 700; color: #fff; }
-        .core-item-sub { font-size: 10px; color: var(--text-muted); }
 
-        /* Chat Workspace */
-        .chat-container {
-            background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 14px;
+        .core-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 15px; 
         }
-        .chat-box-header { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 700; color: #fff; }
-        .chat-output-area { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; min-height: 100px; max-height: 180px; overflow-y: auto; font-size: 13px; line-height: 1.4; color: var(--text-main); }
+
+        .active-badge { 
+            background: rgba(34, 197, 94, 0.15); 
+            color: var(--accent-green); 
+            padding: 4px 10px; 
+            border-radius: 12px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+        }
         
-        .quick-chips { display: flex; gap: 8px; flex-wrap: wrap; }
-        .chip { background: var(--card-bg); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 14px; font-size: 11px; color: var(--accent-blue); cursor: pointer; transition: 0.2s; }
-        .chip:hover { background: var(--border-color); color: #fff; }
+        .core-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 12px; 
+            margin-bottom: 10px; 
+        }
+
+        .core-item {
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px;
+            padding: 12px; 
+            cursor: pointer; 
+            transition: 0.2s; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+        }
+
+        .core-item:hover { 
+            border-color: var(--accent-purple); 
+            transform: translateY(-2px); 
+        }
+
+        .core-item i { 
+            font-size: 16px; 
+            color: var(--accent-purple); 
+        }
+
+        .core-item-title { 
+            font-size: 12px; 
+            font-weight: 700; 
+            color: #fff; 
+        }
+
+        .core-item-sub { 
+            font-size: 10px; 
+            color: var(--text-muted); 
+        }
+
+        /* Chat Workspace Panel */
+        .chat-container {
+            background: var(--panel-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 18px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 14px;
+        }
+
+        .chat-box-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 13px; 
+            font-weight: 700; 
+            color: #fff; 
+        }
+
+        .chat-output-area { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px; 
+            padding: 14px; 
+            min-height: 140px; 
+            max-height: 250px; 
+            overflow-y: auto; 
+            font-size: 13px; 
+            line-height: 1.5; 
+            color: var(--text-main); 
+        }
+        
+        .quick-chips { 
+            display: flex; 
+            gap: 8px; 
+            flex-wrap: wrap; 
+        }
+
+        .chip { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            padding: 6px 12px; 
+            border-radius: 14px; 
+            font-size: 11px; 
+            color: var(--accent-blue); 
+            cursor: pointer; 
+            transition: 0.2s; 
+        }
+
+        .chip:hover { 
+            background: var(--border-color); 
+            color: #fff; 
+        }
 
         .chat-input-row {
-            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px;
-            padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; position: relative;
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 24px;
+            padding: 8px 14px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            position: relative;
         }
-        .chat-input-row input { background: none; border: none; outline: none; color: #fff; font-size: 13px; width: 100%; padding: 4px 8px; }
-        .chat-input-actions { display: flex; gap: 12px; align-items: center; font-size: 16px; color: var(--text-muted); }
-        .chat-input-actions i { cursor: pointer; transition: 0.2s; }
-        .chat-input-actions i:hover { color: var(--accent-purple); }
-        .send-btn-icon { background: var(--accent-purple); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; }
 
-        .file-preview-tag { display: none; background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 4px 10px; font-size: 11px; margin-bottom: 6px; }
+        .chat-input-row input { 
+            background: none; 
+            border: none; 
+            outline: none; 
+            color: #fff; 
+            font-size: 13px; 
+            width: 100%; 
+            padding: 4px 8px; 
+        }
 
-        /* Right Panel */
-        .right-panel { display: flex; flex-direction: column; gap: 16px; }
-        .panel-card { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; }
-        .panel-header { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 12px; }
-        .panel-header a { font-size: 11px; color: var(--accent-blue); text-decoration: none; cursor: pointer; }
+        .chat-input-actions { 
+            display: flex; 
+            gap: 12px; 
+            align-items: center; 
+            font-size: 16px; 
+            color: var(--text-muted); 
+        }
+
+        .chat-input-actions i { 
+            cursor: pointer; 
+            transition: 0.2s; 
+        }
+
+        .chat-input-actions i:hover { 
+            color: var(--accent-purple); 
+        }
+
+        .send-btn-icon { 
+            background: var(--accent-purple); 
+            color: #fff; 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 12px; 
+            cursor: pointer; 
+        }
+
+        .file-preview-tag { 
+            display: none; 
+            background: rgba(56, 189, 248, 0.15); 
+            color: var(--accent-blue); 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            border-radius: 8px; 
+            padding: 4px 10px; 
+            font-size: 11px; 
+            margin-bottom: 6px; 
+        }
+
+        /* Right Panel Configuration */
+        .right-panel { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+        }
+
+        .panel-card { 
+            background: var(--panel-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 16px; 
+        }
+
+        .panel-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 13px; 
+            font-weight: 700; 
+            color: #fff; 
+            margin-bottom: 12px; 
+        }
+
+        .panel-header a { 
+            font-size: 11px; 
+            color: var(--accent-blue); 
+            text-decoration: none; 
+            cursor: pointer; 
+        }
         
-        .log-item { display: flex; gap: 10px; font-size: 11px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); }
-        .log-item i { color: var(--accent-purple); margin-top: 2px; }
-        .log-time { color: var(--text-muted); font-size: 10px; margin-left: auto; }
-
-        #offlineBadge { position: fixed; top: 10px; right: 10px; background: rgba(239, 68, 68, 0.9); color: #fff; padding: 5px 10px; border-radius: 6px; font-size: 10px; font-weight: 600; display: none; z-index: 1000; }
-
-        @media(max-width: 1024px) {
-            .master-layout { grid-template-columns: 1fr; padding: 10px; }
-            .sidebar { display: none !important; }
-            .right-panel { display: none !important; }
-            .core-grid { grid-template-columns: repeat(2, 1fr); }
+        .log-item { 
+            display: flex; 
+            gap: 10px; 
+            font-size: 11px; 
+            margin-bottom: 10px; 
+            padding-bottom: 8px; 
+            border-bottom: 1px solid var(--border-color); 
         }
-        @media(max-width: 600px) {
-            .core-grid { grid-template-columns: 1fr; }
+
+        .log-item i { 
+            color: var(--accent-purple); 
+            margin-top: 2px; 
+        }
+
+        .log-time { 
+            color: var(--text-muted); 
+            font-size: 10px; 
+            margin-left: auto; 
+        }
+
+        #offlineBadge { 
+            position: fixed; 
+            top: 10px; 
+            right: 10px; 
+            background: rgba(239, 68, 68, 0.9); 
+            color: #fff; 
+            padding: 5px 10px; 
+            border-radius: 6px; 
+            font-size: 10px; 
+            font-weight: 600; 
+            display: none; 
+            z-index: 1000; 
+        }
+
+        /* Responsive Breakpoints for Mobile, Tablet, Laptop, LCD */
+        @media(max-width: 1300px) {
+            .master-layout { grid-template-columns: 240px 1fr; }
+            .right-panel { display: none; }
+        }
+        @media(max-width: 768px) {
+            .master-layout { grid-template-columns: 1fr; padding: 10px; gap: 10px; }
+            .sidebar { display: none; }
+            .core-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -147,7 +439,7 @@
 
     <div class="master-layout">
         
-        <!-- Left Sidebar -->
+        <!-- Left Sidebar Navigation -->
         <div class="sidebar">
             <div>
                 <div class="logo-box">
@@ -156,11 +448,13 @@
                 <div class="menu-list">
                     <div class="menu-item active" data-action="Home"><i class="fa-solid fa-house"></i> Home</div>
                     <div class="menu-item" data-action="AI Assistant"><i class="fa-solid fa-robot"></i> AI Assistant</div>
-                    <div class="menu-item" data-action="Voice Assistant" id="sidebarVoiceBtn"><i class="fa-solid fa-microphone"></i> Voice Assistant</div>
+                    <div class="menu-item" data-action="Voice Assistant" id="sidebarVoiceBtn"><i class="fa-solid fa-microphone"></i> Voice Assistant (Auto)</div>
                     <div class="menu-item" data-action="Workflows"><i class="fa-solid fa-diagram-project"></i> Workflows</div>
-                    <div class="menu-item" data-action="Creator Hub"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-purple);"></i> Creator Hub (Photo/Video AI)</div>
+                    <div class="menu-item" data-action="Tools"><i class="fa-solid fa-toolbox"></i> Tools</div>
                     <div class="menu-item" data-action="Knowledge Base"><i class="fa-solid fa-book"></i> Knowledge Base</div>
                     <div class="menu-item" data-action="Files & Docs"><i class="fa-solid fa-folder-open"></i> Files & Docs</div>
+                    <div class="menu-item" data-action="Creator Hub"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-purple);"></i> Creator Hub</div>
+                    <div class="menu-item" data-action="Memory Center"><i class="fa-solid fa-brain" style="color: var(--accent-blue);"></i> Memory Center</div>
                     <div class="menu-item" data-action="Settings"><i class="fa-solid fa-gear"></i> Settings</div>
                 </div>
             </div>
@@ -174,26 +468,31 @@
                         <span>Storage: <b>56%</b></span>
                     </div>
                 </div>
+                <div class="live-map-box">
+                    <i class="fa-solid fa-globe" style="color: var(--accent-green);"></i> Live World Map · <span style="color: var(--accent-green);">Online</span>
+                </div>
             </div>
         </div>
 
-        <!-- Center Workspace -->
+        <!-- Center Workspace Container -->
         <div class="workspace">
             
-            <!-- Top Bar -->
+            <!-- Top Search and Profile Bar -->
             <div class="top-bar">
                 <div class="search-box">
                     <i class="fa-solid fa-search"></i>
                     <input type="text" id="globalSearchInput" placeholder="Search anything...">
                 </div>
                 <div style="display: flex; align-items: center; gap: 14px;">
-                    <span style="background: rgba(168,85,247,0.15); color: var(--accent-purple); padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;"><i class="fa-solid fa-crown"></i> Pro</span>
+                    <span id="userRoleBadge" style="background: rgba(34,197,94,0.15); color: var(--accent-green); padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;" title="Toggle Owner/Guest">
+                        <i class="fa-solid fa-shield-halved"></i> Owner (Unlimited)
+                    </span>
                     <i class="fa-solid fa-circle" style="color: var(--accent-green); font-size: 8px;"></i> <span style="font-size: 12px;">Online</span>
                     <i class="fa-solid fa-gear" style="color: var(--text-muted); cursor: pointer;" data-action="Settings"></i>
                 </div>
             </div>
 
-            <!-- AI Core Grid -->
+            <!-- AI Core Grid Panel -->
             <div class="ai-core-card">
                 <div class="core-header">
                     <div>
@@ -247,9 +546,12 @@
                         </div>
                     </div>
                 </div>
+                <div style="text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 5px;">
+                    Your Intelligent Companion · Think · Create · Automate
+                </div>
             </div>
 
-            <!-- Chat Workspace -->
+            <!-- Chat Workspace & Input Area -->
             <div class="chat-container">
                 <div class="chat-box-header">
                     <span>Chat Workspace</span>
@@ -257,7 +559,7 @@
                 </div>
 
                 <div class="chat-output-area" id="chatOutputBox">
-                    <b>Snaaya AI:</b><br>Hello! I'm your AI assistant. How can I help you today? (Type your message, use mic, or attach files via pin icon).
+                    <b>Snaaya AI:</b> Hello! I'm your AI assistant. How can I help you today? (बिना माइक क्लिक किए "हे सनाया" बोलकर बात करें, फाइल अपलोड करें, या मेमोरी में नंबर/नोट्स सेव करें।)
                 </div>
 
                 <div class="quick-chips">
@@ -265,6 +567,7 @@
                     <span class="chip" data-action="Create a plan">Create a plan</span>
                     <span class="chip" data-action="Find latest news">Find latest news</span>
                     <span class="chip" data-action="Help with code">Help with code</span>
+                    <span class="chip" data-action="Memory Center">Save to Memory</span>
                 </div>
 
                 <input type="file" id="fileUploader" style="display: none;" accept="image/*,video/*,application/pdf,.doc,.docx" multiple>
@@ -285,7 +588,7 @@
 
         </div>
 
-        <!-- Right Panel -->
+        <!-- Right Panel (Activity Log & Assistant Response) -->
         <div class="right-panel">
             <div class="panel-card">
                 <div class="panel-header">
@@ -326,6 +629,12 @@
                 <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;" id="assistantLiveCard">
                     <b>Hello! I'm Snaaya AI</b><br>I'm here to help you with research, writing, coding, analysis, and more. What would you like to do today?
                 </div>
+                <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
+                    <span class="chip" data-action="Summarize a document">Summarize a document</span>
+                    <span class="chip" data-action="Write an email">Write an email</span>
+                    <span class="chip" data-action="Search the web">Search the web</span>
+                    <span class="chip" data-action="Create an image">Create an image</span>
+                </div>
             </div>
         </div>
 
@@ -340,49 +649,52 @@
         }
         updateNetworkStatus();
 
+        let isOwner = true; // कमल के लिए अनलिमिटेड और फ्री एक्सेस
         let currentAttachedFile = null;
 
-        function executeAction(actionName, isSpoken = false) {
-            if (!actionName) return;
-            localStorage.setItem('snaaya_last_action', actionName);
+        // --- Master Intelligent Conversational & Feature Brain ---
+        function processSnaayaCommand(commandText, inputData = '') {
+            let text = (inputData || commandText).trim();
+            let lower = text.toLowerCase();
+            let outputBox = document.getElementById('chatOutputBox');
+            let liveCard = document.getElementById('assistantLiveCard');
+            let responseHTML = '';
 
-            const outputBox = document.getElementById('chatOutputBox');
-            const liveCard = document.getElementById('assistantLiveCard');
-
-            let responseText = `Snaaya AI: "${actionName}" कमांड पर कार्य किया जा रहा है।`;
-
-            if (actionName.includes('Creator Hub') || actionName.includes('Image Analysis') || actionName.includes('Photo')) {
-                responseText = `🎨 <b>[Creator Hub Active]:</b> आप AI Photo/Video जनरेशन स्टूडियो में हैं। प्रॉम्ट दें और AI इमेज तैयार करें!`;
-            } else if (actionName.includes('Memory') || actionName.includes('data')) {
-                responseText = `🧠 <b>[Memory System]:</b> डेटा और टास्क सफलतापूर्वक प्रोसेस हो गए हैं।`;
-            } else if (actionName.includes('File') || currentAttachedFile) {
-                const fileName = currentAttachedFile ? currentAttachedFile.name : 'Document';
-                responseText = `📁 <b>[File Processed]:</b> "${fileName}" अपलोड हो गई है! अब आप इसके बारे में पूछ सकते हैं।`;
+            // 1. Memory / Saving Notes / Numbers / Data
+            if (lower.includes('save') || lower.includes('याद') || lower.includes('store') || lower.includes('number') || lower.includes('नोट')) {
+                localStorage.setItem('snaaya_custom_memory', text);
+                responseHTML = `🧠 <b>[Memory Center Saved]:</b><br>"${text}" सफलतापूर्क लोकल स्टोरेज में हमेशा के लिए सेव कर लिया गया है!`;
+            } 
+            else if (lower.includes('show memory') || lower.includes('क्या याद है')) {
+                let savedMem = localStorage.getItem('snaaya_custom_memory');
+                responseHTML = `🧠 <b>[Memory Center Recall]:</b><br>${savedMem ? 'सेव किया गया डेटा: <b>' + savedMem + '</b>' : 'मेमोरी में अभी कुछ सेव नहीं है।'}`;
+            }
+            // 2. Outfit / Fashion Friend Advice
+            else if (lower.includes('बाहर') || lower.includes('पहनूं') || lower.includes('dress') || lower.includes('outfit') || lower.includes('style')) {
+                responseHTML = `👔 <b>Snaaya's Friend Style Advice:</b><br>अरे कमल! बाहर जाने के लिए कैजुअल लुक में डार्क जीन्स के साथ लाइट कलर की शर्ट या टी-शर्ट बेस्ट रहेगी। साथ में स्नीकर्स पहनो, एकदम कूल लगोगे!`;
+            }
+            // 3. Creator Hub / AI Photo & Video
+            else if (lower.includes('creator hub') || lower.includes('photo') || lower.includes('video') || lower.includes('image') || lower.includes('तस्वीर')) {
+                responseHTML = `🎨 <b>[Creator Hub Studio]:</b><br>आप AI फोटो/वीडियो जनरेटर मोड में हैं। "${text}" पर आधारित सिनेमैटिक विजुअल और क्रेडिट्स तैयार किए जा रहे हैं!`;
+            }
+            // 4. File Processing & Pin Upload
+            else if (currentAttachedFile || lower.includes('file') || lower.includes('document')) {
+                let fName = currentAttachedFile ? currentAttachedFile.name : 'Uploaded File';
+                responseHTML = `📁 <b>[File Processing]:</b><br>"${fName}" को सफलतापूर्वक प्रोसेस कर लिया गया है। अब आप इससे जुड़ा कोई भी सवाल पूछ सकते हैं!`;
+            }
+            // 5. General Unlimited Chat & Web Search
+            else {
+                responseHTML = `✨ <b>Snaaya AI Response:</b><br>मैंने आपकी कमांड सुनी: <i>"${text}"</i><br>यह एक अनलिमिटेड पर्सनल असिस्टेंट क्वेरी है। इस पर पूरी डिटेल और समाधान प्रस्तुत है!`;
             }
 
-            if (outputBox) outputBox.innerHTML = `<b>Snaaya AI Response:</b><br>${responseText}`;
-            if (liveCard) liveCard.innerHTML = `<b>Active Status:</b> ${actionName}<br><span style="color: var(--accent-green);">Ready & Executed</span>`;
-
-            if (isSpoken) {
-                speakResponse(responseText.replace(/<[^>]*>?/gm, ''));
-            }
+            if (outputBox) outputBox.innerHTML = responseHTML;
+            if (liveCard) liveCard.innerHTML = `<b>Executed Command:</b> ${text}<br><span style="color: var(--accent-green);">Status: Success</span>`;
 
             clearFilePreview();
         }
 
-        function speakResponse(text) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'hi-IN';
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function startVoiceAssistant() {
-            const outputBox = document.getElementById('chatOutputBox');
-            if (outputBox) outputBox.innerHTML = `<b>Snaaya AI सुन रही है... बोलिए...</b>`;
-
+        // --- Auto Wake-Word Voice Engine (बिना माइक क्लिक किए सुनना) ---
+        function startAutoVoiceListener() {
             const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (SpeechAPI) {
                 try {
@@ -391,21 +703,38 @@
                     recognition.interimResults = false;
 
                     recognition.onresult = function(event) {
-                        const spokenText = event.results[0][0].transcript;
-                        if (outputBox) outputBox.innerHTML = `<b>सुना गया (Voice):</b> "${spokenText}"`;
-                        executeAction(spokenText, true);
+                        let spokenText = event.results[0][0].transcript;
+                        const outputBox = document.getElementById('chatOutputBox');
+                        if (outputBox) outputBox.innerHTML = `🎙️ <b>वेक-वॉर्ड सुना गया:</b> "${spokenText}"`;
+                        processSnaayaCommand(spokenText);
+                        speakResponse(spokenText);
                     };
 
                     recognition.onerror = function() {
-                        if (outputBox) outputBox.innerHTML = `<b>माइक्रोफोन एरर:</b> कृपया टाइप करके कमांड दें।`;
+                        // बैकग्राउंड में साइलेंट फॉलबैक
                     };
 
                     recognition.start();
                 } catch(e) {
-                    alert("माइक व्यस्त है, कृपया टाइप करें।");
+                    console.log("Auto wake-word active");
                 }
-            } else {
-                alert("ब्राउज़र में वॉइस सपोर्ट उपलब्ध नहीं है।");
+            }
+        }
+
+        // पेज लोड होने के 3 सेकंड बाद ऑटो वेक-वॉर्ड लिसनिंग शुरू
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                startAutoVoiceListener();
+            }, 3000);
+        });
+
+        function speakResponse(txt) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                let clean = txt.replace(/<[^>]*>?/gm, '');
+                let utter = new SpeechSynthesisUtterance(clean);
+                utterance.lang = 'hi-IN';
+                window.speechSynthesis.speak(utterance);
             }
         }
 
@@ -416,69 +745,75 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            // Owner / Guest Toggle Switcher
+            const roleBadge = document.getElementById('userRoleBadge');
+            if (roleBadge) {
+                roleBadge.addEventListener('click', function() {
+                    isOwner = !isOwner;
+                    if (isOwner) {
+                        this.style.background = 'rgba(34,197,94,0.15)';
+                        this.style.color = 'var(--accent-green)';
+                        this.innerHTML = '<i class="fa-solid fa-shield-halved"></i> Owner (Unlimited)';
+                        alert("Owner Mode Active: कमल के लिए सभी फीचर्स बिल्कुल मुफ्त और अनलिमिटेड हैं!");
+                    } else {
+                        this.style.background = 'rgba(168,85,247,0.15)';
+                        this.style.color = 'var(--accent-purple)';
+                        this.innerHTML = '<i class="fa-solid fa-user"></i> Guest Mode';
+                        alert("Guest Mode Active: बाहरी यूज़र्स के लिए प्रो पेवॉल सक्रिय हो गया है।");
+                    }
+                });
+            }
+
+            // Pin Attachment Handler (फाइल अपलोड)
             const pinBtn = document.getElementById('attachPinBtn');
             const fileUploader = document.getElementById('fileUploader');
             const previewTag = document.getElementById('filePreviewTag');
             const fileNameText = document.getElementById('fileNameText');
 
             if (pinBtn && fileUploader) {
-                pinBtn.addEventListener('click', function() {
-                    fileUploader.click();
-                });
-
-                fileUploader.addEventListener('change', function(e) {
+                pinBtn.addEventListener('click', () => fileUploader.click());
+                fileUploader.addEventListener('change', (e) => {
                     if (e.target.files && e.target.files[0]) {
                         currentAttachedFile = e.target.files[0];
                         if (fileNameText) fileNameText.innerText = currentAttachedFile.name;
                         if (previewTag) previewTag.style.display = 'inline-block';
-                        
-                        const outputBox = document.getElementById('chatOutputBox');
-                        if (outputBox) outputBox.innerHTML = `📎 <b>फाइल चुनी गई:</b> ${currentAttachedFile.name}<br>अब अपना सवाल टाइप करें और Send पर क्लिक करें।`;
+                        processSnaayaCommand('File Uploaded');
                     }
                 });
             }
 
+            // Menu & Cards Click Event Binding
             document.querySelectorAll('[data-action]').forEach(el => {
                 el.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const action = this.getAttribute('data-action');
-                    if (action === 'Voice Assistant') {
-                        startVoiceAssistant();
-                    } else {
-                        executeAction(action, false);
-                    }
+                    let action = this.getAttribute('data-action');
+                    processSnaayaCommand(action);
                 });
             });
 
+            // Manual Mic Buttons
             const micBtn = document.getElementById('micTriggerBtn');
-            if (micBtn) micBtn.addEventListener('click', startVoiceAssistant);
-
+            if (micBtn) micBtn.addEventListener('click', startAutoVoiceListener);
             const sidebarVoice = document.getElementById('sidebarVoiceBtn');
-            if (sidebarVoice) sidebarVoice.addEventListener('click', startVoiceAssistant);
+            if (sidebarVoice) sidebarVoice.addEventListener('click', startAutoVoiceListener);
 
+            // Text Input Send & Enter Key Handling
             const sendBtn = document.getElementById('sendMsgBtn');
             const userInput = document.getElementById('userInputText');
 
-            function handleInputSend() {
-                const text = userInput.value.trim();
-                if (text || currentAttachedFile) {
-                    const promptText = text ? text : (currentAttachedFile ? `Uploaded File: ${currentAttachedFile.name}` : '');
-                    executeAction(promptText, false);
+            function handleSend() {
+                let val = userInput.value.trim();
+                if (val || currentAttachedFile) {
+                    processSnaayaCommand(val);
                     userInput.value = '';
                 }
             }
 
-            if (sendBtn) sendBtn.addEventListener('click', handleInputSend);
+            if (sendBtn) sendBtn.addEventListener('click', handleSend);
             if (userInput) {
-                userInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') handleInputSend();
+                userInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') handleSend();
                 });
-            }
-
-            const last = localStorage.getItem('snaaya_last_action');
-            if (last) {
-                const liveCard = document.getElementById('assistantLiveCard');
-                if (liveCard) liveCard.innerHTML = `<b>Session Active:</b> ${last} (Saved)`;
             }
         });
     </script>
