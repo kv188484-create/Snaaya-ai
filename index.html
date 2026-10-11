@@ -411,8 +411,163 @@
                 } catch(e) {
                     console.log("Mic active");
                 }
+    <script>
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        function updateNetworkStatus() {
+            const badge = document.getElementById('offlineBadge');
+            if (badge) badge.style.display = navigator.onLine ? 'none' : 'block';
+        }
+        updateNetworkStatus();
+
+        let isOwner = true;
+        let currentAttachedFile = null;
+        let isAutoListening = true;
+
+        // --- Core Command Processor ---
+        function openFeatureUI(actionType, isVoiceInput = false) {
+            let lower = actionType.toLowerCase();
+            let outputBox = document.getElementById('chatOutputBox');
+            let liveCard = document.getElementById('assistantLiveCard');
+            let replyText = '';
+
+            if (lower.includes('image analysis') || lower.includes('creator hub') || lower.includes('create an image') || lower.includes('photo')) {
+                replyText = "AI Photo aur Video Studio active hai. Apna prompt enter karein.";
+                outputBox.innerHTML = `
+                    <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid var(--accent-purple); padding: 12px; border-radius: 12px;">
+                        <b style="color: var(--accent-purple); font-size: 14px;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Photo & Video Studio</b>
+                        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px 0;">Apna prompt likhein ya bolein:</p>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="imagePromptInput" placeholder="Jaise: A cinematic portrait..." style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border-color); color: #fff; padding: 8px; border-radius: 8px; font-size: 12px; outline: none;">
+                            <button onclick="generateAIImage()" style="background: var(--accent-purple); color: #fff; border: none; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer;">Generate</button>
+                        </div>
+                        <div id="imageResultBox" style="margin-top: 10px; font-size: 11px; color: var(--accent-blue);"></div>
+                    </div>
+                `;
+            }
+            else if (lower.includes('text analysis') || lower.includes('understand') || lower.includes('code')) {
+                replyText = "Text aur Code Processing Studio active hai.";
+                outputBox.innerHTML = `
+                    <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-blue); padding: 12px; border-radius: 12px;">
+                        <b style="color: var(--accent-blue); font-size: 14px;"><i class="fa-solid fa-code"></i> Text & Code Studio</b>
+                        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px 0;">Apna code ya question yahan likhein:</p>
+                        <textarea id="codeAnalysisInput" rows="3" placeholder="Code yahan paste karein..." style="width: 100%; background: var(--panel-bg); border: 1px solid var(--border-color); color: #fff; padding: 8px; border-radius: 8px; font-size: 11px; outline: none; resize: none;"></textarea>
+                        <button onclick="runTextAnalysis()" style="margin-top: 8px; background: var(--accent-blue); color: #000; border: none; padding: 6px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer;">Analyze Now</button>
+                        <div id="analysisResultBox" style="margin-top: 8px; font-size: 11px; color: var(--text-main);"></div>
+                    </div>
+                `;
+            }
+            else if (lower.includes('memory center') || lower.includes('save to memory') || lower.includes('save') || lower.includes('yaad')) {
+                let savedData = localStorage.getItem('snaaya_custom_memory') || 'Koi memory saved nahi hai.';
+                if(actionType.includes('save') && actionType !== 'Memory Center') {
+                    localStorage.setItem('snaaya_custom_memory', actionType);
+                    savedData = actionType;
+                }
+                replyText = "Memory Center me data update ho gaya hai.";
+                outputBox.innerHTML = `
+                    <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid var(--accent-green); padding: 12px; border-radius: 12px;">
+                        <b style="color: var(--accent-green); font-size: 14px;"><i class="fa-solid fa-brain"></i> Memory Center</b>
+                        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px 0;">Saved Memory:</p>
+                        <div style="background: var(--panel-bg); padding: 8px; border-radius: 6px; font-size: 12px; color: #fff; margin-bottom: 8px;">${savedData}</div>
+                        <input type="text" id="memorySaveInput" placeholder="Naya number ya note likhein..." style="width: 100%; background: var(--panel-bg); border: 1px solid var(--border-color); color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 11px; outline: none; margin-bottom: 6px;">
+                        <button onclick="saveNewMemory()" style="background: var(--accent-green); color: #000; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">Save Data</button>
+                    </div>
+                `;
+            }
+            else if (lower.includes('bahar') || lower.includes('pahanu') || lower.includes('dress') || lower.includes('outfit')) {
+                replyText = "Kamal, aaj dark jeans aur light shirt ke sath white sneakers pahno, look best lagega!";
+                outputBox.innerHTML = `👔 <b>Snaaya's Friend Style Advice:</b><br>${replyText}`;
+            }
+            else {
+                replyText = `Snaaya AI ne aapka command receive kar liya hai: ${actionType}`;
+                outputBox.innerHTML = `<b>Snaaya AI:</b> "${actionType}" command execute ho gayi hai.`;
+            }
+
+            if (liveCard) liveCard.innerHTML = `<b>Active Command:</b> ${actionType}<br><span style="color: var(--accent-green);">${isVoiceInput ? 'Voice Mode' : 'Type Mode'} Active</span>`;
+
+            // Agar Voice se input aaya hai, tabhi AI bolegi
+            if (isVoiceInput && replyText) {
+                speakAudioResponse(replyText);
+            }
+
+            clearFilePreview();
+        }
+
+        // --- Speech Synthesis Helper (Only for Voice Input) ---
+        function speakAudioResponse(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                let cleanText = text.replace(/<[^>]*>?/gm, '');
+                let utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.lang = 'hi-IN';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function generateAIImage() {
+            let val = document.getElementById('imagePromptInput').value.trim();
+            let res = document.getElementById('imageResultBox');
+            if(val) {
+                res.innerHTML = `✨ <i>"${val}"</i> par AI image process ho rahi hai...`;
             } else {
-                alert("ब्राउज़र में वॉइस सपोर्ट उपलब्ध नहीं है।");
+                alert("Pehle prompt likhein!");
+            }
+        }
+
+        function runTextAnalysis() {
+            let val = document.getElementById('codeAnalysisInput').value.trim();
+            let res = document.getElementById('analysisResultBox');
+            if(val) {
+                res.innerHTML = `⚡ <b>Analysis Result:</b> Command successful!`;
+            } else {
+                alert("Pehle text dalein!");
+            }
+        }
+
+        function saveNewMemory() {
+            let val = document.getElementById('memorySaveInput').value.trim();
+            if(val) {
+                localStorage.setItem('snaaya_custom_memory', val);
+                alert("Memory save ho gayi!");
+                openFeatureUI('Memory Center', false);
+            }
+        }
+
+        // --- Silent Auto Voice Engine ---
+        function initContinuousVoice() {
+            const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechAPI) {
+                try {
+                    const recognition = new SpeechAPI();
+                    recognition.lang = 'hi-IN';
+                    recognition.continuous = true;
+                    recognition.interimResults = false;
+
+                    recognition.onresult = function(event) {
+                        let spokenText = event.results[event.results.length - 1][0].transcript.trim();
+                        const outputBox = document.getElementById('chatOutputBox');
+                        if (outputBox) outputBox.innerHTML = `🎙️ <b>Aawaz Suni Gayi:</b> "${spokenText}"`;
+                        // Voice input ke liye isVoiceInput = true pass hoga
+                        openFeatureUI(spokenText, true);
+                    };
+
+                    recognition.onerror = function(e) {
+                        if (isAutoListening) {
+                            setTimeout(() => { try { recognition.start(); } catch(err){} }, 1000);
+                        }
+                    };
+
+                    recognition.onend = function() {
+                        if (isAutoListening) {
+                            setTimeout(() => { try { recognition.start(); } catch(err){} }, 500);
+                        }
+                    };
+
+                    recognition.start();
+                } catch(e) {
+                    console.log("Auto Voice Active");
+                }
             }
         }
 
@@ -423,6 +578,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            initContinuousVoice();
+
             const roleBadge = document.getElementById('userRoleBadge');
             if (roleBadge) {
                 roleBadge.addEventListener('click', function() {
@@ -431,12 +588,10 @@
                         this.style.background = 'rgba(34,197,94,0.15)';
                         this.style.color = 'var(--accent-green)';
                         this.innerHTML = '<i class="fa-solid fa-shield-halved"></i> Owner (Unlimited)';
-                        alert("Owner Mode: कमल के लिए सब कुछ फ्री और अनलिमिटेड है!");
                     } else {
                         this.style.background = 'rgba(168,85,247,0.15)';
                         this.style.color = 'var(--accent-purple)';
                         this.innerHTML = '<i class="fa-solid fa-user"></i> Guest Mode';
-                        alert("Guest Mode: बाहरी यूज़र्स के लिए प्रो पेवॉल एक्टिव है।");
                     }
                 });
             }
@@ -453,7 +608,7 @@
                         currentAttachedFile = e.target.files[0];
                         if (fileNameText) fileNameText.innerText = currentAttachedFile.name;
                         if (previewTag) previewTag.style.display = 'inline-block';
-                        processSnaayaCommand('File Processing');
+                        document.getElementById('chatOutputBox').innerHTML = `📁 <b>File Attached:</b> "${currentAttachedFile.name}"`;
                     }
                 });
             }
@@ -462,11 +617,7 @@
                 el.addEventListener('click', function(e) {
                     e.stopPropagation();
                     let action = this.getAttribute('data-action');
-                    if(action === 'Voice Assistant') {
-                        startVoiceListener();
-                    } else {
-                        processSnaayaCommand(action);
-                    }
+                    openFeatureUI(action, false);
                 });
             });
 
@@ -474,15 +625,10 @@
                 item.addEventListener('click', function() {
                     let titleEl = this.querySelector('.core-item-title');
                     if (titleEl) {
-                        processSnaayaCommand(titleEl.innerText);
+                        openFeatureUI(titleEl.innerText, false);
                     }
                 });
             });
-
-            const micBtn = document.getElementById('micTriggerBtn');
-            if (micBtn) micBtn.addEventListener('click', startVoiceListener);
-            const sidebarVoice = document.getElementById('sidebarVoiceBtn');
-            if (sidebarVoice) sidebarVoice.addEventListener('click', startVoiceListener);
 
             const sendBtn = document.getElementById('sendMsgBtn');
             const userInput = document.getElementById('userInputText');
@@ -490,7 +636,8 @@
             function handleSend() {
                 let val = userInput.value.trim();
                 if (val || currentAttachedFile) {
-                    processSnaayaCommand('Chat Input', val);
+                    // Typing input ke liye isVoiceInput = false pass hoga
+                    openFeatureUI(val, false);
                     userInput.value = '';
                 }
             }
@@ -503,5 +650,4 @@
             }
         });
     </script>
-</body>
-</html>
+    
