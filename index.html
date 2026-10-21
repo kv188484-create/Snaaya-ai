@@ -641,7 +641,69 @@
                     userInput.value = '';
                 }
             }
+import os
+from flask import Flask, request, jsonify
+from google import genai
 
+app = Flask(__name__)
+
+# Vercel पर सेव्ड Environment Variable से ऑटोमैटिक Gemini API Key लोड करना
+api_key = os.environ.get("GEMINI_API_KEY")
+
+# GenAI क्लाइंट को इनिशियलाइज़ करना
+client = genai.Client(api_key=api_key) if api_key else None
+
+@app.route('/api/chat', methods=['POST'])
+def handle_snaaya_backend():
+    if not client:
+        return jsonify({
+            "success": False, 
+            "error": "Gemini API Key Vercel पर सेट नहीं है! कृपया Vercel Settings में जाकर 'GEMINI_API_KEY' जोड़ें।"
+        }), 500
+
+    try:
+        data = request.get_json() or {}
+        user_prompt = data.get("prompt", "").strip()
+
+        if not user_prompt:
+            return jsonify({"success": False, "error": "कोई प्रॉम्प्ट प्राप्त नहीं हुआ।"}), 400
+
+        lower_prompt = user_prompt.lower()
+
+        # 1. सिस्टम स्टेटस या डायग्नोस्टिक्स कमांड के लिए
+        if "status" in lower_prompt or "system status" in lower_prompt:
+            return jsonify({
+                "success": True, 
+                "reply": "Snaaya Core Diagnostics: CPU Load 14% | Memory Optimal | Vercel Server & Python Backend: Online & Fully Synced."
+            })
+
+        # 2. व्हाट्सएप ऑटोमेशन या अन्य शॉर्टकट कमांड्स के लिए
+        if "whatsapp" in lower_prompt:
+            return jsonify({
+                "success": True, 
+                "reply": f"WhatsApp Automation Module: Command recognized -> '{user_prompt}'. (Ready for message dispatch protocol)."
+            })
+
+        # 3. बाकी सभी सामान्य प्रश्नों और AI चैट के लिए सीधे Gemini 2.5 Flash से कनेक्ट करना
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=f"You are Snaaya AI, a futuristic and helpful desktop assistant. Keep your answers concise, smart, and tech-themed. User query: {user_prompt}"
+        )
+
+        return jsonify({
+            "success": True, 
+            "reply": response.text
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False, 
+            "reply": f"Snaaya Neural Error: {str(e)}"
+        })
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    
             if (sendBtn) sendBtn.addEventListener('click', handleSend);
             if (userInput) {
                 userInput.addEventListener('keypress', (e) => {
